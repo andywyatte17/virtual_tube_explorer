@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import * as CryptoJS from 'crypto-js';
-import { LOCATION_INITIALIZED } from '@angular/common';
+
+import {StartupComponent} from './startup/startup.component';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +14,11 @@ export class AppComponent implements OnInit {
 
   // ...
 
-  ngOnInit()
-  {
-    this.updateThingEncrypted();
-  }
+  constructor(private modalService: NgbModal) {}
 
-  thingToEncrypt = '{ "TflApiKey": "...", "TflApiSecret": "..." }';
-  
-  thingEncrypted = '???';
-
-  thingToEncryptDidChange(value : string) {
-    this.thingToEncrypt = value;
-    this.updateThingEncrypted();
-  }
-
-  private updateThingEncrypted()
-  {
-  this.thingEncrypted = CryptoJS.HmacSHA256(this.thingToEncrypt, "someKey").toString();
+  ngOnInit() {
+    let options:
+        NgbModalOptions = {backdrop: 'static', keyboard: false};
+    const modalRef = this.modalService.open(StartupComponent, options);
   }
 }

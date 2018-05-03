@@ -1,0 +1,34 @@
+<div class="modal-header">
+  Login
+</div>
+<!-- -->
+<div class="modal-body">
+  <p>Type in the login...</p>
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <br>
+    <label for="login">Login Password:</label>
+    <input type="password" name="login" [ngModel]="loginPassword" (ngModelChange)="loginPasswordDidChange($event)">
+    <input type="submit" (click)="submit()" value="Login">
+  </form>
+  <div [hidden]="!showFailedToLoginMessage">
+    <p>Failed to login.</p>
+  </div>
+  <button (click)="showEncryptArea()" [hidden]="!isEncryptAreaHidden">Show Encrypt Area</button>
+  <hr [hidden]="isEncryptAreaHidden">
+  <div [hidden]="isEncryptAreaHidden">
+    <p>Encrypt your API key below</p>
+    <form>
+      <label for="thingToEncrypt">Api JSON:</label>
+      <input name="thingToEncrypt" [ngModel]="thingToEncrypt" (ngModelChange)="thingToEncryptDidChange($event)" type="text">
+      <br>
+      <label for="thingEncrypted">Encrypted:</label>
+      <input name="thingEncrypted" type="text" [ngModel]="thingEncrypted" #thingEncryptedElement>
+      <input type="submit" (click)="copyEncryptedToClipboard()" value="Copy to Clipboard">
+    </form>
+  </div>
+</div>
+<!-- -->
+<div class="modal-footer">
+</div>
