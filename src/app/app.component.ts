@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
-    let options:
-        NgbModalOptions = {backdrop: 'static', keyboard: false};
-    const modalRef = this.modalService.open(StartupComponent, options);
+    setTimeout(() => {
+      let options: NgbModalOptions = {backdrop: 'static', keyboard: false};
+      const modalRef = this.modalService.open(StartupComponent, options);
+    }, 100);
   }
 }

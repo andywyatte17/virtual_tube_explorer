@@ -1,0 +1,8 @@
+<p>Naptan selector</p>
+<select class="list-group" [(ngModel)]='selectedNaptanId' (ngModelChange)="naptanDidChange()">
+  <option *ngFor='let naptan of naptans' [value]="naptan.id">{{ naptan.name }}</option>
+</select>
+<p>Arrivals at {{ selectedNaptan.name }}</p>
+<ul style="overflow-y: auto; height: 10em;">
+  <li *ngFor='let arrival of arrivals'>To: {{ arrival.destinationName }}; {{ toMinutes(arrival) }}</li>
+</ul>
