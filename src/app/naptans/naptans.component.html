@@ -1,8 +1,22 @@
-<p>Naptan selector</p>
-<select class="list-group" [(ngModel)]='selectedNaptanId' (ngModelChange)="naptanDidChange()">
-  <option *ngFor='let naptan of naptans' [value]="naptan.id">{{ naptan.name }}</option>
-</select>
-<p>Arrivals at {{ selectedNaptan.name }}</p>
-<ul style="overflow-y: auto; height: 10em;">
-  <li *ngFor='let arrival of arrivals'>To: {{ arrival.destinationName }}; {{ toMinutes(arrival) }}</li>
-</ul>
+<div style="width: 25em">
+  <p>Naptan selector</p>
+  <form>
+    <label for="stationNameFilter">Filter:</label>
+    <input type="text" name="stationNameFilter" [ngModel]="filter" (ngModelChange)="filterDidChange($event)">
+  </form>
+  <select class="list-group" [(ngModel)]='selectedNaptanId' (ngModelChange)="naptanDidChange()">
+    <option *ngFor='let naptan of filteredNaptans' [value]="naptan.id">{{ naptan.name }}</option>
+  </select>
+  <p>Arrivals at {{ selectedNaptan.name }}</p>
+  <ul style="overflow-y: auto; height: 10em;">
+    <li *ngFor='let arrival of arrivals'>
+      <p>
+        <span [hidden]="arrival.destinationName && arrival.destinationName!=''">To: {{ arrival.destinationName }}
+          <br>
+        </span>
+        {{ toMinutes(arrival) }}
+        <br> {{ arrival.currentLocation }}
+      </p>
+    </li>
+  </ul>
+</div>

@@ -15,11 +15,15 @@ import { ApiKeys } from '../my_tfl_api_key';
 export class NaptansComponent implements OnInit {
   naptans = MakeTubeNaptans();
 
+  filteredNaptans = new Array<Naptan>();
+
   arrivals: Array<Arrival> = null;
 
   selectedNaptan: Naptan;
 
   selectedNaptanId_: string;
+
+  filter : string;
 
   get selectedNaptanId() {
     return this.selectedNaptanId_;
@@ -38,10 +42,31 @@ export class NaptansComponent implements OnInit {
 
   ngOnInit() {
     if (this.selectedNaptan) this.naptanDidChange();
+    this.updateFilteredNaptans();
   }
 
   toMinutes(arrival: Arrival) {
     return (Math.round(arrival.timeToStation / 60.0)).toString() + ' minute(s)';
+  }
+
+  filterDidChange(filterValue : string)
+  {
+    this.filter = filterValue;
+    this.updateFilteredNaptans();
+  }
+
+  updateFilteredNaptans()
+  {
+    if(!this.filter || this.filter=='')
+    {
+      this.filteredNaptans = this.naptans;
+      return;
+    }
+    let filterLC = this.filter.toLowerCase();
+    let selectedNaptan = this.selectedNaptan;
+    this.filteredNaptans = this.naptans.filter( (naptan : Naptan) => {
+      return naptan==selectedNaptan || naptan.name.toLowerCase().indexOf(filterLC)>=0;
+    });
   }
 
   naptanDidChange() {
@@ -51,7 +76,9 @@ export class NaptansComponent implements OnInit {
 
     console.log(api);
     this.http.get<any>(api).subscribe((arrivals: Array<Arrival>) => {
-      this.arrivals = arrivals;
+      this.arrivals = arrivals.sort( (a:Arrival, b:Arrival) => {
+        return a.timeToStation - b.timeToStation;
+      });
     });
   }
 }
