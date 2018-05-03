@@ -81,4 +81,11 @@ export class NaptansComponent implements OnInit {
       });
     });
   }
+
+  shortenedDestination(name : string)
+  {
+    name = name.replace(" Underground Station ", " ");
+    name = name.replace(" Underground Station", "");
+    return name;
+  }
 }

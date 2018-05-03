@@ -1,4 +1,4 @@
-<div style="width: 25em">
+<div>
   <p>Naptan selector</p>
   <form>
     <label for="stationNameFilter">Filter:</label>
@@ -11,10 +11,10 @@
   <ul style="overflow-y: auto; height: 10em;">
     <li *ngFor='let arrival of arrivals'>
       <p>
-        <span [hidden]="!arrival.destinationName || arrival.destinationName==''">To: {{ arrival.destinationName }}
-          <br>
+        {{ arrival.lineName }}
+        <span [hidden]="!arrival.destinationName || arrival.destinationName==''">to {{ shortenedDestination(arrival.destinationName) }}
         </span>
-        {{ toMinutes(arrival) }}
+        <br> {{ toMinutes(arrival) }}
         <br> {{ arrival.currentLocation }}
       </p>
     </li>
