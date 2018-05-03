@@ -9,14 +9,28 @@
   </select>
   <p>Arrivals at {{ selectedNaptan.name }}</p>
   <ul style="overflow-y: auto; height: 10em;">
-    <li *ngFor='let arrival of arrivals'>
+    <li *ngFor='let arrival of arrivals' (click)="showArrival(arrival)">
       <p>
         {{ arrival.lineName }}
-        <span [hidden]="!arrival.destinationName || arrival.destinationName==''">to {{ shortenedDestination(arrival.destinationName) }}
+        <span [hidden]="!arrival.destinationName || arrival.destinationName==''">
+          to {{ shortenedDestination(arrival.destinationName) }}
         </span>
         <br> {{ toMinutes(arrival) }}
         <br> {{ arrival.currentLocation }}
       </p>
     </li>
   </ul>
+  <p>Places</p>
+  <ul style="overflow-y: auto; height: 10em;">
+    <li *ngFor='let where of passenger.wheres'>
+      {{ where }}
+    </li>
+  </ul>
+  <form>
+    <label for="vehicleId">Vehicle Id:</label>
+    <input style="width: 50px" name="vehicleId" type="text" [ngModel]="pendingVehicleId" (ngModelChange)="vehicleIdDidChange($event)">
+    <label for="line">Line:</label>
+    <input style="width: 50px" name="line" type="text" [ngModel]="pendingLine" (ngModelChange)="lineDidChange($event)">
+    <button (click)="setVehicleId()">Set Vehicle</button>
+  </form>
 </div>
