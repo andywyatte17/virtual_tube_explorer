@@ -10,11 +10,9 @@ import {ApiKeys} from '../my_tfl_api_key';
   styleUrls: ['./startup.component.css']
 })
 export class StartupComponent implements OnInit {
-  @ViewChild('thingEncryptedElement')
+  @ViewChild('thingEncryptedElement') thingEncryptedElement: ElementRef;
 
   constructor(public readonly activeModal: NgbActiveModal) {}
-
-  thingEncryptedElement: ElementRef;
 
   thingToEncrypt = JSON.stringify(
       {'Tfl': {'ApplicationID': '...', 'ApplicationKey': '...'}});
