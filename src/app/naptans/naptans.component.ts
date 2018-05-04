@@ -29,6 +29,14 @@ export class NaptansComponent implements OnInit {
 
   filter: string;
 
+  lines: Array<string> = null;
+
+  selectedLine: string = null;
+
+  lineSelectedDidChange() {
+    this.refreshArrivals();
+  }
+
   get selectedNaptanId() {
     return this.selectedNaptanId_;
   }
@@ -38,6 +46,13 @@ export class NaptansComponent implements OnInit {
     this.selectedNaptan = this.naptans.find((naptan: Naptan) => {
       return naptan.id == naptanId;
     });
+    Naptan.TubeLinesForNaptan(naptanId, this.http).then(
+      (lines: Array<string>) => {
+        console.log(lines);
+        this.lines = lines;
+        this.selectedLine = this.lines[0];
+        this.naptanDidChange();
+      });
   }
 
   private bumpWhereAmI() {
@@ -80,8 +95,8 @@ export class NaptansComponent implements OnInit {
     });
   }
 
-  private pendingVehicleId = null;
-  private pendingLine = null;
+  public pendingVehicleId : string = null;
+  public pendingLine : string = null;
 
   lineDidChange(line: string) {
     this.pendingLine = line;
@@ -99,28 +114,35 @@ export class NaptansComponent implements OnInit {
   }
 
   naptanDidChange() {
+    this.refreshArrivals();
+  }
+
+  refreshArrivals() {
     //MakeTubeLines().forEach((line: string) => {
     //  TestLinesAPI(this.http, line);
     //});
 
-    let linesPromise = Naptan.TubeLinesForNaptan(this.selectedNaptanId, this.http);
-    linesPromise.then( (lines : Array<string>) => {
+    // let linesPromise = Naptan.TubeLinesForNaptan(this.selectedNaptanId, this.http);
+    let linesPromise = new Promise<Array<string>>((resolve, reject) => {
+      resolve([this.selectedLine]);
+    });
+    linesPromise.then((lines: Array<string>) => {
       //console.log("lines", lines);
       let arrivals = new Array<Arrival>();
-      let promises = lines.map( (line:string) => {
+      let promises = lines.map((line: string) => {
         let naptan = this.selectedNaptanId;
         let url = `https://api.tfl.gov.uk/Line/${line}/Arrivals/${naptan}`;
         url = url + ApiKeys.htmlPrefix();
         console.log(url);
-        return new Promise<any>( (resolve, reject) => {
-          this.http.get<any>(url).subscribe( (arrivals2:Array<Arrival>) => {
-            arrivals2.forEach( (arr) => arrivals.push(arr) );
+        return new Promise<any>((resolve, reject) => {
+          this.http.get<any>(url).subscribe((arrivals2: Array<Arrival>) => {
+            arrivals2.forEach((arr) => arrivals.push(arr));
             resolve(true);
           });
         });
       });
       //console.dir({"promises":promises});
-      Promise.all( promises ).then(
+      Promise.all(promises).then(
         (value) => {
           this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
             return a.timeToStation - b.timeToStation;
@@ -133,13 +155,19 @@ export class NaptansComponent implements OnInit {
   }
 
   shortenedDestination(name: string): string {
-    //name = name.replace(" Underground Station ", " ");
-    //name = name.replace(" Underground Station", "");
+    if(name) {
+      name = name.replace(" Underground Station ", " ");
+      name = name.replace(" Underground Station", "");
+    }
     return name;
   }
 
-  showArrival(arrival: Arrival) {
-    const modalRef = this.modalService.open(ArrivalInfoComponent);
-    (<ArrivalInfoComponent>modalRef.componentInstance).arrival = arrival;
+  selectArrival(arrival: Arrival) {
+    //const modalRef = this.modalService.open(ArrivalInfoComponent);
+    //(<ArrivalInfoComponent>modalRef.componentInstance).arrival = arrival;
+    if(arrival) {
+      this.pendingLine = arrival.lineId;
+      this.pendingVehicleId = arrival.vehicleId;
+    }
   }
 }
