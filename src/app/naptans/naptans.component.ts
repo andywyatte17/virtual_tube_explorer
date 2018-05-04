@@ -50,7 +50,7 @@ export class NaptansComponent implements OnInit {
   constructor(private http: HttpClient, private modalService: NgbModal,
     public readonly passenger: Passenger) {
     this.selectedNaptanId = this.naptans[0].id;
-    this.passenger.currentVehicle = new CurrentVehicle("204", "hammersmith-city");
+    //this.passenger.currentVehicle = new CurrentVehicle("204", "hammersmith-city");
     this.bumpWhereAmI();
   }
 
@@ -103,16 +103,33 @@ export class NaptansComponent implements OnInit {
     //  TestLinesAPI(this.http, line);
     //});
 
-    // Arrivals API
-    let api =
-      `https://api.tfl.gov.uk/StopPoint/${this.selectedNaptan.id}/arrivals` + ApiKeys.htmlPrefix();
-
-    console.log(api);
-    this.http.get<any>(api).subscribe((arrivals: Array<Arrival>) => {
-      this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
-        return a.timeToStation - b.timeToStation;
+    let linesPromise = Naptan.TubeLinesForNaptan(this.selectedNaptanId, this.http);
+    linesPromise.then( (lines : Array<string>) => {
+      //console.log("lines", lines);
+      let arrivals = new Array<Arrival>();
+      let promises = lines.map( (line:string) => {
+        let naptan = this.selectedNaptanId;
+        let url = `https://api.tfl.gov.uk/Line/${line}/Arrivals/${naptan}`;
+        url = url + ApiKeys.htmlPrefix();
+        console.log(url);
+        return new Promise<any>( (resolve, reject) => {
+          this.http.get<any>(url).subscribe( (arrivals2:Array<Arrival>) => {
+            arrivals2.forEach( (arr) => arrivals.push(arr) );
+            resolve(true);
+          });
+        });
       });
+      //console.dir({"promises":promises});
+      Promise.all( promises ).then(
+        (value) => {
+          this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
+            return a.timeToStation - b.timeToStation;
+          });
+        });
     });
+
+    // Old Arrivals API
+    // `https://api.tfl.gov.uk/StopPoint/${this.selectedNaptan.id}/arrivals` + ApiKeys.htmlPrefix();
   }
 
   shortenedDestination(name: string): string {

@@ -23,11 +23,14 @@ export class CurrentVehicle {
 export class Passenger {
   public places = new Array<PassengerPlaces>();
   public wheres = new Array<[string, string]>();
-  public currentPlace: Naptan;
-  public currentVehicle: CurrentVehicle;
+  public currentPlace: Naptan = null;
+  public currentVehicle: CurrentVehicle = null;
 
   bumpWhereAmI(http: HttpClient) {
-    if (this.currentVehicle) {
+    if (!this.currentVehicle) {
+      return new Promise<any>(
+        (resolve, reject) => { resolve(false); });
+    } else {
       //console.log("cv", this.currentVehicle);
       return new Promise<any>(
         (resolve, reject) => {
@@ -59,8 +62,6 @@ export class Passenger {
             }
           });
         });
-    } else {
-      return new Promise<any>(
-        (resolve, reject) => { resolve(false); });
     }
   }
+}

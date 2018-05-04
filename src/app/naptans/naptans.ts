@@ -2,9 +2,38 @@
 // naptans-tube.ts
 //
 
+import { HttpClient } from '@angular/common/http';
+import { ApiKeys } from '../my_tfl_api_key';
+import { MakeTubeLines } from '../tfl_api/lines';
+
 export class Naptan {
-  constructor(public id: string, public name: string) {}
-};
+  constructor(public id: string, public name: string) { }
+
+  private static _cache = new Map<string, Array<string>>();
+
+  static TubeLinesForNaptan(naptan: string, http: HttpClient) {
+    if(Naptan._cache.has(naptan))
+      return new Promise((resolve, reject) => {
+        resolve(Naptan._cache.get(naptan));
+      });
+
+    return new Promise((resolve, reject) => {
+      let url = `https://api.tfl.gov.uk/StopPoint/${naptan}`;
+      url += ApiKeys.htmlPrefix();
+      http.get<any>(url).subscribe((v: any) => {
+        const lines = MakeTubeLines();
+        let v_lines = <Array<any>>v["lines"];
+        v_lines = v_lines.map((element: any) => <string>element.id);
+        v_lines = v_lines.filter((lineId: any) => {
+          return !!lines.find((x) => x == lineId);
+        });
+        console.dir(v_lines);
+        Naptan._cache.set(naptan, v_lines);
+        resolve(v_lines);
+      });
+    });
+  }
+}
 
 //
 // naptans-tube.ts
