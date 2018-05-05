@@ -11,16 +11,16 @@ import { ApiKeys } from '../my_tfl_api_key';
  */
 export function MakeTubeLines() {
     return [
-        "metropolitan",
-        "district",
-        "piccadilly",
         "bakerloo",
         "central",
-        "northern",
-        "jubilee",
+        "circle",
         "district",
-        "victoria",
         "hammersmith-city",
+        "jubilee",
+        "metropolitan",
+        "northern",
+        "piccadilly",
+        "victoria",
         "waterloo-city"
     ];
 }
