@@ -24,13 +24,9 @@
   <!-- -->
   <p>Arrivals at {{ selectedNaptan.name }}</p>
   <ul style="overflow-y: auto; height: 10em;">
-    <li *ngFor='let arrival of arrivals' (click)="selectArrival(arrival)">
-      <p>
-        {{ shortenedDestination(arrival.destinationName) }} - {{ toMinutes(arrival) }}
-        <br>
-        <small>{{ arrival.lineName }}</small>
-        <br><small>{{ arrival.currentLocation }}</small>
-      </p>
+    <li *ngFor='let arrival of arrivals' (click)="selectArrival(arrival)" [ngClass]="getClassByLine(arrival.lineId)">
+      {{ shortenedDestination(arrival.destinationName) }} - {{ toMinutes(arrival) }}
+      <br><small>{{ arrival.currentLocation }}</small>
     </li>
   </ul>
 </div>

@@ -6,7 +6,7 @@ import { Naptan } from "../naptans/naptans";
 import { HttpClient } from '@angular/common/http';
 import { ApiKeys } from "../my_tfl_api_key";
 import { Arrival } from "../tfl_api/arrivals";
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 
 export class PassengerPlaces {
   constructor(public naptan: Naptan, timeFirstAt: string) { }
@@ -16,15 +16,21 @@ export class CurrentVehicle {
   constructor(public vehicleId: string, public line: string) { }
 }
 
+export class Where {
+  constructor(public location: string, public timestamp: string) { }
+};
+
 /** The state object describing the passenger - for example
  * where it is, where it's been and when.
  */
 @Injectable()
 export class Passenger {
   public places = new Array<PassengerPlaces>();
-  public wheres = new Array<[string, string]>();
+  public filteredPlaces = new Array<PassengerPlaces>();
+  public wheres = new Array<Where>();
   public currentPlace: Naptan = null;
   public currentVehicle: CurrentVehicle = null;
+  public readonly wheresDidChange = new EventEmitter<Passenger>();
 
   bumpWhereAmI(http: HttpClient) {
     if (!this.currentVehicle) {
@@ -54,8 +60,13 @@ export class Passenger {
             //console.log("v", v.map(mapper));
             let arrival = v.length > 0 ? v[0] : null;
             if (arrival) {
-              if (this.wheres.length < 1 || this.wheres[this.wheres.length - 1][0] != arrival.currentLocation)
-                this.wheres.push([arrival.currentLocation, arrival.timestamp]);
+              let lastWhere: Where;
+              if (this.wheres.length >= 0)
+                lastWhere = this.wheres[this.wheres.length - 1];
+              if (!lastWhere || (lastWhere.location != arrival.currentLocation))
+                this.wheres.push(
+                  new Where(arrival.currentLocation, arrival.timestamp));
+              this.wheresDidChange.emit(this);
               resolve(true);
             } else {
               resolve(false);

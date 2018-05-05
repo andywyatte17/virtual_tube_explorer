@@ -137,6 +137,10 @@ export class NaptansComponent implements OnInit {
     return name;
   }
 
+  getClassByLine(lineId:string) {
+    return "generic_line " + lineId;
+  }
+
   selectArrival(arrival: Arrival) {
     //const modalRef = this.modalService.open(ArrivalInfoComponent);
     //(<ArrivalInfoComponent>modalRef.componentInstance).arrival = arrival;
