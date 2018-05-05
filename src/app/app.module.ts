@@ -10,15 +10,18 @@ import { NaptansComponent } from './naptans/naptans.component';
 import { StartupComponent } from './startup/startup.component';
 import { ArrivalInfoComponent } from './arrival-info/arrival-info.component';
 import { Passenger } from './passenger/passenger';
+import { PlacesComponent } from './places/places.component';
+import { PlacesService } from './places.service';
 
 @NgModule({
-  declarations: [AppComponent, StartupComponent, ArrivalInfoComponent, NaptansComponent],
+  declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
+    NaptansComponent, PlacesComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule
   ],
-  providers: [Passenger],
-  entryComponents: [StartupComponent, ArrivalInfoComponent],
+  providers: [Passenger, PlacesService],
+  entryComponents: [StartupComponent, ArrivalInfoComponent, PlacesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -9,6 +9,7 @@ import { MakeTubeLines, TestLinesAPI } from '../tfl_api/lines';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArrivalInfoComponent } from '../arrival-info/arrival-info.component';
 import { Passenger, CurrentVehicle } from '../passenger/passenger';
+import { PlacesService } from '../places.service';
 
 
 @Component({
@@ -55,18 +56,10 @@ export class NaptansComponent implements OnInit {
       });
   }
 
-  private bumpWhereAmI() {
-    console.log("bumpWhereAmI", new Date());
-    this.passenger.bumpWhereAmI(this.http).then(
-      () => setTimeout(() => this.bumpWhereAmI(), 15000)
-    );
-  }
-
   constructor(private http: HttpClient, private modalService: NgbModal,
-    public readonly passenger: Passenger) {
+    public readonly passenger: Passenger, public readonly placesService : PlacesService) {
     this.selectedNaptanId = this.naptans[0].id;
     //this.passenger.currentVehicle = new CurrentVehicle("204", "hammersmith-city");
-    this.bumpWhereAmI();
   }
 
   ngOnInit() {
@@ -93,24 +86,6 @@ export class NaptansComponent implements OnInit {
     this.filteredNaptans = this.naptans.filter((naptan: Naptan) => {
       return naptan == selectedNaptan || naptan.name.toLowerCase().indexOf(filterLC) >= 0;
     });
-  }
-
-  public pendingVehicleId : string = null;
-  public pendingLine : string = null;
-
-  lineDidChange(line: string) {
-    this.pendingLine = line;
-  }
-
-  vehicleIdDidChange(vehicleId: string) {
-    this.pendingVehicleId = vehicleId;
-  }
-
-  setVehicleId() {
-    if (this.pendingVehicleId) {
-      this.passenger.currentVehicle = new CurrentVehicle(this.pendingVehicleId, this.pendingLine);
-      console.log("this.passenger.currentVehicle", this.passenger.currentVehicle);
-    }
   }
 
   naptanDidChange() {
@@ -165,9 +140,6 @@ export class NaptansComponent implements OnInit {
   selectArrival(arrival: Arrival) {
     //const modalRef = this.modalService.open(ArrivalInfoComponent);
     //(<ArrivalInfoComponent>modalRef.componentInstance).arrival = arrival;
-    if(arrival) {
-      this.pendingLine = arrival.lineId;
-      this.pendingVehicleId = arrival.vehicleId;
-    }
+    this.placesService.arrivalSelected.emit(arrival);
   }
 }

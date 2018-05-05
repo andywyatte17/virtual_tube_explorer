@@ -1,8 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as CryptoJS from 'crypto-js';
 
-import {ApiKeys} from '../my_tfl_api_key';
+import { ApiKeys } from '../my_tfl_api_key';
+
+const PASSWORD_KEY = "net.ghuisoft.vte.password";
 
 @Component({
   selector: 'app-startup',
@@ -12,10 +14,10 @@ import {ApiKeys} from '../my_tfl_api_key';
 export class StartupComponent implements OnInit {
   @ViewChild('thingEncryptedElement') thingEncryptedElement: ElementRef;
 
-  constructor(public readonly activeModal: NgbActiveModal) {}
+  constructor(public readonly activeModal: NgbActiveModal) { }
 
   thingToEncrypt = JSON.stringify(
-      {'Tfl': {'ApplicationID': '...', 'ApplicationKey': '...'}});
+    { 'Tfl': { 'ApplicationID': '...', 'ApplicationKey': '...' } });
 
   thingEncrypted = '???';
 
@@ -41,12 +43,15 @@ export class StartupComponent implements OnInit {
 
   private updateThingEncrypted() {
     this.thingEncrypted =
-        CryptoJS.AES.encrypt(this.thingToEncrypt, this.loginPassword)
-            .toString();
+      CryptoJS.AES.encrypt(this.thingToEncrypt, this.loginPassword)
+        .toString();
   }
 
   ngOnInit() {
     this.updateThingEncrypted();
+    let password = <string>window.localStorage.getItem(PASSWORD_KEY);
+    if (password)
+      setTimeout(() => { this.loginPassword = password; this.submit(); }, 500);
   }
 
   copyEncryptedToClipboard() {
@@ -58,10 +63,11 @@ export class StartupComponent implements OnInit {
   submit() {
     try {
       const decrypted =
-          StartupComponent.AES_Decrypt(ApiKeys.encrypted, this.loginPassword);
+        StartupComponent.AES_Decrypt(ApiKeys.encrypted, this.loginPassword);
       ApiKeys.decrypted = JSON.parse(decrypted);
       this.showFailedToLoginMessage = false;
       this.activeModal.close("OK");
+      window.localStorage.setItem(PASSWORD_KEY, this.loginPassword);
     } catch (e) {
       this.showFailedToLoginMessage = true;
     }
