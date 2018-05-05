@@ -8,7 +8,7 @@ arrivals_at_station_and_line = 'https://api.tfl.gov.uk/Line/{tubeline}/Arrivals/
 arrivals_on_line = 'https://api.tfl.gov.uk/Line/{tubeline}/Arrivals'
 bakerstreet = '940GZZLUBST'
 
-def print_req(r):q
+def print_req(r):
     print(r.status_code)
     jso = map(lambda x : [x["currentLocation"], x["vehicleId"]], r.json())
     jso = list(jso)
