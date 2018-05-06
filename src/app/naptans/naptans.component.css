@@ -7,14 +7,32 @@
     margin: 0.1em;
 }
 
-.district {
-  background-color: green;
-}
+.bakerloo { background-color: #963; }
 
-.piccadilly {
-  background-color: blue;
-}
+.central { background-color: #c33; }
+
+.jubilee { background-color: #889; }
+
+.hammersmith-city { background-color: #c99; }
+
+.district { background-color: #063; }
+
+.metropolitan { background-color: #a06; }
+
+.piccadilly { background-color: #048; }
   
 .circle {
-  background-color: yellow;
+  background-color: #fc0;
+  color: #333;
+}
+
+.waterloo-city {
+  background-color: #9db;
+  color: #333;
+}
+
+.victoria { background-color: #09c; }
+
+.lineArrivalsFilter {
+  list-style-type: none;
 }

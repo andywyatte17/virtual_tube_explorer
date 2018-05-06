@@ -32,7 +32,9 @@ export class NaptansComponent implements OnInit {
 
   lines: Array<string> = null;
 
-  selectedLine: string = null;
+  filterLine = new Map<string, boolean>();
+
+  selectedLines = new Array<string>();
 
   lineSelectedDidChange() {
     this.refreshArrivals();
@@ -51,13 +53,13 @@ export class NaptansComponent implements OnInit {
       (lines: Array<string>) => {
         console.log(lines);
         this.lines = lines;
-        this.selectedLine = this.lines[0];
+        this.lines.forEach((line: string) => this.setFilterLine(line));
         this.naptanDidChange();
       });
   }
 
   constructor(private http: HttpClient, private modalService: NgbModal,
-    public readonly passenger: Passenger, public readonly placesService : PlacesService) {
+    public readonly passenger: Passenger, public readonly placesService: PlacesService) {
     this.selectedNaptanId = this.naptans[0].id;
     //this.passenger.currentVehicle = new CurrentVehicle("204", "hammersmith-city");
   }
@@ -93,51 +95,42 @@ export class NaptansComponent implements OnInit {
   }
 
   refreshArrivals() {
-    //MakeTubeLines().forEach((line: string) => {
-    //  TestLinesAPI(this.http, line);
-    //});
-
-    // let linesPromise = Naptan.TubeLinesForNaptan(this.selectedNaptanId, this.http);
-    let linesPromise = new Promise<Array<string>>((resolve, reject) => {
-      resolve([this.selectedLine]);
-    });
-    linesPromise.then((lines: Array<string>) => {
-      //console.log("lines", lines);
-      let arrivals = new Array<Arrival>();
-      let promises = lines.map((line: string) => {
-        let naptan = this.selectedNaptanId;
-        let url = `https://api.tfl.gov.uk/Line/${line}/Arrivals/${naptan}`;
-        url = url + ApiKeys.htmlPrefix();
-        console.log(url);
-        return new Promise<any>((resolve, reject) => {
-          this.http.get<any>(url).subscribe((arrivals2: Array<Arrival>) => {
-            arrivals2.forEach((arr) => arrivals.push(arr));
-            resolve(true);
-          });
+    let linesStart = this.lines ? this.lines : new Array<string>();
+    let arrivals = new Array<Arrival>();
+    let linesToUse = linesStart.filter((line: string) => this.isLineFiltered(line));
+    let promises = linesToUse.map((line: string) => {
+      let naptan = this.selectedNaptanId;
+      let url = `https://api.tfl.gov.uk/Line/${line}/Arrivals/${naptan}`;
+      url = url + ApiKeys.htmlPrefix();
+      console.log(url);
+      return new Promise<any>((resolve, reject) => {
+        this.http.get<any>(url).subscribe((arrivals2: Array<Arrival>) => {
+          arrivals2.forEach((arr) => arrivals.push(arr));
+          resolve(true);
         });
       });
-      //console.dir({"promises":promises});
-      Promise.all(promises).then(
-        (value) => {
-          this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
-            return a.timeToStation - b.timeToStation;
-          });
-        });
     });
 
+    //console.dir({"promises":promises});
+    Promise.all(promises).then(
+      (value) => {
+        this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
+          return a.timeToStation - b.timeToStation;
+        });
+      });
     // Old Arrivals API
     // `https://api.tfl.gov.uk/StopPoint/${this.selectedNaptan.id}/arrivals` + ApiKeys.htmlPrefix();
   }
 
   shortenedDestination(name: string): string {
-    if(name) {
+    if (name) {
       name = name.replace(" Underground Station ", " ");
       name = name.replace(" Underground Station", "");
     }
     return name;
   }
 
-  getClassByLine(lineId:string) {
+  getClassByLine(lineId: string) {
     return "generic_line " + lineId;
   }
 
@@ -145,5 +138,38 @@ export class NaptansComponent implements OnInit {
     //const modalRef = this.modalService.open(ArrivalInfoComponent);
     //(<ArrivalInfoComponent>modalRef.componentInstance).arrival = arrival;
     this.placesService.arrivalSelected.emit(arrival);
+  }
+
+  toggleFilterLine(line: string) {
+    console.log("toggleFilterLine", line);
+    if (!this.filterLine.has(line))
+      this.filterLine.set(line, false);
+    this.filterLine.set(line, !this.filterLine.get(line));
+    this.refreshArrivals();
+  }
+
+  setFilterLine(line: string) {
+    this.filterLine.set(line, true);
+  }
+
+  isLineFiltered(line: string) {
+    if (!this.filterLine.has(line))
+      this.filterLine.set(line, false);
+    return this.filterLine.get(line);
+  }
+
+  soloLine(event: any, line: string) {
+    let not_reverse = true;
+    if(this.isLineFiltered(line))
+      not_reverse = false;
+    let keys = new Array<string>();
+    this.filterLine.forEach((v, k: string) => keys.push(k));
+    keys.forEach((k: string) => this.filterLine.set(k, not_reverse === (k === line)));
+    this.refreshArrivals();
+  }
+
+  linesSel(begin: number, end: number) {
+    if (!this.lines) return new Array<string>();
+    return this.lines.filter((_, index) => begin <= index && index < end);
   }
 }
