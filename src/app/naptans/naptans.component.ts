@@ -67,6 +67,14 @@ export class NaptansComponent implements OnInit {
   ngOnInit() {
     if (this.selectedNaptan) this.naptanDidChange();
     this.updateFilteredNaptans();
+    this.bumpArrivals();
+  }
+
+  bumpArrivals() {
+    setTimeout(() => {
+      this.refreshArrivals();
+      this.bumpArrivals();
+    }, 1000 * 30);
   }
 
   toMinutes(arrival: Arrival) {

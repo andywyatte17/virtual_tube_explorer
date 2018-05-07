@@ -27,8 +27,8 @@ export class PlacesComponent implements OnInit {
     // ...
     this.passenger.wheresDidChange.subscribe( (passenger : Passenger) => {
       let last = passenger.wheres.length-1;
-      this.filteredWheres = passenger.wheres.filter( (v : any, index : number) => {
-        return index==last;
+      this.filteredWheres = passenger.wheres.filter( (v : Where, index : number) => {
+        return index==last || v.location.startsWith("At ");
       });
     });
   }
