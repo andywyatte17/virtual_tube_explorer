@@ -31,7 +31,7 @@
     </div>
   </div>
   <!-- -->
-  <ul style="overflow-y: auto; height: 10em;">
+  <ul style="overflow-y: auto; height: 10em; padding-left:0px;">
     <li *ngFor='let arrival of arrivals' (click)="selectArrival(arrival)" [ngClass]="getClassByLine(arrival.lineId)">
       {{ shortenedDestination(arrival.destinationName) }} - {{ toMinutes(arrival) }}
       <br>

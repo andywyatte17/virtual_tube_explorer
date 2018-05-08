@@ -12,6 +12,7 @@ import { ArrivalInfoComponent } from './arrival-info/arrival-info.component';
 import { Passenger } from './passenger/passenger';
 import { PlacesComponent } from './places/places.component';
 import { PlacesService } from './places.service';
+import { NotifierService } from './notifier.service';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
@@ -20,7 +21,7 @@ import { PlacesService } from './places.service';
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule
   ],
-  providers: [Passenger, PlacesService],
+  providers: [Passenger, PlacesService, NotifierService],
   entryComponents: [StartupComponent, ArrivalInfoComponent, PlacesComponent],
   bootstrap: [AppComponent]
 })

@@ -1,54 +1,5 @@
 /* margin: t;r;b;l; */
 
-.generic_line {
-  background-color: #333;
-  color: white;
-  padding: 0.2em 0 0.2em 0.5em;
-  margin: 0.1em;
-}
-
-.bakerloo {
-  background-color: #963;
-}
-
-.central {
-  background-color: #c33;
-}
-
-.jubilee {
-  background-color: #889;
-}
-
-.hammersmith-city {
-  background-color: #c99;
-}
-
-.district {
-  background-color: #063;
-}
-
-.metropolitan {
-  background-color: #a06;
-}
-
-.piccadilly {
-  background-color: #048;
-}
-
-.circle {
-  background-color: #fc0;
-  color: #333;
-}
-
-.waterloo-city {
-  background-color: #9db;
-  color: #333;
-}
-
-.victoria {
-  background-color: #09c;
-}
-
 .lineArrivalsFilter {
   list-style-type: none;
 }

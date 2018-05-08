@@ -1,14 +1,16 @@
 <p>Places</p>
-<form>
-  <label for="vehicleId">Vehicle Id:</label>
-  <input style="width: 40px" name="vehicleId" type="text" [ngModel]="pendingVehicleId" (ngModelChange)="vehicleIdDidChange($event)">
-  <label for="line">Line:</label>
-  <input style="width: 100px" name="line" type="text" [ngModel]="pendingLine" (ngModelChange)="lineDidChange($event)">
-  <button (click)="setVehicleId()">Set Vehicle</button>
-</form>
-<table>
-  <tr *ngFor='let where of filteredWheres'>
-    <td> {{ where.location }} </td>
-    <td> {{ where.timestamp }} </td>
+<p>Current Vehicle: {{ getCurrentVehicle() }}
+  <button (click)="clearVehicle()">x</button>
+</p>
+<table class="table">
+  <thead>
+    <td>Location</td>
+    <td>Time</td>
+    <td>Line</td>
+  </thead>
+  <tr *ngFor='let place of passenger.filteredPlaces'>
+    <td> {{ place.arrival.currentLocation }} </td>
+    <td> {{ simplifyTimestamp(place.arrival.timestamp) }} </td>
+    <td class="generic_line" [ngClass]="place.arrival.lineId"> {{ place.arrival.lineName }} </td>
   </tr>
 </table>
