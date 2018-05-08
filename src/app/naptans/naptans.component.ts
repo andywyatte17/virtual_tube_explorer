@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArrivalInfoComponent } from '../arrival-info/arrival-info.component';
 import { Passenger, CurrentVehicle } from '../passenger/passenger';
 import { PlacesService } from '../places.service';
-
+import { unique } from '../other/algorithm';
 
 @Component({
   selector: 'app-naptans',
@@ -116,6 +116,24 @@ export class NaptansComponent implements OnInit {
       (value) => {
         this.arrivals = arrivals.sort((a: Arrival, b: Arrival) => {
           return a.timeToStation - b.timeToStation;
+        });
+        this.arrivals = unique(this.arrivals, (a: Arrival, b: Arrival) => {
+          let tests = [
+            () => a.naptanId === b.naptanId,
+            () => a.currentLocation === b.currentLocation,
+            () => a.destinationNaptanId === b.destinationNaptanId,
+            () => a.vehicleId === b.vehicleId,
+            () => a.expectedArrival === b.expectedArrival
+          ];
+          let fails = 0;
+          tests.forEach((t: any) => {
+            try {
+              if (!t()) fails += 1;
+            } catch (e) {
+            }
+          });
+          if (fails > 0)
+            return false;
         });
       });
     // Old Arrivals API

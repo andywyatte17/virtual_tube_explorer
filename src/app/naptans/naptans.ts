@@ -5,6 +5,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiKeys } from '../my_tfl_api_key';
 import { MakeTubeLines } from '../tfl_api/lines';
+import { unique } from '../other/algorithm';
 
 export class Naptan {
   constructor(public id: string, public name: string) { }
@@ -324,8 +325,10 @@ export function MakeTubeNaptans(sorted = true) {
     return new Naptan(naptan, name);
   });
   if (sorted)
+  {
     rv = rv.sort((a: Naptan, b: Naptan) => {
       return a.name < b.name ? -1 : b.name < a.name ? 1 : 0;
     });
+  }
   return rv;
 }

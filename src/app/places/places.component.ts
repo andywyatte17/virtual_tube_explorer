@@ -58,4 +58,9 @@ export class PlacesComponent implements OnInit {
     elem.setAttribute("href", dataStr);
     elem.setAttribute("download", "places.json");
   }
+
+  addOther(minutes: string) {
+    this.clearVehicle();
+    this.passenger.addOther(minutes);
+  }
 }

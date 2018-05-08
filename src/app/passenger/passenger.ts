@@ -8,9 +8,18 @@ import { ApiKeys } from "../my_tfl_api_key";
 import { Arrival } from "../tfl_api/arrivals";
 import { Injectable, EventEmitter } from "@angular/core";
 import { NotifierService } from "../notifier.service";
+import * as lodash from 'lodash';
 
 export class PassengerPlace {
-  constructor(public arrival: Arrival) { }
+  constructor(public arrival: Arrival, public details: string) { }
+  detailsDidChange(s: string) {
+    this.details = s;
+    PassengerPlace.detailsDidChangeEvent.emit(this);
+  }
+  locationDidChange(s: string) {
+    (<any>this.arrival).currentLocation = s;
+  } 
+  static detailsDidChangeEvent = new EventEmitter<PassengerPlace>();
 }
 
 export class CurrentVehicle {
@@ -61,7 +70,7 @@ export class Passenger {
               if (this.places.length >= 0)
                 lastPlace = this.places[this.places.length - 1];
               if (!lastPlace || (lastPlace.arrival.currentLocation != arrival.currentLocation)) {
-                this.places.push(new PassengerPlace(arrival));
+                this.places.push(new PassengerPlace(arrival, ""));
                 this.bumpFilteredPlaces();
                 try {
                   let curLoc = arrival.currentLocation;
@@ -88,5 +97,18 @@ export class Passenger {
     this.filteredPlaces = this.places.filter((pp: PassengerPlace, index: number) => {
       return index == lastIndex || pp.arrival.currentLocation.startsWith("At ");
     });
+  }
+
+  addOther(minutes: string) {
+    if (this.places.length > 0) {
+      let last = this.places[this.places.length - 1];
+      let n = parseInt(minutes);
+      let d2 = new Date(last.arrival.timestamp);
+      d2.setTime( d2.getTime() + (n * 60 * 1000) );
+      let pp = new PassengerPlace(lodash.cloneDeep(last.arrival), "");
+      (<any>pp.arrival).timestamp = d2.toISOString();
+      this.places.push(pp);
+      this.bumpFilteredPlaces();
+    }
   }
 }

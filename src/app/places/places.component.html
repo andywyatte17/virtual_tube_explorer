@@ -2,6 +2,12 @@
 <p>Current Vehicle: {{ getCurrentVehicle() }}
   <button (click)="clearVehicle()">x</button>
 </p>
+<p>Add Other (minutes):
+  <button (click)="addOther(2)">+2</button>
+  <button (click)="addOther(5)">+5</button>
+  <button (click)="addOther(10)">+10</button>
+  <button (click)="addOther(15)">+15</button>
+</p>
 <p>
   <a id="downloadPlacesAsJson">Download Json</a>
 </p>
@@ -10,10 +16,14 @@
     <td>Location</td>
     <td>Time</td>
     <td>Line</td>
+    <td>Details</td>
   </thead>
   <tr *ngFor='let place of passenger.filteredPlaces'>
     <td> {{ place.arrival.currentLocation }} </td>
     <td> {{ simplifyTimestamp(place.arrival.timestamp) }} </td>
     <td class="generic_line" [ngClass]="place.arrival.lineId"> {{ place.arrival.lineName }} </td>
+    <td style="width: 6em">
+      <input type="text" name="placeDetails" [ngModel]="details" (ngModelChange)="detailsDidChange($event)">
+    </td>
   </tr>
-</table>
+  </table>
