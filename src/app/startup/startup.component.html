@@ -5,9 +5,6 @@
 <div class="modal-body">
   <p>Type in the login...</p>
   <form>
-    <label class="startupLabel" for="username">Username:</label>
-    <input type="text" name="username">
-    <br>
     <label class="startupLabel" for="password">Password:</label>
     <input type="password" name="password" [ngModel]="loginPassword" (ngModelChange)="loginPasswordDidChange($event)">
     <input type="submit" (click)="submit()">

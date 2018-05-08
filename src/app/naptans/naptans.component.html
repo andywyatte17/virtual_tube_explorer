@@ -22,38 +22,12 @@
   </p>
   <!-- -->
   <div>
-    <div *ngFor="let line of linesSel(0,3)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
-      [ngClass]="getClassByLine(line)">
-      <button (click)="soloLine(line)">s&nbsp;</button>
-      <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
-    </div>
-  </div>
-  <div>
-    <div *ngFor="let line of linesSel(3,6)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
-      [ngClass]="getClassByLine(line)">
-      <button (click)="soloLine(line)">s&nbsp;</button>
-      <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
-    </div>
-  </div>
-  <div>
-    <div *ngFor="let line of linesSel(6,9)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
-      [ngClass]="getClassByLine(line)">
-      <button (click)="soloLine(line)">s&nbsp;</button>
-      <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
-    </div>
-  </div>
-  <div>
-    <div *ngFor="let line of linesSel(9,12)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
-      [ngClass]="getClassByLine(line)">
-      <button (click)="soloLine(line)">s&nbsp;</button>
-      <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
-    </div>
-  </div>
-  <div>
-    <div *ngFor="let line of linesSel(12,15)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
-      [ngClass]="getClassByLine(line)">
-      <button (click)="soloLine(line)">s&nbsp;</button>
-      <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
+    <div *ngFor="let lo of [0,3,6,9,12]">
+      <div *ngFor="let line of linesSel(lo, lo+3)" style="display:inline" (click)="toggleFilterLine(line)" class="lineArrivalsFilter"
+        [ngClass]="getClassByLine(line)">
+        <button (click)="soloLine(line)" class="btn_plain" [ngClass]="getClassByLine(line)">s&nbsp;</button>
+        <span [hidden]="!isLineFiltered(line)">x&nbsp;</span>{{ line }}
+      </div>
     </div>
   </div>
   <!-- -->
