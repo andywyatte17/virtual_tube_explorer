@@ -20,6 +20,7 @@ export class PlacesComponent implements OnInit {
     });
     // ...
     this.passenger.wheresDidChange.subscribe((passenger: Passenger) => {
+      this.bumpDownloadPlacesAsJson();
     });
   }
 
@@ -49,4 +50,12 @@ export class PlacesComponent implements OnInit {
   }
 
   clearVehicle() { this.passenger.currentVehicle = null; }
+
+  bumpDownloadPlacesAsJson() {
+    let obj = JSON.stringify(this.passenger.places);
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(obj);
+    var elem = document.getElementById('downloadPlacesAsJson');
+    elem.setAttribute("href", dataStr);
+    elem.setAttribute("download", "places.json");
+  }
 }
