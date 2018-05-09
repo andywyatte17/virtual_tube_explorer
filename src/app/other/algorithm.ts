@@ -1,4 +1,6 @@
 export function unique<T>(arr: Array<T>, equals_op: (a: T, b: T) => boolean): Array<T> {
+  return arr;
+  /*
   let result = new Array<T>();
   if (!arr || arr.length == 1)
     return arr;
@@ -20,4 +22,5 @@ export function unique<T>(arr: Array<T>, equals_op: (a: T, b: T) => boolean): Ar
     }
   }
   return result;
+  */
 }
