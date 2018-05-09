@@ -99,12 +99,11 @@ export class Passenger {
     });
   }
 
-  addOther(minutes: string) {
+  addOther(minutes: number) {
     if (this.places.length > 0) {
       let last = this.places[this.places.length - 1];
-      let n = parseInt(minutes);
       let d2 = new Date(last.arrival.timestamp);
-      d2.setTime( d2.getTime() + (n * 60 * 1000) );
+      d2.setTime( d2.getTime() + (minutes * 60 * 1000) );
       let pp = new PassengerPlace(lodash.cloneDeep(last.arrival), "");
       (<any>pp.arrival).timestamp = d2.toISOString();
       this.places.push(pp);

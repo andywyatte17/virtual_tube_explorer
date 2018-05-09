@@ -59,7 +59,7 @@ export class PlacesComponent implements OnInit {
     elem.setAttribute("download", "places.json");
   }
 
-  addOther(minutes: string) {
+  addOther(minutes: number) {
     this.clearVehicle();
     this.passenger.addOther(minutes);
   }
