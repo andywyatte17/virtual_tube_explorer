@@ -32,7 +32,8 @@
   </div>
   <!-- -->
   <ul style="overflow-y: auto; height: 15em; padding-left:0px;">
-    <li *ngFor='let arrival of arrivals' (click)="selectArrival(arrival)" [ngClass]="getClassByLine(arrival.lineId)">
+    <li *ngFor='let arrival of arrivals' [ngClass]="getClassByLine(arrival.lineId)">
+      <button (click)="selectArrival(arrival)">&gt;&gt;</button>
       {{ shortenedDestination(arrival.destinationName) }} - {{ toMinutes(arrival) }}
       <br>
       <small>{{ arrival.currentLocation }}</small>

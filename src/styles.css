@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.basic-container {
+    padding: 5px;
+}
+
 .generic_line {
     background-color: #333;
     color: white;

@@ -13,13 +13,14 @@ import { Passenger } from './passenger/passenger';
 import { PlacesComponent } from './places/places.component';
 import { PlacesService } from './places.service';
 import { NotifierService } from './notifier.service';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
     NaptansComponent, PlacesComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
-    HttpModule
+    HttpModule, MaterialModule
   ],
   providers: [Passenger, PlacesService, NotifierService],
   entryComponents: [StartupComponent, ArrivalInfoComponent, PlacesComponent],
