@@ -14,10 +14,12 @@ import { PlacesComponent } from './places/places.component';
 import { PlacesService } from './places.service';
 import { NotifierService } from './notifier.service';
 import { MaterialModule } from './material.module';
+import { PredictionSummaryComponent } from './prediction-summary/prediction-summary.component';
+import { RouteTabComponent } from './route-tab/route-tab.component';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
-    NaptansComponent, PlacesComponent],
+    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule

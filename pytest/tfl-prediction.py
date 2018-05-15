@@ -16,7 +16,8 @@ lines = {
 }
 
 response = requests.get(
-  'http://cloud.tfl.gov.uk/TrackerNet/PredictionSummary/N'
+  'http://cloud.tfl.gov.uk/TrackerNet/PredictionSummary/N',
+  headers = { "Content-Type": "application/json"}
 )
 print(response.status_code)
 #print(response.content)
