@@ -1,10 +1,16 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
+<div class="mat-app-background basic-container">
+  <mat-tab-group>
+    <mat-tab label="Stations / Arrivals">
       <app-naptans></app-naptans>
-    </div>
-    <div class="col-sm">
+    </mat-tab>
+    <mat-tab label="Places Visited">
       <app-places></app-places>
-    </div>
-  </div>
+    </mat-tab>
+    <mat-tab label="Prediction">
+      <app-prediction-summary></app-prediction-summary>
+    </mat-tab>
+    <mat-tab label="Route Table">
+      <app-route-tab></app-route-tab>
+    </mat-tab>
+  </mat-tab-group>
 </div>
