@@ -34,6 +34,7 @@ export class RouteTabComponent implements OnInit {
   }
 
   timeDidChange(time: string) {
+    this.time = time;
   }
 
   add() {

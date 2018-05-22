@@ -16,10 +16,11 @@ import { NotifierService } from './notifier.service';
 import { MaterialModule } from './material.module';
 import { PredictionSummaryComponent } from './prediction-summary/prediction-summary.component';
 import { RouteTabComponent } from './route-tab/route-tab.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
-    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent],
+    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
