@@ -17,10 +17,11 @@ import { MaterialModule } from './material.module';
 import { PredictionSummaryComponent } from './prediction-summary/prediction-summary.component';
 import { RouteTabComponent } from './route-tab/route-tab.component';
 import { MapComponent } from './map/map.component';
+import { MapSvgComponent } from './map-svg/map-svg.component';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
-    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent],
+    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent, MapSvgComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
