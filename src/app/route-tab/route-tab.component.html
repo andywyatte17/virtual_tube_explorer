@@ -16,18 +16,31 @@
   <!-- -->
   <button (click)="add()">Add</button>
   <button (click)="popLast()">Pop Last</button>
+  <p>
+    <button (click)="walk(2)">Walk +2</button>
+    <button (click)="walk(3)">Walk +3</button>
+    <button (click)="walk(5)">Walk +5</button>
+    <button (click)="walk(10)">Walk +10</button>
+    <button (click)="walk(15)">Walk +15</button>
+  </p>
   <!-- -->
   <p>
     <table class="table">
       <thead>
-        <td>StationName</td>
-        <td>Line Name To This</td>
-        <td>Current Time</td>
+        <td>#</td>
+        <td>From</td>
+        <td>From Time</td>
+        <td>Line</td>
+        <td>To</td>
+        <td>To Time</td>
       </thead>
       <tr *ngFor='let entry of tableEntries'>
-        <td>{{entry.stationName}}</td>
-        <td>{{entry.lineIdToThis}}</td>
-        <td>{{entry.currentTime}}</td>
+        <td>{{entry.index}}</td>
+        <td>{{entry.fromStationName}}</td>
+        <td>{{entry.fromTime}}</td>
+        <td>{{entry.lineId}}</td>
+        <td>{{entry.toStationName}}</td>
+        <td>{{entry.toTime}}</td>
       </tr>
     </table>
 </div>
