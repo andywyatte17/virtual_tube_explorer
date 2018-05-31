@@ -143,7 +143,7 @@ export class RouteTabComponent implements OnInit {
 
   train: string = null;
 
-  trainDidChange() {
+  trainDidChange(v:any) {
     console.log(this.train);
   }
 
