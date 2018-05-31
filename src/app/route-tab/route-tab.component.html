@@ -1,15 +1,30 @@
 <div>
   <!-- -->
-  <label for="stationNameFilter">Filter:</label>
-  <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">
-  <!-- -->
-  <select style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange()">
-    <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
+  <label for="dayOfWeekSelect">Day:</label>
+  <select name="dayOfWeekSelect" style="width: 12em" [(ngModel)]='dayOfWeek.name' (ngModelChange)="dayOfWeekChanged()">
+    <option *ngFor='let dayOfWeek of daysOfWeek' [value]="dayOfWeek.name">{{ dayOfWeek.name }}</option>
   </select>
   <!-- -->
-  <select style="width: 12em" [(ngModel)]='stationModel.selectedLine' (ngModelChange)="stationModel.lineDidChange()">
-    <option *ngFor='let line of stationModel.lines' [value]="line">{{ line }}</option>
-  </select>
+  <p>Start/Next Station
+    <label for="stationNameFilter">Filter:</label>
+    <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">
+    <!-- -->
+    <span style="color:chocolate">{{ fromStation=='' ? '' : "From:&nbsp;" + fromStation }}</span>
+    <!-- -->
+    <select style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange()">
+      <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
+    </select>
+    <!-- -->
+    <select style="width: 12em" [(ngModel)]='stationModel.selectedLine' (ngModelChange)="stationModel.lineDidChange()">
+      <option *ngFor='let line of stationModel.lines' [value]="line">{{ line }}</option>
+    </select>
+    <!-- -->
+    <select style="width: 12em" [(ngModel)]='trains' (ngModelChange)="trainDidChange()">
+      <option *ngFor='let train of trains' [value]="train">{{ train.text }}</option>
+    </select>
+    <!-- -->
+    <button (click)="refresh()">Refresh</button>
+  </p>
   <!-- -->
   <label for="time">Time:</label>
   <input style="width: 6em" type="text" name="time" [ngModel]="time" (ngModelChange)="timeDidChange($event)">

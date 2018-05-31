@@ -1,11 +1,3 @@
-<div *ngFor="let rc of rows">
-  <div *ngFor="let r of row(rc)" style="display:inline; min-width:3em;" [attr.value]="r" (click)="selectBit(r)">{{ '&nbsp;' + r.toString() + '&nbsp;' }}</div>
-</div>
 <div>
   <app-map-svg></app-map-svg>
 </div>
-<!--
-<div>
-  <canvas #myCanvas style="background:lightgray; width:100%; height:600px;"></canvas>
-</div>
--->

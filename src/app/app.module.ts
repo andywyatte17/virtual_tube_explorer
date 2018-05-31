@@ -18,6 +18,7 @@ import { PredictionSummaryComponent } from './prediction-summary/prediction-summ
 import { RouteTabComponent } from './route-tab/route-tab.component';
 import { MapComponent } from './map/map.component';
 import { MapSvgComponent } from './map-svg/map-svg.component';
+import { TimetableService } from './timetable.service';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
@@ -26,7 +27,7 @@ import { MapSvgComponent } from './map-svg/map-svg.component';
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
   ],
-  providers: [Passenger, PlacesService, NotifierService],
+  providers: [Passenger, PlacesService, NotifierService, TimetableService],
   entryComponents: [StartupComponent, ArrivalInfoComponent, PlacesComponent],
   bootstrap: [AppComponent]
 })

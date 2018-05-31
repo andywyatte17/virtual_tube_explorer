@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 export enum DaySet {
+  _monThu_ = "Monday - Thursday",
   _monFri_ = "Monday - Friday",
   mon = "Mondays",
   tue = "Tuesdays",
@@ -10,6 +11,55 @@ export enum DaySet {
   fri = "Fridays",
   sat = "Saturdays and Public Holidays",
   sun = "Sunday"
+}
+
+export function Overlaps(daySet1: DaySet, daySet2: DaySet) {
+  let result = false;
+  [0, 1].forEach(() => {
+    if (result) return;
+    if (daySet1 == daySet2) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.mon && daySet2 == DaySet._monThu_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.tue && daySet2 == DaySet._monThu_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.wed && daySet2 == DaySet._monThu_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.thu && daySet2 == DaySet._monThu_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.mon && daySet2 == DaySet._monFri_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.tue && daySet2 == DaySet._monFri_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.wed && daySet2 == DaySet._monFri_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.thu && daySet2 == DaySet._monFri_) {
+      result = true;
+      return;
+    }
+    if (daySet1 == DaySet.fri && daySet2 == DaySet._monFri_) {
+      result = true;
+      return;
+    }
+    [daySet1, daySet2] = [daySet2, daySet1]; // swap
+  });
+  return result;
 }
 
 enum Direction {
@@ -24,6 +74,12 @@ export class Times {
     public readonly endHh: number,
     public readonly endMm: number
   ) {}
+}
+
+export function PaddedTime(hh: number, mm: number) {
+  let b1 = (hh < 10) ? ("0" + hh.toString()) : hh.toString();
+  let b2 = (mm < 10) ? ("0" + mm.toString()) : mm.toString();
+  return `${b1}:${b2}`;
 }
 
 export class FromLineToTimes {
@@ -47,26 +103,6 @@ export class TimetableService {
     ApplicationID: string = null,
     ApplicationKey: string = null
   ) {
-    if (line.toLowerCase() != "metropolitan") {
-      switch (day) {
-        case DaySet.mon:
-          day = DaySet._monFri_;
-          break;
-        case DaySet.tue:
-          day = DaySet._monFri_;
-          break;
-        case DaySet.wed:
-          day = DaySet._monFri_;
-          break;
-        case DaySet.thu:
-          day = DaySet._monFri_;
-          break;
-        case DaySet.fri:
-          day = DaySet._monFri_;
-          break;
-      }
-    }
-
     let makePromise = (direction: Direction) => {
       let url = `https://api.tfl.gov.uk/Line/${line}/Timetable/${fromNaptanId}?direction=${direction}`;
 
@@ -133,7 +169,7 @@ export class TimetableService {
         // ...
         let schedules = <Array<any>>route.schedules;
         schedules.forEach((schedule: any, index: number) => {
-          if (schedule.name != day) return;
+          if ( !Overlaps(schedule.name, day) ) return;
           let kjs: Array<any> = schedule.knownJourneys;
           kjs.forEach(
             (kj: { hour: string; minute: string; intervalId: number }) => {
