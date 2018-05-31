@@ -18,7 +18,7 @@ class TableEntry {
     public readonly toStationId: string,
     public readonly toTime: string,
     public readonly lineId: string
-  ) {}
+  ) { }
   get fromStationName() {
     const found = TableEntry.stations.find(
       (n: Naptan) => n.id == this.fromStationId
@@ -35,7 +35,7 @@ class TableEntry {
 }
 
 class DayOfWeek {
-  constructor(public readonly name: string, public readonly id: DaySet) {}
+  constructor(public readonly name: string, public readonly id: DaySet) { }
 }
 
 class Train {
@@ -43,8 +43,9 @@ class Train {
     public readonly fromId: string,
     public readonly toId: string,
     public readonly startTimeHhMm: string,
-    public readonly endTimeHhMm: string
-  ) {}
+    public readonly endTimeHhMm: string,
+    public readonly isNonTrain: boolean
+  ) { }
 
   private static stations = MakeTubeNaptans();
 
@@ -55,9 +56,18 @@ class Train {
   }
 
   get text() {
-    return `${this.startTimeHhMm} - ${this.endTimeHhMm} : ${Train.Lookup(
-      this.fromId
-    )} => ${Train.Lookup(this.toId)}`;
+    if (this.isNonTrain) {
+      const diff = () => {
+        let hh = [parseInt(this.startTimeHhMm.split(":")[0]), parseInt(this.endTimeHhMm.split(":")[0])];
+        let mm = [parseInt(this.startTimeHhMm.split(":")[1]), parseInt(this.endTimeHhMm.split(":")[1])];
+        let mmDiff = hh[1] * 60 - hh[0] * 60 + mm[1] - mm[0];
+        return mmDiff < 10 ? ("0" + mmDiff.toString()) : mmDiff.toString();
+      };
+      return `${this.startTimeHhMm} + 00:${diff()} : ` +
+        `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`;
+    }
+    return `${this.startTimeHhMm} - ${this.endTimeHhMm} : ` +
+      `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`;
   }
 }
 
@@ -90,42 +100,64 @@ export class RouteTabComponent implements OnInit {
       const fromId = this.stationModel.selectedStationId;
       //this.timetable.LookupTimetable(fromId,
     } else {
+      const line = this.stationModel.selectedLine;
+      const isNonTrain = line == "walk" || line == "bus";
+      const t = this.tableEntries[this.tableEntries.length - 1].toTime;
       const toId = this.stationModel.selectedStationId;
       const fromId = this.tableEntries[this.tableEntries.length - 1]
         .toStationId;
       this.timetable
         .LookupTimetable(
-          this.stationModel.selectedLine,
+          line,
           fromId,
           toId,
           this.dayOfWeek.id,
+          parseInt(t.split(":")[0]),
+          parseInt(t.split(":")[1]),
           null,
           null
         )
         .then((v: FromLineToTimes) => {
           console.log(v.times);
-          this._trains = v.times.map((x : Times) => { 
+          this._trains = v.times.map((x: Times) => {
             let t1 = PaddedTime(x.startHh, x.startMm);
             let t2 = PaddedTime(x.endHh, x.endMm);
-            console.log(t1,t2);
-            return new Train(fromId, toId, t1, t2);
+            // console.log(t1, t2);
+            return new Train(fromId, toId, t1, t2, isNonTrain);
           });
           console.log(this._trains);
         });
     }
   }
 
-  get fromStation() : string
-  {
-    return this.tableEntries.length==0 ? "" : this.tableEntries[this.tableEntries.length-1].toStationName;
+  get fromStation(): string {
+    return this.tableEntries.length == 0 ? "" : this.tableEntries[this.tableEntries.length - 1].toStationName;
   }
 
   get trains() {
     return this._trains;
   }
 
+  train: string = null;
+
   trainDidChange() {
-    this.bumpTrains();
+    console.log(this.train);
+  }
+
+  addTrain() {
+    const found = this.trains.find((train: Train) => train.text === this.train);
+    if (found) {
+      const n = this.tableEntries.length - 1;
+      this.tableEntries.push(
+        new TableEntry(
+          n + 2,
+          found.fromId,
+          found.startTimeHhMm,
+          found.toId,
+          found.endTimeHhMm,
+          this.stationModel.selectedLine)
+      );
+    }
   }
 
   refresh() {
@@ -134,11 +166,11 @@ export class RouteTabComponent implements OnInit {
 
   public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);
 
-  constructor(private http: HttpClient, private timetable: TimetableService) {}
+  constructor(private http: HttpClient, private timetable: TimetableService) { }
 
   stationModel = new StationModel(this.http);
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   dayOfWeekChanged() {
     console.log(this.dayOfWeek);
@@ -184,7 +216,8 @@ export class RouteTabComponent implements OnInit {
     return `${pad(hh)}:${pad(mm)}`;
   }
 
-  walk(minutes: number) {
+  walk(value: number) {
+    const minutes = this.walkOptions[value];
     if (this.tableEntries.length > 0) {
       const n = this.tableEntries.length - 1;
       this.tableEntries.push(
@@ -197,6 +230,27 @@ export class RouteTabComponent implements OnInit {
           "walk"
         )
       );
+    }
+  }
+
+  walkOptions = [1, 2, 5, 10, 15];
+
+  private _walkValue = "1";
+
+  get walkValue() { return this._walkValue; }
+
+  set walkValue(x: string) {
+    this._walkValue = x;
+    this.bumpWalkOptions();
+  }
+
+  clickWalkRadio() { this.bumpWalkOptions(); }
+
+  bumpWalkOptions() {
+    switch (parseInt(this.walkValue)) {
+      case 1: this.walkOptions = [1, 2, 5, 10, 15]; return;
+      case 2: this.walkOptions = [2, 3, 5, 8, 13]; return;
+      case 3: this.walkOptions = [2, 5, 10, 15, 20]; return;
     }
   }
 

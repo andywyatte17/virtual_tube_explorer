@@ -19,6 +19,8 @@ export class StationModel {
         this.selectedStationId_ = s;
         Naptan.TubeLinesForNaptan(s, this.http).then(
             (lines: Array<string>) => {
+                lines.push("walk");
+                lines.push("bus");
                 this.lines = lines;
                 this.selectedLine = this.lines[0];
             });

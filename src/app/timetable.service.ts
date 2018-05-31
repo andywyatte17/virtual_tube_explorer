@@ -45,7 +45,7 @@ export class Times {
     public readonly startMm: number,
     public readonly endHh: number,
     public readonly endMm: number
-  ) {}
+  ) { }
 }
 
 export function PaddedTime(hh: number, mm: number) {
@@ -60,21 +60,39 @@ export class FromLineToTimes {
     public readonly line: string,
     public readonly toNaptanId: string,
     public readonly times: Array<Times>
-  ) {}
+  ) { }
 }
 
 @Injectable()
 export class TimetableService {
-  constructor(public readonly http: HttpClient) {}
+  constructor(public readonly http: HttpClient) { }
 
   public LookupTimetable(
     line: string,
     fromNaptanId: string,
     toNaptanId: string,
     day: DaySet,
+    startHh: number, startMm: number,
     ApplicationID: string = null,
     ApplicationKey: string = null
   ) {
+    if (line == "walk" || line == "bus") {
+      return new Promise<FromLineToTimes>((resolve, reject) => {
+        let times = new Array<Times>();
+        let result = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30].forEach((minutes: number) => {
+          let mm = startMm + minutes;
+          let hh = startHh;
+          while (mm > 59) {
+            hh += 1;
+            mm -= 60;
+          }
+          times.push(new Times(startHh, startMm, hh, mm));
+        });
+        resolve(result);
+      });
+    }
+
     let makePromise = (direction: Direction) => {
       let url = `https://api.tfl.gov.uk/Line/${line}/Timetable/${fromNaptanId}?direction=${direction}`;
 
@@ -141,7 +159,7 @@ export class TimetableService {
         // ...
         let schedules = <Array<any>>route.schedules;
         schedules.forEach((schedule: any, index: number) => {
-          if ( !AreEquivalent(schedule.name, day) ) return;
+          if (!AreEquivalent(schedule.name, day)) return;
           let kjs: Array<any> = schedule.knownJourneys;
           kjs.forEach(
             (kj: { hour: string; minute: string; intervalId: number }) => {
