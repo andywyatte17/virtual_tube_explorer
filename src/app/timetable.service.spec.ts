@@ -5,7 +5,7 @@ import {
   DaySet,
   FromLineToTimes,
   PaddedTime,
-  Overlaps
+  AreEquivalent
 } from "./timetable.service";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { HttpModule } from "@angular/http";
@@ -34,11 +34,10 @@ describe("TimetableService", () => {
       service
         .LookupTimetable("piccadilly", "940GZZLUACT", "940GZZLUECT", DaySet.mon)
         .then((value: FromLineToTimes) => {
-          console.log("Here");
           expect(value.times && value.times.length).toBeTruthy();
           done();
         });
-    });
+    })();
   });
 
   // ...
@@ -119,10 +118,34 @@ describe("PaddedTime", () => {
   // ...
 });
 
-describe("Overlaps", () => {
+describe("AreEquivalent", () => {
   // ...
-  it("Overlaps(mon, _monThu_) is true", () => {
-    expect(Overlaps(DaySet.mon, DaySet._monThu_)).toBeTruthy();
-    expect(Overlaps(DaySet._monThu_, DaySet.mon)).toBeTruthy();
+  it("AreEquivalent(mon, _monThu_) is true", () => {
+    expect(AreEquivalent(DaySet.mon, DaySet._monThu_)).toBeTruthy();
+  });
+  // ...
+  it("AreEquivalent(_monThu_, mon) is true", () => {
+    expect(AreEquivalent(DaySet._monThu_, DaySet.mon)).toBeTruthy();
+  });
+  // ...
+  it("AreEquivalent(_monFri_, wed) is true", () => {
+    expect(AreEquivalent(DaySet._monFri_, DaySet.wed)).toBeTruthy();
+  });
+  // ...
+  it("AreEquivalent(sat, sat) is true", () => {
+    expect(AreEquivalent(DaySet.sat, DaySet.sat)).toBeTruthy();
+  });
+  // ...
+  it("AreEquivalent(sun, sun) is true", () => {
+    expect(AreEquivalent(DaySet.sun, DaySet.sun)).toBeTruthy();
+  });
+  // ...
+  it("not AreEquivalent(...)", () => {
+    [[DaySet.mon, DaySet.fri], [DaySet._monThu_, DaySet.sat]].forEach(
+      (x: any) => {
+        let [a, b] = x;
+        expect(AreEquivalent(a, b)).toBeFalsy();
+      }
+    );
   });
 });

@@ -13,53 +13,25 @@ export enum DaySet {
   sun = "Sunday"
 }
 
-export function Overlaps(daySet1: DaySet, daySet2: DaySet) {
-  let result = false;
-  [0, 1].forEach(() => {
-    if (result) return;
-    if (daySet1 == daySet2) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.mon && daySet2 == DaySet._monThu_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.tue && daySet2 == DaySet._monThu_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.wed && daySet2 == DaySet._monThu_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.thu && daySet2 == DaySet._monThu_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.mon && daySet2 == DaySet._monFri_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.tue && daySet2 == DaySet._monFri_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.wed && daySet2 == DaySet._monFri_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.thu && daySet2 == DaySet._monFri_) {
-      result = true;
-      return;
-    }
-    if (daySet1 == DaySet.fri && daySet2 == DaySet._monFri_) {
-      result = true;
-      return;
-    }
-    [daySet1, daySet2] = [daySet2, daySet1]; // swap
-  });
-  return result;
+function AreEquivalentImpl(daySet1: DaySet, daySet2: DaySet) {
+  if (daySet1 == daySet2) return true;
+  // ...
+  if (daySet1 == DaySet.mon && daySet2 == DaySet._monThu_) return true;
+  if (daySet1 == DaySet.tue && daySet2 == DaySet._monThu_) return true;
+  if (daySet1 == DaySet.wed && daySet2 == DaySet._monThu_) return true;
+  if (daySet1 == DaySet.thu && daySet2 == DaySet._monThu_) return true;
+  // ...
+  if (daySet1 == DaySet.mon && daySet2 == DaySet._monFri_) return true;
+  if (daySet1 == DaySet.tue && daySet2 == DaySet._monFri_) return true;
+  if (daySet1 == DaySet.wed && daySet2 == DaySet._monFri_) return true;
+  if (daySet1 == DaySet.thu && daySet2 == DaySet._monFri_) return true;
+  if (daySet1 == DaySet.fri && daySet2 == DaySet._monFri_) return true;
+  // ...
+  return false;
+}
+
+export function AreEquivalent(daySet1: DaySet, daySet2: DaySet) {
+  return AreEquivalentImpl(daySet1, daySet2) || AreEquivalentImpl(daySet2, daySet1);
 }
 
 enum Direction {
@@ -122,8 +94,8 @@ export class TimetableService {
       });
     };
 
-    let times = new Array<Times>();
-    let tr = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
+    const times = new Array<Times>();
+    const tr = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
 
     let processResult = (result: any) => {
       /*
@@ -169,7 +141,7 @@ export class TimetableService {
         // ...
         let schedules = <Array<any>>route.schedules;
         schedules.forEach((schedule: any, index: number) => {
-          if ( !Overlaps(schedule.name, day) ) return;
+          if ( !AreEquivalent(schedule.name, day) ) return;
           let kjs: Array<any> = schedule.knownJourneys;
           kjs.forEach(
             (kj: { hour: string; minute: string; intervalId: number }) => {
