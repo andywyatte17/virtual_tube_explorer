@@ -94,7 +94,8 @@ export class RouteTabComponent implements OnInit {
 
   private _trains = new Array<Train>();
 
-  private bumpTrains() {
+  public bumpTrains() {
+    this._trains = new Array<Train>();
     if (this.tableEntries.length == 0) {
       // Set trains up with stations for
       const fromId = this.stationModel.selectedStationId;
@@ -118,14 +119,14 @@ export class RouteTabComponent implements OnInit {
           null
         )
         .then((v: FromLineToTimes) => {
-          console.log(v.times);
+          //console.log(v.times);
           this._trains = v.times.map((x: Times) => {
             let t1 = PaddedTime(x.startHh, x.startMm);
             let t2 = PaddedTime(x.endHh, x.endMm);
             // console.log(t1, t2);
             return new Train(fromId, toId, t1, t2, isNonTrain);
           });
-          console.log(this._trains);
+          //console.log(this._trains);
         });
     }
   }
@@ -162,6 +163,7 @@ export class RouteTabComponent implements OnInit {
 
   refresh() {
     this.bumpTrains();
+    this.train = this.trains.length==0 ? "" : this.trains[0].text;
   }
 
   public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);

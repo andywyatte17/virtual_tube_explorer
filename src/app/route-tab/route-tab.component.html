@@ -11,11 +11,11 @@
     <!-- -->
     <span style="color:chocolate">{{ fromStation=='' ? '' : "From:&nbsp;" + fromStation }}</span>
     <!-- -->
-    <select style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange()">
+    <select style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
       <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
     </select>
     <!-- -->
-    <select style="width: 12em" [(ngModel)]='stationModel.selectedLine' (ngModelChange)="stationModel.lineDidChange()">
+    <select style="width: 12em" [(ngModel)]='stationModel.selectedLine' (ngModelChange)="stationModel.lineDidChange(); this.bumpTrains()">
       <option *ngFor='let line of stationModel.lines' [value]="line">{{ line }}</option>
     </select>
     <!-- -->
