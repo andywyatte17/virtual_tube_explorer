@@ -1,7 +1,7 @@
 <div>
   <!-- -->
   <label for="dayOfWeekSelect">Day:</label>
-  <select name="dayOfWeekSelect" style="width: 12em" [(ngModel)]='dayOfWeek.name' (ngModelChange)="dayOfWeekChanged()">
+  <select name="dayOfWeekSelect" style="width: 12em" [(ngModel)]='selectedDayOfWeek' (ngModelChange)="dayOfWeekChanged()">
     <option *ngFor='let dayOfWeek of daysOfWeek' [value]="dayOfWeek.name">{{ dayOfWeek.name }}</option>
   </select>
   <!-- -->

@@ -94,6 +94,8 @@ export class RouteTabComponent implements OnInit {
 
   private _trains = new Array<Train>();
 
+  public selectedDayOfWeek : string = "Monday";
+
   public bumpTrains() {
     this._trains = new Array<Train>();
     if (this.tableEntries.length == 0) {
