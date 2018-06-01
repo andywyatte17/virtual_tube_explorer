@@ -29,7 +29,7 @@ describe("TimetableService", () => {
 
   // ...
 
-  fit("Moor Park - Preston Road - Saturday - metro", done => {
+  fit("Moor Park (940GZZLUMPK) - Preston Road (940GZZLUPRD) - Saturday - metro", done => {
     inject([TimetableService], (service: TimetableService) => {
       service
         .LookupTimetable(
@@ -42,6 +42,8 @@ describe("TimetableService", () => {
         )
         .then((value: FromLineToTimes) => {
           let m = (n: number) => {
+            while(n<0)
+              n += value.times.length;
             return [
               value.times[n].startHh,
               value.times[n].startMm,
@@ -56,8 +58,8 @@ describe("TimetableService", () => {
           expect(value.times && value.times.length).toBeTruthy();
           if(!(value.times && value.times.length)) { return done(); }
           expect(m(0).toString()).toEqual([5, 36, 5, 54].toString());
-          d(0, 5);
           expect(m(3).toString()).toEqual([5, 55, 6, 13].toString());
+          expect(m(-1).toString()).toEqual([24, 47, 25, 5].toString());
           done();
         });
     })();

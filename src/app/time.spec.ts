@@ -19,4 +19,8 @@ describe("HhMm", () => {
     expect(HhMm.fromString('1:45')).toEqual(new HhMm(1, 45));
   });
   // ...
+  it("HhMm.fromString(1,45) => 01,45", () => {
+    expect(HhMm.fromString('1', '45')).toEqual(new HhMm(1, 45));
+  });
+  // ...
 });

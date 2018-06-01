@@ -8,7 +8,11 @@ export class HhMm {
   constructor(public readonly hh: number, public readonly mm: number) { }
 
   /** Create HhMm object from strings like "0145" or "145" or "01:45" or "1:45" - each giving the value HhMm(1,45). */
-  static fromString(hhmm: string): HhMm {
+  static fromString(hhmm_or_hh: string, mm: string = null): HhMm {
+    if (mm)
+      return new HhMm(parseInt(hhmm_or_hh), parseInt(mm));
+
+    const hhmm = hhmm_or_hh;
     const process = (hhmm: string) => {
       try {
         let hh_mm = hhmm.split(":");
@@ -24,5 +28,10 @@ export class HhMm {
     if (hhmm.length == 4)
       return process(`${hhmm.slice(0, 2)}:${hhmm.slice(2, 4)}`);
     return null;
+  }
+
+  toString(): string {
+    let pad = (n: number) => { return n < 9 ? `0${n}` : `${n}`; };
+    return `${pad(this.hh)}:${pad(this.mm)}`;
   }
 }

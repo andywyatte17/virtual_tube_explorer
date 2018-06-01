@@ -58,13 +58,12 @@ export type TflRouteAPI = {
 
 export type JourneyInfo = {
   stopId: string;
+  lastStopId: string;
   timeToArrival: number;
   naptansSoFar: Array<string>;
 };
 
-export class StationIntervalV {
-  constructor(public readonly intervalId: string) {}
-}
+export type IntervalId = { intervalId: string };
 
 export function StationIntervalMapper(r: JourneyInfo[]) {
   return r.map(x => {
@@ -86,40 +85,28 @@ export function ExtractStationIntervals(
   toNaptanId: string,
   route: Route
 ) {
-  let m = new Map<StationIntervalV, JourneyInfo>();
+  let m = new Map<IntervalId, JourneyInfo>();
   // ...
   let si = route.stationIntervals;
-  si.forEach((stationInterval: any, index: number) => {
-    let id: string = stationInterval.id;
-    // console.log("intervalId", id);
-    let intervals: Array<any> = stationInterval.intervals;
+  si.forEach((stationInterval: StationInterval, index: number) => {
+    const id: string = stationInterval.id;
+    const intervals = stationInterval.intervals;
     let r = new Array<JourneyInfo>();
     let naptansSoFar = [fromNaptanId];
-    intervals.forEach((interval: any) => {
+    let ji: JourneyInfo = null;
+    intervals.forEach((interval: Interval) => {
       naptansSoFar.push(interval.stopId);
       let v = <JourneyInfo>{
         stopId: interval.stopId,
         timeToArrival: interval.timeToArrival,
-        naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar))
+        naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar)),
+        lastStopId: intervals[intervals.length - 1].stopId
       };
-      //console.log(v);
-      r.push(v);
+      //console.log({id:id, sim:StationIntervalMapper([v])[0]});
+      if (v.stopId == toNaptanId)
+        ji = v;
     });
-    let ji = r.find((v: JourneyInfo) => {
-      return v.stopId == toNaptanId;
-    });
-    /*
-    console.log(
-      "m.set(...)",
-      id,
-      JSON.stringify(
-        StationIntervalMapper(r),
-        null,
-        0
-      )
-    );
-    */
-    if (ji) m.set(new StationIntervalV(id), ji);
+    if (ji) m.set({intervalId:id}, ji);
   });
   return m;
 }

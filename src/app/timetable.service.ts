@@ -8,12 +8,14 @@ import { NumberSymbol } from "@angular/common";
 import {
   ExtractStationIntervals,
   Route,
-  StationIntervalV,
+  IntervalId,
   TflRouteAPI,
   JourneyInfo,
   Schedule,
-  StationIntervalMapper
+  StationIntervalMapper,
+  KnownJourney
 } from "./timetable-logic";
+import { HhMm } from "./time";
 
 export enum DaySet {
   _monThu_ = "Monday - Thursday",
@@ -62,7 +64,7 @@ export class Times {
     public readonly endHh: number,
     public readonly endMm: number,
     public readonly stopNaptans: Array<string>
-  ) {}
+  ) { }
 }
 
 export function PaddedTime(hh: number, mm: number) {
@@ -77,12 +79,12 @@ export class FromLineToTimes {
     public readonly line: string,
     public readonly toNaptanId: string,
     public readonly times: Array<Times>
-  ) {}
+  ) { }
 }
 
 @Injectable()
 export class TimetableService {
-  constructor(public readonly http: HttpClient) {}
+  constructor(public readonly http: HttpClient) { }
 
   private MakeWalkTimetablePromise(
     line: string,
@@ -157,39 +159,44 @@ export class TimetableService {
     let processResult = (api: TflRouteAPI) => {
       api.timetable.routes.forEach((route: Route) => {
         const m = ExtractStationIntervals(fromNaptanId, toNaptanId, route);
-        m.forEach((value: JourneyInfo, key: StationIntervalV) => {
-          console.log(key, StationIntervalMapper([value])[0]);
-        });
 
         // ...
         route.schedules.forEach((schedule: Schedule, index: number) => {
           if (!AreEquivalent(<DaySet>schedule.name, day)) return;
-          let kjs: Array<any> = schedule.knownJourneys;
+          const kjs = schedule.knownJourneys;
           kjs.forEach(
-            (kj: { hour: string; minute: string; intervalId: number }) => {
+            (kj: KnownJourney) => {
               let iid = kj.intervalId.toString();
-              let stationIntervalId = new StationIntervalV(iid);
-              if (m.has(stationIntervalId)) {
-                let interval = m.get(stationIntervalId);
-                if (interval) {
-                  //console.log("intervals.length", intervals.length);
-                  let hh = parseInt(kj.hour);
-                  let mm = parseInt(kj.minute) + interval.timeToArrival;
-                  while (mm > 59) {
-                    hh += 1;
-                    mm -= 60;
-                  }
-                  times.push(
-                    new Times(
-                      parseInt(kj.hour),
-                      parseInt(kj.minute),
-                      hh,
-                      mm,
-                      interval.naptansSoFar
-                    )
-                  );
-                  //console.log(result);
+              let stationIntervalId = { intervalId: iid };
+
+              const get = (sii: IntervalId) => {
+                let rv: JourneyInfo = null;
+                m.forEach((value: JourneyInfo, key: IntervalId) => {
+                  if (sii.intervalId == key.intervalId)
+                    rv = value;
+                });
+                return rv;
+              };
+
+              const interval = get(stationIntervalId);
+              if (interval) {
+                //console.log("intervals.length", intervals.length);
+                let hh = parseInt(kj.hour);
+                let mm = parseInt(kj.minute) + interval.timeToArrival;
+                while (mm > 59) {
+                  hh += 1;
+                  mm -= 60;
                 }
+                times.push(
+                  new Times(
+                    parseInt(kj.hour),
+                    parseInt(kj.minute),
+                    hh,
+                    mm,
+                    interval.naptansSoFar
+                  )
+                );
+                //console.log(result);
               }
             }
           );
@@ -199,17 +206,23 @@ export class TimetableService {
     };
 
     return new Promise<FromLineToTimes>((resolve, reject) => {
-      makePromise(Direction.inbound)
+      makePromise(Direction.outbound)
         .then((result: TflRouteAPI) => {
           if (result) processResult(result);
-          return makePromise(Direction.outbound);
+          return makePromise(Direction.inbound);
+          //return new Promise( (resolve,reject) => resolve(<TflRouteAPI>null) );
         })
         .then((result: TflRouteAPI) => {
           if (result) processResult(result);
           return true;
         })
         .then((b: boolean) => {
-          resolve(tr);
+          let timesSorted = tr.times.sort((a: Times, b: Times) => {
+            const a1 = (a.startHh * 60 + a.startMm);
+            const b1 = (b.startHh * 60 + b.startMm);
+            return a1 < b1 ? -1 : b1 < a1 ? 1 : 0;
+          });
+          resolve(new FromLineToTimes(tr.fromNaptanId, tr.line, tr.toNaptanId, timesSorted));
         })
         .catch(err => reject(err));
     });
