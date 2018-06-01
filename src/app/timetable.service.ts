@@ -1,6 +1,19 @@
+//
+// timetable.service.ts
+//
+
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { NumberSymbol } from "@angular/common";
+import {
+  ExtractStationIntervals,
+  Route,
+  StationIntervalV,
+  TflRouteAPI,
+  JourneyInfo,
+  Schedule,
+  StationIntervalMapper
+} from "./timetable-logic";
 
 export enum DaySet {
   _monThu_ = "Monday - Thursday",
@@ -141,112 +154,41 @@ export class TimetableService {
     const times = new Array<Times>();
     const tr = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
 
-    let ExtractStationIntervals = (route: any) => {
-      type T = {
-        stopId: string;
-        timeToArrival: number;
-        naptansSoFar: Array<string>;
-      };
-      let m = new Map<string, Array<T>>();
-      // ...
-      let si = <Array<any>>route.stationIntervals;
-      si.forEach((stationInterval: any, index: number) => {
-        let id: string = stationInterval.id;
-        // console.log("intervalId", id);
-        let intervals: Array<any> = stationInterval.intervals;
-        let r = new Array<T>();
-        let naptansSoFar = [fromNaptanId];
-        intervals.forEach((interval: any) => {
-          naptansSoFar.push(interval.stopId);
-          let v = {
-            stopId: interval.stopId,
-            timeToArrival: interval.timeToArrival,
-            naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar))
-          };
-          //console.log(v);
-          r.push(v);
+    let processResult = (api: TflRouteAPI) => {
+      api.timetable.routes.forEach((route: Route) => {
+        const m = ExtractStationIntervals(fromNaptanId, toNaptanId, route);
+        m.forEach((value: JourneyInfo, key: StationIntervalV) => {
+          console.log(key, StationIntervalMapper([value])[0]);
         });
-        r = r.filter((v: T) => {
-          return v.stopId == toNaptanId;
-        });
-        console.log(
-          "m.set(...)",
-          id,
-          JSON.stringify(
-            r.map(x => {
-              return {
-                sid: x.stopId,
-                tta: x.timeToArrival,
-                nc: x.naptansSoFar.length,
-                naps: x.naptansSoFar
-              };
-            }),
-            null,
-            0
-          )
-        );
-        m.set(id, r);
-      });
-      // ...
-      m.forEach((value: any, key: string) => {
-        //console.log(key, value);
-      });
-      return m;
-    };
 
-    let processResult = (result: any) => {
-      /*
-      https://api.tfl.gov.uk/Line/Bakerloo/Timetable/940GZZLUCHX?direction=inbound
-      
-      timetable.routes.#.
-        .stationIntervals
-          .#
-            .id = "0", "1"...
-            .intervals.#
-              .stopId: "NAPTAN"
-              .timeToArrival: #
-        .schedules.#
-          .name = "Monday - Friday" / "Saturdays and Public Holidays" / "Sunday"
-          .knownJourneys.#
-             .hour:"#"
-             .minute:"#"
-             .intervalId:#
-      */
-      let routes = <any>result.timetable.routes;
-      routes.forEach((route: any) => {
-        let m = ExtractStationIntervals(route);
         // ...
-        let schedules = <Array<any>>route.schedules;
-        schedules.forEach((schedule: any, index: number) => {
-          if (!AreEquivalent(schedule.name, day)) return;
+        route.schedules.forEach((schedule: Schedule, index: number) => {
+          if (!AreEquivalent(<DaySet>schedule.name, day)) return;
           let kjs: Array<any> = schedule.knownJourneys;
           kjs.forEach(
             (kj: { hour: string; minute: string; intervalId: number }) => {
               let iid = kj.intervalId.toString();
-              if (m.has(iid)) {
-                let intervals = m
-                  .get(iid)
-                  .filter((t: T) => t.stopId == toNaptanId);
-                if (intervals && intervals.length > 0) {
+              let stationIntervalId = new StationIntervalV(iid);
+              if (m.has(stationIntervalId)) {
+                let interval = m.get(stationIntervalId);
+                if (interval) {
                   //console.log("intervals.length", intervals.length);
-                  intervals.forEach((interval: T) => {
-                    let hh = parseInt(kj.hour);
-                    let mm = parseInt(kj.minute) + interval.timeToArrival;
-                    while (mm > 59) {
-                      hh += 1;
-                      mm -= 60;
-                    }
-                    times.push(
-                      new Times(
-                        parseInt(kj.hour),
-                        parseInt(kj.minute),
-                        hh,
-                        mm,
-                        interval.naptansSoFar
-                      )
-                    );
-                    //console.log(result);
-                  });
+                  let hh = parseInt(kj.hour);
+                  let mm = parseInt(kj.minute) + interval.timeToArrival;
+                  while (mm > 59) {
+                    hh += 1;
+                    mm -= 60;
+                  }
+                  times.push(
+                    new Times(
+                      parseInt(kj.hour),
+                      parseInt(kj.minute),
+                      hh,
+                      mm,
+                      interval.naptansSoFar
+                    )
+                  );
+                  //console.log(result);
                 }
               }
             }
@@ -258,11 +200,11 @@ export class TimetableService {
 
     return new Promise<FromLineToTimes>((resolve, reject) => {
       makePromise(Direction.inbound)
-        .then((result: any) => {
+        .then((result: TflRouteAPI) => {
           if (result) processResult(result);
           return makePromise(Direction.outbound);
         })
-        .then((result: any) => {
+        .then((result: TflRouteAPI) => {
           if (result) processResult(result);
           return true;
         })

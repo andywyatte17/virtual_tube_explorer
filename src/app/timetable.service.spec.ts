@@ -54,6 +54,7 @@ describe("TimetableService", () => {
             else console.log(JSON.stringify(value.times.slice(n, e), null, 2));
           };
           expect(value.times && value.times.length).toBeTruthy();
+          if(!(value.times && value.times.length)) { return done(); }
           expect(m(0).toString()).toEqual([5, 36, 5, 54].toString());
           d(0, 5);
           expect(m(3).toString()).toEqual([5, 55, 6, 13].toString());
