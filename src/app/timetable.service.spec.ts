@@ -29,7 +29,7 @@ describe("TimetableService", () => {
 
   // ...
 
-  fit("West Ruislip (940GZZLUWRP) - North Acton (940GZZLUNAN) - Saturday - central", done => {
+  it("West Ruislip (940GZZLUWRP) - North Acton (940GZZLUNAN) - Saturday - central", done => {
     inject([TimetableService], (service: TimetableService) => {
       service
         .LookupTimetable(
@@ -211,7 +211,7 @@ describe("AreEquivalent", () => {
     expect(AreEquivalent(DaySet._monFri_, DaySet.fri)).toBeTruthy();
   });
   // ...
-  fit("AreEquivalent(sat, _sat1_) is true", () => {
+  it("AreEquivalent(sat, _sat1_) is true", () => {
     expect(AreEquivalent(DaySet.sat, DaySet._sat1_)).toBeTruthy();
     expect(AreEquivalent(DaySet._sat1_, DaySet.sat)).toBeTruthy();
   });
