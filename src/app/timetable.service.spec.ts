@@ -29,10 +29,45 @@ describe("TimetableService", () => {
 
   // ...
 
+  fit("Moor Park - Preston Road - Saturday - metro", done => {
+    inject([TimetableService], (service: TimetableService) => {
+      service
+        .LookupTimetable(
+          "metropolitan",
+          "940GZZLUMPK",
+          "940GZZLUPRD",
+          DaySet.sat,
+          4,
+          0
+        )
+        .then((value: FromLineToTimes) => {
+          let m = (n: number) => {
+            return [
+              value.times[n].startHh,
+              value.times[n].startMm,
+              value.times[n].endHh,
+              value.times[n].endMm
+            ];
+          };
+          let d = (n: number, e: number) => {
+            if (e === null) console.log(JSON.stringify(value.times[n], null, 2));
+            else console.log(JSON.stringify(value.times.slice(n, e), null, 2));
+          };
+          expect(value.times && value.times.length).toBeTruthy();
+          expect(m(0).toString()).toEqual([5, 36, 5, 54].toString());
+          d(0, 5);
+          expect(m(3).toString()).toEqual([5, 55, 6, 13].toString());
+          done();
+        });
+    })();
+  });
+  
+  // ...
+
   it("Acton Town - Earl's Court - Piccadilly", done => {
     inject([TimetableService], (service: TimetableService) => {
       service
-        .LookupTimetable("piccadilly", "940GZZLUACT", "940GZZLUECT", DaySet.mon)
+        .LookupTimetable("piccadilly", "940GZZLUACT", "940GZZLUECT", DaySet.mon, 4, 0)
         .then((value: FromLineToTimes) => {
           expect(value.times && value.times.length).toBeTruthy();
           done();
@@ -46,7 +81,7 @@ describe("TimetableService", () => {
     // Compared results from https://tfl.gov.uk/tube/timetable/bakerloo/
     inject([TimetableService], (service: TimetableService) => {
       service
-        .LookupTimetable("bakerloo", "940GZZLUCHX", "940GZZLUOXC", DaySet.sat)
+        .LookupTimetable("bakerloo", "940GZZLUCHX", "940GZZLUOXC", DaySet.sat, 4, 0)
         .then((value: FromLineToTimes) => {
           expect(value.times.length).toBeGreaterThan(5);
           // ...
@@ -76,7 +111,7 @@ describe("TimetableService", () => {
           "metropolitan",
           "940GZZLUCAL",
           "940GZZLUAMS",
-          DaySet.mon
+          DaySet.mon, 4, 0
         )
         .then((value: FromLineToTimes) => {
           expect(value).toBeTruthy();

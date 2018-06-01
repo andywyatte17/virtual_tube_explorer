@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { NumberSymbol } from "@angular/common";
 
 export enum DaySet {
   _monThu_ = "Monday - Thursday",
@@ -31,7 +32,9 @@ function AreEquivalentImpl(daySet1: DaySet, daySet2: DaySet) {
 }
 
 export function AreEquivalent(daySet1: DaySet, daySet2: DaySet) {
-  return AreEquivalentImpl(daySet1, daySet2) || AreEquivalentImpl(daySet2, daySet1);
+  return (
+    AreEquivalentImpl(daySet1, daySet2) || AreEquivalentImpl(daySet2, daySet1)
+  );
 }
 
 enum Direction {
@@ -44,13 +47,14 @@ export class Times {
     public readonly startHh: number,
     public readonly startMm: number,
     public readonly endHh: number,
-    public readonly endMm: number
-  ) { }
+    public readonly endMm: number,
+    public readonly stopNaptans: Array<string>
+  ) {}
 }
 
 export function PaddedTime(hh: number, mm: number) {
-  let b1 = (hh < 10) ? ("0" + hh.toString()) : hh.toString();
-  let b2 = (mm < 10) ? ("0" + mm.toString()) : mm.toString();
+  let b1 = hh < 10 ? "0" + hh.toString() : hh.toString();
+  let b2 = mm < 10 ? "0" + mm.toString() : mm.toString();
   return `${b1}:${b2}`;
 }
 
@@ -60,38 +64,60 @@ export class FromLineToTimes {
     public readonly line: string,
     public readonly toNaptanId: string,
     public readonly times: Array<Times>
-  ) { }
+  ) {}
 }
 
 @Injectable()
 export class TimetableService {
-  constructor(public readonly http: HttpClient) { }
+  constructor(public readonly http: HttpClient) {}
 
-  public LookupTimetable(
+  private MakeWalkTimetablePromise(
     line: string,
     fromNaptanId: string,
     toNaptanId: string,
     day: DaySet,
-    startHh: number, startMm: number,
-    ApplicationID: string = null,
-    ApplicationKey: string = null
+    startHh: number,
+    startMm: number
   ) {
-    if (line == "walk" || line == "bus") {
-      return new Promise<FromLineToTimes>((resolve, reject) => {
-        let times = new Array<Times>();
-        let result = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30].forEach((minutes: number) => {
+    return new Promise<FromLineToTimes>((resolve, reject) => {
+      let times = new Array<Times>();
+      let result = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30].forEach(
+        (minutes: number) => {
           let mm = startMm + minutes;
           let hh = startHh;
           while (mm > 59) {
             hh += 1;
             mm -= 60;
           }
-          times.push(new Times(startHh, startMm, hh, mm));
-        });
-        resolve(result);
-      });
-    }
+          times.push(
+            new Times(startHh, startMm, hh, mm, [fromNaptanId, toNaptanId])
+          );
+        }
+      );
+      resolve(result);
+    });
+  }
+
+  public LookupTimetable(
+    line: string,
+    fromNaptanId: string,
+    toNaptanId: string,
+    day: DaySet,
+    startHh: number,
+    startMm: number,
+    ApplicationID: string = null,
+    ApplicationKey: string = null
+  ) {
+    if (line == "walk" || line == "bus")
+      return this.MakeWalkTimetablePromise(
+        line,
+        fromNaptanId,
+        toNaptanId,
+        day,
+        startHh,
+        startMm
+      );
 
     let makePromise = (direction: Direction) => {
       let url = `https://api.tfl.gov.uk/Line/${line}/Timetable/${fromNaptanId}?direction=${direction}`;
@@ -115,6 +141,59 @@ export class TimetableService {
     const times = new Array<Times>();
     const tr = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
 
+    let ExtractStationIntervals = (route: any) => {
+      type T = {
+        stopId: string;
+        timeToArrival: number;
+        naptansSoFar: Array<string>;
+      };
+      let m = new Map<string, Array<T>>();
+      // ...
+      let si = <Array<any>>route.stationIntervals;
+      si.forEach((stationInterval: any, index: number) => {
+        let id: string = stationInterval.id;
+        // console.log("intervalId", id);
+        let intervals: Array<any> = stationInterval.intervals;
+        let r = new Array<T>();
+        let naptansSoFar = [fromNaptanId];
+        intervals.forEach((interval: any) => {
+          naptansSoFar.push(interval.stopId);
+          let v = {
+            stopId: interval.stopId,
+            timeToArrival: interval.timeToArrival,
+            naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar))
+          };
+          //console.log(v);
+          r.push(v);
+        });
+        r = r.filter((v: T) => {
+          return v.stopId == toNaptanId;
+        });
+        console.log(
+          "m.set(...)",
+          id,
+          JSON.stringify(
+            r.map(x => {
+              return {
+                sid: x.stopId,
+                tta: x.timeToArrival,
+                nc: x.naptansSoFar.length,
+                naps: x.naptansSoFar
+              };
+            }),
+            null,
+            0
+          )
+        );
+        m.set(id, r);
+      });
+      // ...
+      m.forEach((value: any, key: string) => {
+        //console.log(key, value);
+      });
+      return m;
+    };
+
     let processResult = (result: any) => {
       /*
       https://api.tfl.gov.uk/Line/Bakerloo/Timetable/940GZZLUCHX?direction=inbound
@@ -133,29 +212,9 @@ export class TimetableService {
              .minute:"#"
              .intervalId:#
       */
-      (<Array<any>>result.timetable.routes).forEach((route: any) => {
-        type T = { stopId: string; timeToArrival: number };
-        let m = new Map<string, Array<T>>();
-        // ...
-        let si = <Array<any>>route.stationIntervals;
-        si.forEach((stationInterval: any, index: number) => {
-          let id: string = stationInterval.id;
-          let intervals: Array<any> = stationInterval.intervals;
-          let r = new Array<T>();
-          intervals.forEach((interval: any) => {
-            r.push({
-              stopId: interval.stopId,
-              timeToArrival: interval.timeToArrival
-            });
-          });
-          r = r.filter((v: T) => {
-            return v.stopId == toNaptanId;
-          });
-          m.set(id, r);
-        });
-        m.forEach((value: any, key: string) => {
-          //console.log(key, value);
-        });
+      let routes = <any>result.timetable.routes;
+      routes.forEach((route: any) => {
+        let m = ExtractStationIntervals(route);
         // ...
         let schedules = <Array<any>>route.schedules;
         schedules.forEach((schedule: any, index: number) => {
@@ -165,20 +224,29 @@ export class TimetableService {
             (kj: { hour: string; minute: string; intervalId: number }) => {
               let iid = kj.intervalId.toString();
               if (m.has(iid)) {
-                let interval = m
+                let intervals = m
                   .get(iid)
                   .filter((t: T) => t.stopId == toNaptanId);
-                if (interval && interval.length > 0) {
-                  let hh = parseInt(kj.hour);
-                  let mm = parseInt(kj.minute) + interval[0].timeToArrival;
-                  while (mm > 59) {
-                    hh += 1;
-                    mm -= 60;
-                  }
-                  times.push(
-                    new Times(parseInt(kj.hour), parseInt(kj.minute), hh, mm)
-                  );
-                  //console.log(result);
+                if (intervals && intervals.length > 0) {
+                  //console.log("intervals.length", intervals.length);
+                  intervals.forEach((interval: T) => {
+                    let hh = parseInt(kj.hour);
+                    let mm = parseInt(kj.minute) + interval.timeToArrival;
+                    while (mm > 59) {
+                      hh += 1;
+                      mm -= 60;
+                    }
+                    times.push(
+                      new Times(
+                        parseInt(kj.hour),
+                        parseInt(kj.minute),
+                        hh,
+                        mm,
+                        interval.naptansSoFar
+                      )
+                    );
+                    //console.log(result);
+                  });
                 }
               }
             }
@@ -196,8 +264,9 @@ export class TimetableService {
         })
         .then((result: any) => {
           if (result) processResult(result);
+          return true;
         })
-        .then(() => {
+        .then((b: boolean) => {
           resolve(tr);
         })
         .catch(err => reject(err));
