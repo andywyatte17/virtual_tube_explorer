@@ -19,6 +19,12 @@ export class ApiKeys {
   /** Decrypted Tfl API key data. */
   static decrypted: ApiKeyJson;
 
+  static ApplicationIDKey() : [string,string]
+  {
+    if(!ApiKeys.decrypted) return null;
+    return [ApiKeys.decrypted.Tfl.ApplicationID, ApiKeys.decrypted.Tfl.ApplicationKey];
+  }
+
   static htmlPrefix() {
     if (!ApiKeys.decrypted) return '';
     return `?app_id=${

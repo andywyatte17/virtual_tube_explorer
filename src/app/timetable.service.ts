@@ -18,7 +18,8 @@ import {
 import { HhMm } from "./time";
 
 export enum DaySet {
-  _monThu_ = "Monday - Thursday",
+  _monThu1_ = "Monday - Thursday",
+  _monThu2_ = "Monday to Thursday",
   _monFri_ = "Monday - Friday",
   mon = "Mondays",
   tue = "Tuesdays",
@@ -26,22 +27,22 @@ export enum DaySet {
   thu = "Thursdays",
   fri = "Fridays",
   sat = "Saturdays and Public Holidays",
+  _sat1_ = "Saturday (also Good Friday)",
   sun = "Sunday"
 }
 
 function AreEquivalentImpl(daySet1: DaySet, daySet2: DaySet) {
   if (daySet1 == daySet2) return true;
+  if (daySet1 == DaySet.sat && daySet2 == DaySet._sat1_) return true;
   // ...
-  if (daySet1 == DaySet.mon && daySet2 == DaySet._monThu_) return true;
-  if (daySet1 == DaySet.tue && daySet2 == DaySet._monThu_) return true;
-  if (daySet1 == DaySet.wed && daySet2 == DaySet._monThu_) return true;
-  if (daySet1 == DaySet.thu && daySet2 == DaySet._monThu_) return true;
+  let IsMonThu = (ds: DaySet) => (ds == DaySet._monThu1_ || ds == DaySet._monThu2_);
+  let IsMonFri = (ds: DaySet) => (ds == DaySet._monFri_);
   // ...
-  if (daySet1 == DaySet.mon && daySet2 == DaySet._monFri_) return true;
-  if (daySet1 == DaySet.tue && daySet2 == DaySet._monFri_) return true;
-  if (daySet1 == DaySet.wed && daySet2 == DaySet._monFri_) return true;
-  if (daySet1 == DaySet.thu && daySet2 == DaySet._monFri_) return true;
-  if (daySet1 == DaySet.fri && daySet2 == DaySet._monFri_) return true;
+  if (daySet1 == DaySet.mon && (IsMonThu(daySet2) || IsMonFri(daySet2))) return true;
+  if (daySet1 == DaySet.tue && (IsMonThu(daySet2) || IsMonFri(daySet2))) return true;
+  if (daySet1 == DaySet.wed && (IsMonThu(daySet2) || IsMonFri(daySet2))) return true;
+  if (daySet1 == DaySet.thu && (IsMonThu(daySet2) || IsMonFri(daySet2))) return true;
+  if (daySet1 == DaySet.fri && IsMonFri(daySet2)) return true;
   // ...
   return false;
 }

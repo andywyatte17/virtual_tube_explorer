@@ -9,6 +9,8 @@ import {
   Times,
   PaddedTime
 } from "../timetable.service";
+import { ApiKeys } from "../my_tfl_api_key";
+import { HhMm } from "../time";
 
 class TableEntry {
   constructor(
@@ -17,7 +19,9 @@ class TableEntry {
     public readonly fromTime: string,
     public readonly toStationId: string,
     public readonly toTime: string,
-    public readonly lineId: string
+    public readonly lineId: string,
+    public readonly naptansVisited: Array<string>,
+    public readonly naptansRemain: number
   ) { }
   get fromStationName() {
     const found = TableEntry.stations.find(
@@ -44,7 +48,8 @@ class Train {
     public readonly toId: string,
     public readonly startTimeHhMm: string,
     public readonly endTimeHhMm: string,
-    public readonly isNonTrain: boolean
+    public readonly isNonTrain: boolean,
+    public readonly naptansVisited: Array<string>
   ) { }
 
   private static stations = MakeTubeNaptans();
@@ -58,16 +63,26 @@ class Train {
   get text() {
     if (this.isNonTrain) {
       const diff = () => {
-        let hh = [parseInt(this.startTimeHhMm.split(":")[0]), parseInt(this.endTimeHhMm.split(":")[0])];
-        let mm = [parseInt(this.startTimeHhMm.split(":")[1]), parseInt(this.endTimeHhMm.split(":")[1])];
+        let hh = [
+          parseInt(this.startTimeHhMm.split(":")[0]),
+          parseInt(this.endTimeHhMm.split(":")[0])
+        ];
+        let mm = [
+          parseInt(this.startTimeHhMm.split(":")[1]),
+          parseInt(this.endTimeHhMm.split(":")[1])
+        ];
         let mmDiff = hh[1] * 60 - hh[0] * 60 + mm[1] - mm[0];
-        return mmDiff < 10 ? ("0" + mmDiff.toString()) : mmDiff.toString();
+        return mmDiff < 10 ? "0" + mmDiff.toString() : mmDiff.toString();
       };
-      return `${this.startTimeHhMm} + 00:${diff()} : ` +
-        `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`;
+      return (
+        `${this.startTimeHhMm} + 00:${diff()} : ` +
+        `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`
+      );
     }
-    return `${this.startTimeHhMm} - ${this.endTimeHhMm} : ` +
-      `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`;
+    return (
+      `${this.startTimeHhMm} - ${this.endTimeHhMm} : ` +
+      `${Train.Lookup(this.fromId)} => ${Train.Lookup(this.toId)}`
+    );
   }
 }
 
@@ -94,7 +109,7 @@ export class RouteTabComponent implements OnInit {
 
   private _trains = new Array<Train>();
 
-  public selectedDayOfWeek : string = "Monday";
+  public selectedDayOfWeek: string = "Monday";
 
   public bumpTrains() {
     this._trains = new Array<Train>();
@@ -109,16 +124,18 @@ export class RouteTabComponent implements OnInit {
       const toId = this.stationModel.selectedStationId;
       const fromId = this.tableEntries[this.tableEntries.length - 1]
         .toStationId;
+      let ApplicationIDKey = ApiKeys.ApplicationIDKey;
+      const hhmm = HhMm.fromString(t);
+      if (!hhmm) return;
       this.timetable
         .LookupTimetable(
           line,
           fromId,
           toId,
           this.dayOfWeek.id,
-          parseInt(t.split(":")[0]),
-          parseInt(t.split(":")[1]),
-          null,
-          null
+          hhmm.hh, hhmm.mm,
+          ApplicationIDKey ? ApplicationIDKey[0] : null,
+          ApplicationIDKey ? ApplicationIDKey[1] : null
         )
         .then((v: FromLineToTimes) => {
           //console.log(v.times);
@@ -126,7 +143,7 @@ export class RouteTabComponent implements OnInit {
             let t1 = PaddedTime(x.startHh, x.startMm);
             let t2 = PaddedTime(x.endHh, x.endMm);
             // console.log(t1, t2);
-            return new Train(fromId, toId, t1, t2, isNonTrain);
+            return new Train(fromId, toId, t1, t2, isNonTrain, x.stopNaptans);
           });
           //console.log(this._trains);
         });
@@ -134,7 +151,9 @@ export class RouteTabComponent implements OnInit {
   }
 
   get fromStation(): string {
-    return this.tableEntries.length == 0 ? "" : this.tableEntries[this.tableEntries.length - 1].toStationName;
+    return this.tableEntries.length == 0
+      ? ""
+      : this.tableEntries[this.tableEntries.length - 1].toStationName;
   }
 
   get trains() {
@@ -143,8 +162,24 @@ export class RouteTabComponent implements OnInit {
 
   train: string = null;
 
-  trainDidChange(v:any) {
+  trainDidChange(v: any) {
     console.log(this.train);
+  }
+
+  private calculateNaptansLeft(nextNaptans: Array<string>) {
+    let naptansIds = new Set<string>();
+    MakeTubeNaptans().forEach((value: Naptan) => {
+      naptansIds.add(value.id);
+    });
+    this.tableEntries.forEach((v: TableEntry) => {
+      v.naptansVisited.forEach((naptanId: string) => {
+        naptansIds.delete(naptanId);
+      });
+    });
+    nextNaptans.forEach((naptanId: string) => {
+      naptansIds.delete(naptanId);
+    });
+    return naptansIds.size;
   }
 
   addTrain() {
@@ -158,14 +193,17 @@ export class RouteTabComponent implements OnInit {
           found.startTimeHhMm,
           found.toId,
           found.endTimeHhMm,
-          this.stationModel.selectedLine)
+          this.stationModel.selectedLine,
+          found.naptansVisited,
+          this.calculateNaptansLeft(found.naptansVisited)
+        )
       );
     }
   }
 
   refresh() {
     this.bumpTrains();
-    this.train = this.trains.length==0 ? "" : this.trains[0].text;
+    this.train = this.trains.length == 0 ? "" : this.trains[0].text;
   }
 
   public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);
@@ -193,14 +231,19 @@ export class RouteTabComponent implements OnInit {
       fromTime = this.tableEntries[n].toTime;
     }
 
+    const toStationId = this.stationModel.selectedStationId;
+    const nextNaptanIds = [fromStationId, toStationId];
+
     this.tableEntries.push(
       new TableEntry(
         n + 2,
         fromStationId,
         fromTime,
-        this.stationModel.selectedStationId,
+        toStationId,
         this.time,
-        this.stationModel.selectedLine
+        this.stationModel.selectedLine,
+        nextNaptanIds,
+        this.calculateNaptansLeft(nextNaptanIds)
       )
     );
   }
@@ -224,6 +267,7 @@ export class RouteTabComponent implements OnInit {
     const minutes = this.walkOptions[value];
     if (this.tableEntries.length > 0) {
       const n = this.tableEntries.length - 1;
+      const nextNaptanIds = [this.tableEntries[n].toStationId];
       this.tableEntries.push(
         new TableEntry(
           n + 2,
@@ -231,7 +275,9 @@ export class RouteTabComponent implements OnInit {
           this.tableEntries[n].toTime,
           this.tableEntries[n].toStationId,
           this.MakeTime(this.tableEntries[n].toTime, minutes),
-          "walk"
+          "walk",
+          nextNaptanIds,
+          this.calculateNaptansLeft(nextNaptanIds)
         )
       );
     }
@@ -241,20 +287,30 @@ export class RouteTabComponent implements OnInit {
 
   private _walkValue = "1";
 
-  get walkValue() { return this._walkValue; }
+  get walkValue() {
+    return this._walkValue;
+  }
 
   set walkValue(x: string) {
     this._walkValue = x;
     this.bumpWalkOptions();
   }
 
-  clickWalkRadio() { this.bumpWalkOptions(); }
+  clickWalkRadio() {
+    this.bumpWalkOptions();
+  }
 
   bumpWalkOptions() {
     switch (parseInt(this.walkValue)) {
-      case 1: this.walkOptions = [1, 2, 5, 10, 15]; return;
-      case 2: this.walkOptions = [2, 3, 5, 8, 13]; return;
-      case 3: this.walkOptions = [2, 5, 10, 15, 20]; return;
+      case 1:
+        this.walkOptions = [1, 2, 5, 10, 15];
+        return;
+      case 2:
+        this.walkOptions = [2, 3, 5, 8, 13];
+        return;
+      case 3:
+        this.walkOptions = [2, 5, 10, 15, 20];
+        return;
     }
   }
 

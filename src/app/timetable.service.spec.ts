@@ -29,7 +29,45 @@ describe("TimetableService", () => {
 
   // ...
 
-  fit("Moor Park (940GZZLUMPK) - Preston Road (940GZZLUPRD) - Saturday - metro", done => {
+  fit("West Ruislip (940GZZLUWRP) - North Acton (940GZZLUNAN) - Saturday - central", done => {
+    inject([TimetableService], (service: TimetableService) => {
+      service
+        .LookupTimetable(
+          "central",
+          "940GZZLUWRP",
+          "940GZZLUNAN",
+          DaySet.mon,
+          4,
+          0
+        )
+        .then((value: FromLineToTimes) => {
+          let m = (n: number) => {
+            while (n < 0)
+              n += value.times.length;
+            return [
+              value.times[n].startHh,
+              value.times[n].startMm,
+              value.times[n].endHh,
+              value.times[n].endMm
+            ];
+          };
+          let d = (n: number, e: number) => {
+            if (e === null) console.log(JSON.stringify(value.times[n], null, 2));
+            else console.log(JSON.stringify(value.times.slice(n, e), null, 2));
+          };
+          // https://api.tfl.gov.uk/Line/central/Timetable/940GZZLUWRP?direction=outbound
+          // https://api.tfl.gov.uk/Line/central/Timetable/940GZZLUWRP?direction=inbound
+          expect(value.times && value.times.length).toBeTruthy();
+          if (!(value.times && value.times.length)) { return done(); }
+          //d(0, 5);
+          done();
+        });
+    })();
+  });
+
+  // ...
+
+  it("Moor Park (940GZZLUMPK) - Preston Road (940GZZLUPRD) - Saturday - metro", done => {
     inject([TimetableService], (service: TimetableService) => {
       service
         .LookupTimetable(
@@ -42,7 +80,7 @@ describe("TimetableService", () => {
         )
         .then((value: FromLineToTimes) => {
           let m = (n: number) => {
-            while(n<0)
+            while (n < 0)
               n += value.times.length;
             return [
               value.times[n].startHh,
@@ -56,7 +94,7 @@ describe("TimetableService", () => {
             else console.log(JSON.stringify(value.times.slice(n, e), null, 2));
           };
           expect(value.times && value.times.length).toBeTruthy();
-          if(!(value.times && value.times.length)) { return done(); }
+          if (!(value.times && value.times.length)) { return done(); }
           expect(m(0).toString()).toEqual([5, 36, 5, 54].toString());
           expect(m(3).toString()).toEqual([5, 55, 6, 13].toString());
           expect(m(-1).toString()).toEqual([24, 47, 25, 5].toString());
@@ -64,7 +102,7 @@ describe("TimetableService", () => {
         });
     })();
   });
-  
+
   // ...
 
   it("Acton Town - Earl's Court - Piccadilly", done => {
@@ -158,16 +196,24 @@ describe("PaddedTime", () => {
 
 describe("AreEquivalent", () => {
   // ...
-  it("AreEquivalent(mon, _monThu_) is true", () => {
-    expect(AreEquivalent(DaySet.mon, DaySet._monThu_)).toBeTruthy();
+  it("AreEquivalent(mon, _monThu?_) is true", () => {
+    expect(AreEquivalent(DaySet.mon, DaySet._monThu1_)).toBeTruthy();
+    expect(AreEquivalent(DaySet.mon, DaySet._monThu2_)).toBeTruthy();
   });
   // ...
-  it("AreEquivalent(_monThu_, mon) is true", () => {
-    expect(AreEquivalent(DaySet._monThu_, DaySet.mon)).toBeTruthy();
+  it("AreEquivalent(_monThu?_, mon) is true", () => {
+    expect(AreEquivalent(DaySet._monThu1_, DaySet.mon)).toBeTruthy();
+    expect(AreEquivalent(DaySet._monThu2_, DaySet.mon)).toBeTruthy();
   });
   // ...
   it("AreEquivalent(_monFri_, wed) is true", () => {
     expect(AreEquivalent(DaySet._monFri_, DaySet.wed)).toBeTruthy();
+    expect(AreEquivalent(DaySet._monFri_, DaySet.fri)).toBeTruthy();
+  });
+  // ...
+  fit("AreEquivalent(sat, _sat1_) is true", () => {
+    expect(AreEquivalent(DaySet.sat, DaySet._sat1_)).toBeTruthy();
+    expect(AreEquivalent(DaySet._sat1_, DaySet.sat)).toBeTruthy();
   });
   // ...
   it("AreEquivalent(sat, sat) is true", () => {
@@ -179,7 +225,10 @@ describe("AreEquivalent", () => {
   });
   // ...
   it("not AreEquivalent(...)", () => {
-    [[DaySet.mon, DaySet.fri], [DaySet._monThu_, DaySet.sat]].forEach(
+    [ // ...
+      [DaySet.mon, DaySet.fri], // ...
+      [DaySet._monThu1_, DaySet.sat] // ...
+    ].forEach(
       (x: any) => {
         let [a, b] = x;
         expect(AreEquivalent(a, b)).toBeFalsy();

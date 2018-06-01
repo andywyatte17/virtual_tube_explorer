@@ -66,6 +66,7 @@
       <td>Line</td>
       <td>To</td>
       <td>To Time</td>
+      <td>Stations Left</td>
     </thead>
     <tr *ngFor='let entry of tableEntries'>
       <td>{{entry.index}}</td>
@@ -74,6 +75,7 @@
       <td>{{entry.lineId}}</td>
       <td>{{entry.toStationName}}</td>
       <td>{{entry.toTime}}</td>
+      <td>{{entry.naptansRemain}}</td>
     </tr>
   </table>
 </div>
