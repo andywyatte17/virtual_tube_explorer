@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Naptan, MakeTubeNaptans } from "../naptans/naptans";
 import { StationModel } from "./station-model";
 import { HttpClient } from "@angular/common/http";
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {
   DaySet,
   TimetableService,
@@ -12,6 +13,10 @@ import {
 import { ApiKeys } from "../my_tfl_api_key";
 import { HhMm } from "../time";
 import { MakeTableEntry, ITableEntryEx } from "./table-entry";
+
+declare var base64js: any;
+declare var TextEncoderLite: any;
+declare var TextEncoder: any;
 
 class DayOfWeek {
   constructor(public readonly name: string, public readonly id: DaySet) {}
@@ -138,6 +143,8 @@ export class RouteTabComponent implements OnInit {
 
   train: string = null;
 
+  route_json : SafeUrl = null;
+
   trainDidChange(v: any) {
     console.log(this.train);
   }
@@ -185,7 +192,16 @@ export class RouteTabComponent implements OnInit {
           te.serialize()
         )
       };
-      console.log(result);
+
+      const Base64Encode = (str, encoding = 'utf-8') => {
+        var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);
+        return base64js.fromByteArray(bytes);
+      };
+
+      let route_json = JSON.stringify(result);
+      route_json = Base64Encode(route_json);
+      route_json = "data:application/json;base64," + route_json;
+      this.route_json = this.sanitizer.bypassSecurityTrustUrl(route_json);
     }
   }
 
@@ -196,7 +212,8 @@ export class RouteTabComponent implements OnInit {
 
   public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);
 
-  constructor(private http: HttpClient, private timetable: TimetableService) {}
+  constructor(private http: HttpClient, private timetable: TimetableService,
+    private sanitizer: DomSanitizer) { }
 
   stationModel = new StationModel(this.http);
 

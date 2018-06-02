@@ -24,7 +24,7 @@
     <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">
     -->
     <!-- -->
-    <span style="color:chocolate">{{ fromStation + ' @ ' + this.tableEntries[this.tableEntries.length-1].toTime }}</span>
+    <span style="color:chocolate">{{ fromInfo }}</span>
     <!-- -->
     <label for="stationSelect">Station:</label>
     <select name="stationSelect" style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
@@ -42,7 +42,10 @@
     <button (click)="refresh()">Refresh</button>
     <button (click)="addTrain()">Add</button>
     <!-- -->
-    <button (click)="popLast()">Pop Last</button>
+    <p>
+      <button (click)="popLast()">Pop Last</button>
+      <a [attr.href]="this.route_json" download="route.json">Download JSON</a>
+    </p>
   </div>
   <!-- -->
   <table class="table">
