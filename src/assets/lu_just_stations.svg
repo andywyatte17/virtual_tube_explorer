@@ -3,6 +3,9 @@
 <style type="text/css">
 text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-serif}
 /* #stname_Bakerloo_line { fill:brown } */
+#stname_interchanges {
+  fill: rebeccapurple;
+}
 #stname_Bakerloo_line  {
    fill: #963;
 }
@@ -254,15 +257,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="439" y="828">
    Gunnersbury
   </text>
-  <text x="1647" y="312">
-   Hackney
-   <tspan dy="13" x="1647">
-    Central
-   </tspan>
-  </text>
-  <text x="1647" y="275">
-   Hackney Downs
-  </text>
   <text x="647" y="843">
    Hammersmith
   </text>
@@ -274,9 +268,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   </text>
   <text x="115" y="999">
    Heathrow Terminal 4
-  </text>
-  <text class="end" x="1870" y="660">
-   Heron Quays
   </text>
   <text x="1426" y="318">
    Highbury
@@ -516,19 +507,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Hampstead
    </tspan>
   </text>
-  <text class="end" x="1870" y="597">
-   <title>
-    Not served by DLR trains from Bank towards Lewisham at any time.
-   </title>
-   <tspan class="ul">
-    West India
-   </tspan>
-   <tspan dy="13" x="1870">
-    <tspan class="ul">
-     Quay
-    </tspan>
-   </tspan>
-  </text>
   <text x="1243" y="754">
    Westminster
   </text>
@@ -758,14 +736,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <g class="mid">
    <text x="2026" y="-7">
     Chigwell
-   </text>
-   <text x="1961" y="-20">
-    Roding
-    <tspan dy="0" x="1986">
-    </tspan>
-    <tspan dy="13" x="1961">
-     Valley
-    </tspan>
    </text>
   </g>
  </g>
@@ -1034,12 +1004,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="191.5" y="145">
    Rickmansworth
   </text>
-  <text class="ul mid" x="223" y="66">
-   <title>
-    Watford station is scheduled to close upon the opening of the rail link between Croxley and Watford Junction stations.
-   </title>
-   Watford
-  </text>
   <text x="234" y="130">
    Croxley
   </text>
@@ -1305,19 +1269,6 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Hyde Park
     <tspan dy="13" x="1102.6">
      Corner
-    </tspan>
-   </text>
-   <text x="1284" y="544">
-    <title>
-     Because of old design and congestion, passengers are highly recommended to instead enter or exit the system via the nearby Leicester Square station (4-minute walking time) or Holborn station (8-minute walking time).
-    </title>
-    <tspan class="ul">
-     Covent
-    </tspan>
-    <tspan dy="13" x="1284">
-     <tspan class="ul">
-      Garden
-     </tspan>
     </tspan>
    </text>
   </g>

@@ -25,7 +25,15 @@ for a_class in ['fog', 'fgreenford', 'fpiccadilly', 'fnorthern' \
                ]:
   for u in x.find_all(class_=a_class):
     u.decompose()
-  
+
+#for u in x.find_all():
+#  print(u.text.lstrip())
+
+for remove in ['Quay', 'passengers are', 'Valley', 'Hackney', 'scheduled to']:
+  for u in x.find_all("text"):
+    if remove in u.text:
+      u.decompose()
+
 #for u in soup.findAll(True):
 #  if hasattr(u, 'attrs'):
 #    if 'class' in u.attrs:
@@ -33,6 +41,9 @@ for a_class in ['fog', 'fgreenford', 'fpiccadilly', 'fnorthern' \
 
 OTHER_STYLES = '''
 /* #stname_Bakerloo_line { fill:brown } */
+#stname_interchanges {
+  fill: rebeccapurple;
+}
 #stname_Bakerloo_line  {
    fill: #963;
 }
