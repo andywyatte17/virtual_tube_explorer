@@ -14,7 +14,7 @@ import { HhMm } from "../time";
 import { MakeTableEntry, ITableEntryEx } from "./table-entry";
 
 class DayOfWeek {
-  constructor(public readonly name: string, public readonly id: DaySet) { }
+  constructor(public readonly name: string, public readonly id: DaySet) {}
 }
 
 class Train {
@@ -25,7 +25,7 @@ class Train {
     public readonly endTimeHhMm: string,
     public readonly isNonTrain: boolean,
     public readonly naptansVisited: Array<string>
-  ) { }
+  ) {}
 
   private static stations = MakeTubeNaptans();
 
@@ -181,10 +181,11 @@ export class RouteTabComponent implements OnInit {
 
       let result = {
         day: this.dayOfWeek,
-        tableEntries: this.tableEntries.map((te: ITableEntryEx) => te.serialize())
+        tableEntries: this.tableEntries.map((te: ITableEntryEx) =>
+          te.serialize()
+        )
       };
       console.log(result);
-
     }
   }
 
@@ -195,11 +196,11 @@ export class RouteTabComponent implements OnInit {
 
   public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);
 
-  constructor(private http: HttpClient, private timetable: TimetableService) { }
+  constructor(private http: HttpClient, private timetable: TimetableService) {}
 
   stationModel = new StationModel(this.http);
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   dayOfWeekChanged() {
     console.log(this.dayOfWeek);
@@ -209,26 +210,18 @@ export class RouteTabComponent implements OnInit {
     this.time = time;
   }
 
-  add() {
-    let fromStationId = "";
-    let fromTime = "";
-    const n = this.tableEntries.length - 1;
-    if (n >= 0) {
-      fromStationId = this.tableEntries[n].toStationId;
-      fromTime = this.tableEntries[n].toTime;
-    }
-
+  start() {
     const toStationId = this.stationModel.selectedStationId;
-    const nextNaptanIds = [fromStationId, toStationId];
+    const nextNaptanIds = [toStationId];
 
     this.tableEntries.push(
       MakeTableEntry(
-        n + 2,
-        fromStationId,
-        fromTime,
+        1,
+        "" /*fromStationId*/,
+        "" /*fromTime*/,
         toStationId,
         this.time,
-        this.stationModel.selectedLine,
+        "" /*line*/,
         nextNaptanIds,
         this.calculateNaptansLeft(nextNaptanIds)
       )
@@ -281,6 +274,11 @@ export class RouteTabComponent implements OnInit {
   set walkValue(x: string) {
     this._walkValue = x;
     this.bumpWalkOptions();
+  }
+
+  get fromInfo() {
+    return this.fromStation + ' @ ' + this.tableEntries[this.tableEntries.length - 1].toTime
+      + ` (${this.dayOfWeek})`;
   }
 
   clickWalkRadio() {

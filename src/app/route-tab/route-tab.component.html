@@ -1,17 +1,33 @@
 <div>
   <!-- -->
-  <label for="dayOfWeekSelect">Day:</label>
-  <select name="dayOfWeekSelect" style="width: 12em" [(ngModel)]='selectedDayOfWeek' (ngModelChange)="dayOfWeekChanged()">
-    <option *ngFor='let dayOfWeek of daysOfWeek' [value]="dayOfWeek.name">{{ dayOfWeek.name }}</option>
-  </select>
-  <!-- -->
-  <p>Start/Next Station
+  <div *ngIf="this.tableEntries.length==0">
+    <p>Start...
+      <label for="time">Time:</label>
+      <input style="width: 6em" type="text" name="time" [ngModel]="time" (ngModelChange)="timeDidChange($event)">
+      <!-- -->
+      <label for="dayOfWeekSelect">Day:</label>
+      <select name="dayOfWeekSelect" style="width: 12em" [(ngModel)]='selectedDayOfWeek' (ngModelChange)="dayOfWeekChanged()">
+        <option *ngFor='let dayOfWeek of daysOfWeek' [value]="dayOfWeek.name">{{ dayOfWeek.name }}</option>
+      </select>
+      <!-- -->
+      <label for="stationSelect">Station:</label>
+      <select name="stationSelect" style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
+        <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
+      </select>
+      <!-- -->
+      <button (click)="start()">Start</button>
+    </p>
+  </div>
+  <div *ngIf="this.tableEntries.length!=0">
+    <!--    
     <label for="stationNameFilter">Filter:</label>
     <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">
+    -->
     <!-- -->
-    <span style="color:chocolate">{{ fromStation=='' ? '' : "From:&nbsp;" + fromStation }}</span>
+    <span style="color:chocolate">{{ fromStation + ' @ ' + this.tableEntries[this.tableEntries.length-1].toTime }}</span>
     <!-- -->
-    <select style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
+    <label for="stationSelect">Station:</label>
+    <select name="stationSelect" style="width: 12em" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
       <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
     </select>
     <!-- -->
@@ -25,38 +41,9 @@
     <!-- -->
     <button (click)="refresh()">Refresh</button>
     <button (click)="addTrain()">Add</button>
-  </p>
-  <!-- -->
-  <label for="time">Time:</label>
-  <input style="width: 6em" type="text" name="time" [ngModel]="time" (ngModelChange)="timeDidChange($event)">
-  <!-- -->
-  <button (click)="add()">Add</button>
-  <button (click)="popLast()">Pop Last</button>
-  <!-- -->
-  <h2>Walk</h2>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="walkRadioOptions" id="inlineRadioOption1" [value]="1" [(ngModel)]="walkValue"
-      (change)="clickWalkRadio()">
-    <label class="form-check-label" for="inlineRadioOption1">1</label>
+    <!-- -->
+    <button (click)="popLast()">Pop Last</button>
   </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="walkRadioOptions" id="inlineRadioOption2" [value]="2" [(ngModel)]="walkValue"
-      (change)="clickWalkRadio()">
-    <label class="form-check-label" for="inlineRadioOption2">2</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="walkRadioOptions" id="inlineRadioOption3" [value]="3" [(ngModel)]="walkValue"
-      (change)="clickWalkRadio()">
-    <label class="form-check-label" for="inlineRadioOption3">3</label>
-    <div class="btn-group">
-      <button (click)="walk(0)" class="btn">{{ walkOptions[0] }}</button>
-      <button (click)="walk(1)" class="btn">{{ walkOptions[1] }}</button>
-      <button (click)="walk(2)" class="btn">{{ walkOptions[2] }}</button>
-      <button (click)="walk(3)" class="btn">{{ walkOptions[3] }}</button>
-      <button (click)="walk(4)" class="btn">{{ walkOptions[4] }}</button>
-    </div>
-  </div>
-  <!-- -->
   <!-- -->
   <table class="table">
     <thead>
