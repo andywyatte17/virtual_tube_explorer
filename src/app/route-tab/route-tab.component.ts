@@ -21,8 +21,9 @@ class TableEntry {
     public readonly toTime: string,
     public readonly lineId: string,
     public readonly naptansVisited: Array<string>,
-    public readonly naptansRemain: number
+    public readonly naptansRemain: Set<string>
   ) { }
+  public stationsRemainHidden: boolean = true;
   get fromStationName() {
     const found = TableEntry.stations.find(
       (n: Naptan) => n.id == this.fromStationId
@@ -34,6 +35,12 @@ class TableEntry {
       (n: Naptan) => n.id == this.toStationId
     );
     return found ? found.name : "???";
+  }
+  get naptansRemainCount() { return this.naptansRemain.size; }
+  get stationsRemain() {
+    return MakeTubeNaptans().filter((value: Naptan) => {
+      return this.naptansRemain.has(value.id);
+    }).map((value: Naptan) => value.name);
   }
   private static stations = MakeTubeNaptans();
 }
@@ -179,7 +186,7 @@ export class RouteTabComponent implements OnInit {
     nextNaptans.forEach((naptanId: string) => {
       naptansIds.delete(naptanId);
     });
-    return naptansIds.size;
+    return naptansIds;
   }
 
   addTrain() {

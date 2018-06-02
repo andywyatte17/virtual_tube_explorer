@@ -75,7 +75,11 @@
       <td>{{entry.lineId}}</td>
       <td>{{entry.toStationName}}</td>
       <td>{{entry.toTime}}</td>
-      <td>{{entry.naptansRemain}}</td>
+      <td (click)="entry.stationsRemainHidden = !entry.stationsRemainHidden">
+        {{entry.naptansRemainCount}}
+        <span [hidden]="entry.stationsRemainHidden">
+          <br>{{ entry.stationsRemain }}</span>
+      </td>
     </tr>
   </table>
 </div>

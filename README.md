@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
+## Notes to self
+
+  - Display time current in Route > station view.
+  - Filter timetable to only times after current.
+  - Filter route list to, say, first 3...last 3.
+      - Maybe on a toggle - full list/reduced list.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
