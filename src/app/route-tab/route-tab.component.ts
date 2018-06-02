@@ -11,39 +11,7 @@ import {
 } from "../timetable.service";
 import { ApiKeys } from "../my_tfl_api_key";
 import { HhMm } from "../time";
-
-class TableEntry {
-  constructor(
-    public index: number,
-    public readonly fromStationId: string,
-    public readonly fromTime: string,
-    public readonly toStationId: string,
-    public readonly toTime: string,
-    public readonly lineId: string,
-    public readonly naptansVisited: Array<string>,
-    public readonly naptansRemain: Set<string>
-  ) { }
-  public stationsRemainHidden: boolean = true;
-  get fromStationName() {
-    const found = TableEntry.stations.find(
-      (n: Naptan) => n.id == this.fromStationId
-    );
-    return found ? found.name : "???";
-  }
-  get toStationName() {
-    const found = TableEntry.stations.find(
-      (n: Naptan) => n.id == this.toStationId
-    );
-    return found ? found.name : "???";
-  }
-  get naptansRemainCount() { return this.naptansRemain.size; }
-  get stationsRemain() {
-    return MakeTubeNaptans().filter((value: Naptan) => {
-      return this.naptansRemain.has(value.id);
-    }).map((value: Naptan) => value.name);
-  }
-  private static stations = MakeTubeNaptans();
-}
+import { MakeTableEntry, ITableEntryEx } from "./table-entry";
 
 class DayOfWeek {
   constructor(public readonly name: string, public readonly id: DaySet) { }
@@ -100,7 +68,7 @@ class Train {
 })
 export class RouteTabComponent implements OnInit {
   public time = "05:00";
-  public tableEntries = new Array<TableEntry>();
+  public tableEntries = new Array<ITableEntryEx>();
 
   public readonly daysOfWeek = (() => {
     let result = Array<DayOfWeek>();
@@ -140,7 +108,8 @@ export class RouteTabComponent implements OnInit {
           fromId,
           toId,
           this.dayOfWeek.id,
-          hhmm.hh, hhmm.mm,
+          hhmm.hh,
+          hhmm.mm,
           ApplicationIDKey ? ApplicationIDKey[0] : null,
           ApplicationIDKey ? ApplicationIDKey[1] : null
         )
@@ -173,12 +142,12 @@ export class RouteTabComponent implements OnInit {
     console.log(this.train);
   }
 
-  private calculateNaptansLeft(nextNaptans: Array<string>) {
+  private calculateNaptansLeft(nextNaptans: Array<string>): Array<string> {
     let naptansIds = new Set<string>();
     MakeTubeNaptans().forEach((value: Naptan) => {
       naptansIds.add(value.id);
     });
-    this.tableEntries.forEach((v: TableEntry) => {
+    this.tableEntries.forEach((v: ITableEntryEx) => {
       v.naptansVisited.forEach((naptanId: string) => {
         naptansIds.delete(naptanId);
       });
@@ -186,7 +155,11 @@ export class RouteTabComponent implements OnInit {
     nextNaptans.forEach((naptanId: string) => {
       naptansIds.delete(naptanId);
     });
-    return naptansIds;
+    let result = new Array<string>();
+    naptansIds.forEach((value: string) => {
+      result.push(value);
+    });
+    return result;
   }
 
   addTrain() {
@@ -194,7 +167,7 @@ export class RouteTabComponent implements OnInit {
     if (found) {
       const n = this.tableEntries.length - 1;
       this.tableEntries.push(
-        new TableEntry(
+        MakeTableEntry(
           n + 2,
           found.fromId,
           found.startTimeHhMm,
@@ -205,6 +178,13 @@ export class RouteTabComponent implements OnInit {
           this.calculateNaptansLeft(found.naptansVisited)
         )
       );
+
+      let result = {
+        day: this.dayOfWeek,
+        tableEntries: this.tableEntries.map((te: ITableEntryEx) => te.serialize())
+      };
+      console.log(result);
+
     }
   }
 
@@ -242,7 +222,7 @@ export class RouteTabComponent implements OnInit {
     const nextNaptanIds = [fromStationId, toStationId];
 
     this.tableEntries.push(
-      new TableEntry(
+      MakeTableEntry(
         n + 2,
         fromStationId,
         fromTime,
@@ -276,7 +256,7 @@ export class RouteTabComponent implements OnInit {
       const n = this.tableEntries.length - 1;
       const nextNaptanIds = [this.tableEntries[n].toStationId];
       this.tableEntries.push(
-        new TableEntry(
+        MakeTableEntry(
           n + 2,
           this.tableEntries[n].toStationId,
           this.tableEntries[n].toTime,
