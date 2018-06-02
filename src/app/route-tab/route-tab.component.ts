@@ -12,14 +12,14 @@ import {
 } from "../timetable.service";
 import { ApiKeys } from "../my_tfl_api_key";
 import { HhMm } from "../time";
-import { MakeTableEntry, ITableEntryEx } from "./table-entry";
+import { MakeTableEntry, ITableEntryEx, ITableEntry, MakeTableEntryFromObject } from "./table-entry";
 
 declare var base64js: any;
 declare var TextEncoderLite: any;
 declare var TextEncoder: any;
 
 class DayOfWeek {
-  constructor(public readonly name: string, public readonly id: DaySet) {}
+  constructor(public readonly name: string, public readonly id: DaySet) { }
 }
 
 class Train {
@@ -30,7 +30,7 @@ class Train {
     public readonly endTimeHhMm: string,
     public readonly isNonTrain: boolean,
     public readonly naptansVisited: Array<string>
-  ) {}
+  ) { }
 
   private static stations = MakeTubeNaptans();
 
@@ -89,7 +89,16 @@ export class RouteTabComponent implements OnInit {
 
   private _trains = new Array<Train>();
 
-  public selectedDayOfWeek: string = "Monday";
+  public _selectedDayOfWeek: string = "Monday";
+
+  get selectedDayOfWeek() { return this._selectedDayOfWeek; }
+
+  set selectedDayOfWeek(dow: string) {
+    this._selectedDayOfWeek = dow;
+    this.selectedDayOfWeekEx = this.daysOfWeek.find((x: DayOfWeek) => x.name == dow);
+  }
+
+  public selectedDayOfWeekEx = new DayOfWeek("Monday", DaySet.mon);
 
   public bumpTrains() {
     this._trains = new Array<Train>();
@@ -112,7 +121,7 @@ export class RouteTabComponent implements OnInit {
           line,
           fromId,
           toId,
-          this.dayOfWeek.id,
+          this.selectedDayOfWeekEx.id,
           hhmm.hh,
           hhmm.mm,
           ApplicationIDKey ? ApplicationIDKey[0] : null,
@@ -143,7 +152,7 @@ export class RouteTabComponent implements OnInit {
 
   train: string = null;
 
-  route_json : SafeUrl = null;
+  route_json: SafeUrl = null;
 
   trainDidChange(v: any) {
     console.log(this.train);
@@ -187,7 +196,7 @@ export class RouteTabComponent implements OnInit {
       );
 
       let result = {
-        day: this.dayOfWeek,
+        selectedDayOfWeekEx: this.selectedDayOfWeekEx,
         tableEntries: this.tableEntries.map((te: ITableEntryEx) =>
           te.serialize()
         )
@@ -205,22 +214,40 @@ export class RouteTabComponent implements OnInit {
     }
   }
 
+  fileLoad(evt: any) {
+    let input = <HTMLInputElement>evt.target;
+    var files = input.files;
+    let blob: Blob = files[0].slice();
+
+    let reader = new FileReader();
+    reader.addEventListener("loadend", () => {
+      try {
+        let json = JSON.parse(reader.result);
+        this.selectedDayOfWeek = json.selectedDayOfWeekEx.name;
+        let tis = <Array<ITableEntry>>json.tableEntries;
+        this.tableEntries = this.tableEntries.filter(() => false);
+        tis.forEach((ti: ITableEntry) => {
+          this.tableEntries.push(MakeTableEntryFromObject(ti));
+        });
+      } catch (e) { }
+    });
+    reader.readAsText(blob);
+  }
+
   refresh() {
     this.bumpTrains();
     this.train = this.trains.length == 0 ? "" : this.trains[0].text;
   }
-
-  public dayOfWeek = new DayOfWeek("Monday", DaySet.mon);
 
   constructor(private http: HttpClient, private timetable: TimetableService,
     private sanitizer: DomSanitizer) { }
 
   stationModel = new StationModel(this.http);
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   dayOfWeekChanged() {
-    console.log(this.dayOfWeek);
+    console.log(this.selectedDayOfWeekEx);
   }
 
   timeDidChange(time: string) {
@@ -295,7 +322,7 @@ export class RouteTabComponent implements OnInit {
 
   get fromInfo() {
     return this.fromStation + ' @ ' + this.tableEntries[this.tableEntries.length - 1].toTime
-      + ` (${this.dayOfWeek})`;
+      + ` (${this.selectedDayOfWeek})`;
   }
 
   clickWalkRadio() {

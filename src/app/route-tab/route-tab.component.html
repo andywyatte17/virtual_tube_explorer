@@ -16,6 +16,9 @@
       </select>
       <!-- -->
       <button (click)="start()">Start</button>
+      <br>
+      <label for="fileLoad">Load:</label>
+      <input name="fileLoad" type="file" (change)="fileLoad($event)">
     </p>
   </div>
   <div *ngIf="this.tableEntries.length!=0">
