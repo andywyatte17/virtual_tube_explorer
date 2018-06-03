@@ -32,7 +32,7 @@ export class PlacesSvgComponent implements OnInit {
   }
 
   textStyle(station: string) {
-    return this.domSantizier.bypassSecurityTrustStyle('color:red');
+    return this.domSantizier.bypassSecurityTrustStyle('fill:red');
   }
 
   opacity(station: string) {
