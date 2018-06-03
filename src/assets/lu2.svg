@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2500" height="1320" viewBox="-40.5 -120.5 2500 1320">
+<style type="text/css">
+text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-serif}
+/* #stname_Bakerloo_line { fill:brown } */
+#stname_interchanges {
+  fill: rebeccapurple;
+}
+#stname_Bakerloo_line  {
+   fill: #963;
+}
+#stname_Central_line  {
+   fill: #c33;
+}
+#stname_Jubilee_line  {
+   fill: #889;
+}
+/*
+#stname_Hammersmith-city_line  {
+   fill: #c99;
+}
+*/
+#stname_District_line_and_Hammersmith_And_City_line  {
+   fill: #063;
+}
+#stname_Metropolitan_line  {
+   fill: #a06;
+}
+#stname_Piccadilly_line  {
+   fill: #048;
+}
+#stname_Circle_line  {
+   fill: #fc0;
+    color: #333;
+}
+#stname_Victoria_line  {
+   fill: #09c;
+}
+</style>
+<g>
+  <text [attr.opacity]="opacity('Acton Town')" x="436.0" y="785.0" name="Acton Town">*</text>
+
+  <text [attr.opacity]="opacity('Aldgate')" x="1591.5" y="545.5" name="Aldgate">*</text>
+
+  <text [attr.opacity]="opacity('Aldgate East')" x="1653.0" y="532.0" name="Aldgate East">*</text>
+
+  <text [attr.opacity]="opacity('Archway')" x="1062.0" y="173.5" name="Archway">*</text>
+
+  <text [attr.opacity]="opacity('Baker Street')" x="1053.0" y="532.0" name="Baker Street">*</text>
+
+  <text [attr.opacity]="opacity('Bank')" x="1465.0" y="559.0" name="Bank">*</text>
+
+  <text [attr.opacity]="opacity('Barbican')" x="1444.0" y="481.0" name="Barbican">*</text>
+
+  <text [attr.opacity]="opacity('Barking')" x="2173.0" y="368.0" name="Barking">*</text>
+
+  <text [attr.opacity]="opacity('Blackfriars')" x="1362.0" y="634.0" name="Blackfriars">*</text>
+
+  <text [attr.opacity]="opacity('Blackhorse Road')" x="1602.0" y="92.0" name="Blackhorse Road">*</text>
+
+  <text [attr.opacity]="opacity('Bond Street')" x="1095.0" y="611.0" name="Bond Street">*</text>
+
+  <text [attr.opacity]="opacity('Bow Road')" x="1893.0" y="453.0" name="Bow Road">*</text>
+
+  <text [attr.opacity]="opacity('Camden Town')" x="1180.0" y="302.0" name="Camden Town">*</text>
+
+  <text [attr.opacity]="opacity('Canada Water')" x="1694.0" y="693.0" name="Canada Water">*</text>
+
+  <text [attr.opacity]="opacity('Canary Wharf')" x="1901.0" y="664.0" name="Canary Wharf">*</text>
+
+  <text [attr.opacity]="opacity('Canning Town')" x="2046.0" y="560.0" name="Canning Town">*</text>
+
+  <text [attr.opacity]="opacity('Cannon Street')" x="1426.0" y="572.0" name="Cannon Street">*</text>
+
+  <text [attr.opacity]="opacity('Charing Cross')" x="1277.0" y="681.0" name="Charing Cross">*</text>
+
+  <text [attr.opacity]="opacity('Clapham North')" x="1244.5" y="981.0" name="Clapham North">*</text>
+
+  <text [attr.opacity]="opacity('Ealing Broadway')" x="340.0" y="696.0" name="Ealing Broadway">*</text>
+
+  <text [attr.opacity]="opacity('Ealing Common')" x="395.0" y="753.0" name="Ealing Common">*</text>
+
+  <text [attr.opacity]="opacity('Earl&#39;s Court')" x="871.0" y="890.4" name="Earl&#39;s Court">*</text>
+
+  <text [attr.opacity]="opacity('Edgware Road')" x="961.0" y="540.0" name="Edgware Road">*</text>
+
+  <text [attr.opacity]="opacity('Elephant &amp; Castle')" x="1490.0" y="772.0" name="Elephant &amp; Castle">*</text>
+
+  <text [attr.opacity]="opacity('Embankment')" x="1282.0" y="699.0" name="Embankment">*</text>
+
+  <text [attr.opacity]="opacity('Euston')" x="1215.0" y="366.0" name="Euston">*</text>
+
+  <text [attr.opacity]="opacity('Euston Square')" x="1211.0" y="421.0" name="Euston Square">*</text>
+
+  <text [attr.opacity]="opacity('Farringdon')" x="1396.0" y="456.0" name="Farringdon">*</text>
+
+  <text [attr.opacity]="opacity('Farringdon')" x="1376.0" y="497.0" name="Farringdon">*</text>
+
+  <text [attr.opacity]="opacity('Finchley Road')" x="957.0" y="372.0" name="Finchley Road">*</text>
+
+  <text [attr.opacity]="opacity('Finchley Road &amp; Frognal')" x="958.0" y="342.0" name="Finchley Road &amp; Frognal">*</text>
+
+  <text [attr.opacity]="opacity('Finsbury Park')" x="1375.0" y="187.0" name="Finsbury Park">*</text>
+
+  <text [attr.opacity]="opacity('Green Park')" x="1142.0" y="674.0" name="Green Park">*</text>
+
+  <text [attr.opacity]="opacity('Gloucester Road')" x="1020.3" y="888.0" name="Gloucester Road">*</text>
+
+  <text [attr.opacity]="opacity('Gunnersbury')" x="439.0" y="832.0" name="Gunnersbury">*</text>
+
+  <text [attr.opacity]="opacity('Hammersmith')" x="647.0" y="847.0" name="Hammersmith">*</text>
+
+  <text [attr.opacity]="opacity('Harrow &amp; Wealdstone')" x="543.5" y="240.0" name="Harrow &amp; Wealdstone">*</text>
+
+  <text [attr.opacity]="opacity('Heathrow Terminal 4')" x="115.0" y="1003.0" name="Heathrow Terminal 4">*</text>
+
+  <text [attr.opacity]="opacity('Highbury &amp; Islington')" x="1426.0" y="322.0" name="Highbury &amp; Islington">*</text>
+
+  <text [attr.opacity]="opacity('Holborn')" x="1284.0" y="514.0" name="Holborn">*</text>
+
+  <text [attr.opacity]="opacity('Kensington (Olympia)')" x="818.0" y="810.0" name="Kensington (Olympia)">*</text>
+
+  <text [attr.opacity]="opacity('Kentish Town')" x="1140.0" y="214.0" name="Kentish Town">*</text>
+
+  <text [attr.opacity]="opacity('Kenton')" x="543.5" y="278.0" name="Kenton">*</text>
+
+  <text [attr.opacity]="opacity('Northwick Park')" x="521.5" y="315.0" name="Northwick Park">*</text>
+
+  <text [attr.opacity]="opacity('King&#39;s Cross St. Pancras')" x="1295.0" y="353.0" name="King&#39;s Cross St. Pancras">*</text>
+
+  <text [attr.opacity]="opacity('Leicester Square')" x="1269.0" y="599.0" name="Leicester Square">*</text>
+
+  <text [attr.opacity]="opacity('Leytonstone')" x="1935.0" y="164.0" name="Leytonstone">*</text>
+
+  <text [attr.opacity]="opacity('Liverpool Street')" x="1564.0" y="456.0" name="Liverpool Street">*</text>
+
+  <text [attr.opacity]="opacity('Liverpool Street')" x="1535.0" y="534.0" name="Liverpool Street">*</text>
+
+  <text [attr.opacity]="opacity('Liverpool Street')" x="1535.0" y="534.0" name="Liverpool Street">*</text>
+
+  <text [attr.opacity]="opacity('London Bridge')" x="1485.0" y="693.0" name="London Bridge">*</text>
+
+  <text [attr.opacity]="opacity('Mile End')" x="1816.0" y="463.5" name="Mile End">*</text>
+
+  <text [attr.opacity]="opacity('Monument')" x="1459.0" y="606.0" name="Monument">*</text>
+
+  <text [attr.opacity]="opacity('Monument')" x="1459.0" y="606.0" name="Monument">*</text>
+
+  <text [attr.opacity]="opacity('Moorgate')" x="1484.0" y="487.0" name="Moorgate">*</text>
+
+  <text [attr.opacity]="opacity('Notting Hill Gate')" x="869.0" y="704.5" name="Notting Hill Gate">*</text>
+
+  <text [attr.opacity]="opacity('Oxford Circus')" x="1164.0" y="578.0" name="Oxford Circus">*</text>
+
+  <text [attr.opacity]="opacity('Paddington')" x="950.0" y="561.0" name="Paddington">*</text>
+
+  <text [attr.opacity]="opacity('Piccadilly Circus')" x="1213.0" y="641.0" name="Piccadilly Circus">*</text>
+
+  <text [attr.opacity]="opacity('Queen&#39;s Park')" x="754.0" y="531.0" name="Queen&#39;s Park">*</text>
+
+  <text [attr.opacity]="opacity('Rayners Lane')" x="300.0" y="270.5" name="Rayners Lane">*</text>
+
+  <text [attr.opacity]="opacity('Richmond')" x="371.0" y="917.9" name="Richmond">*</text>
+
+  <text [attr.opacity]="opacity('Seven Sisters')" x="1417.0" y="102.0" name="Seven Sisters">*</text>
+
+  <text [attr.opacity]="opacity('Shadwell')" x="1693.0" y="579.0" name="Shadwell">*</text>
+
+  <text [attr.opacity]="opacity('Shepherd&#39;s Bush')" x="713.0" y="703.0" name="Shepherd&#39;s Bush">*</text>
+
+  <text [attr.opacity]="opacity('Stockwell')" x="1296.0" y="937.0" name="Stockwell">*</text>
+
+  <text [attr.opacity]="opacity('Stratford')" x="1962.0" y="322.0" name="Stratford">*</text>
+
+  <text [attr.opacity]="opacity('South Kensington')" x="1085.0" y="817.0" name="South Kensington">*</text>
+
+  <text [attr.opacity]="opacity('Tottenham Court Road')" x="1187.0" y="473.0" name="Tottenham Court Road">*</text>
+
+  <text [attr.opacity]="opacity('Tower Hill')" x="1563.0" y="606.0" name="Tower Hill">*</text>
+
+  <text [attr.opacity]="opacity('Upper Holloway')" x="1121.0" y="173.5" name="Upper Holloway">*</text>
+
+  <text [attr.opacity]="opacity('Victoria')" x="1188.0" y="797.0" name="Victoria">*</text>
+
+  <text [attr.opacity]="opacity('Walthamstow Central')" x="1694.0" y="117.0" name="Walthamstow Central">*</text>
+
+  <text [attr.opacity]="opacity('Warren Street')" x="1148.0" y="408.0" name="Warren Street">*</text>
+
+  <text [attr.opacity]="opacity('Waterloo')" x="1347.0" y="741.0" name="Waterloo">*</text>
+
+  <text [attr.opacity]="opacity('Wembley Central')" x="595.0" y="413.0" name="Wembley Central">*</text>
+
+  <text [attr.opacity]="opacity('Wembley Park')" x="656.0" y="286.0" name="Wembley Park">*</text>
+
+  <text [attr.opacity]="opacity('West Brompton')" x="816.5" y="924.0" name="West Brompton">*</text>
+
+  <text [attr.opacity]="opacity('West Ham')" x="2043.0" y="454.0" name="West Ham">*</text>
+
+  <text [attr.opacity]="opacity('West Hampstead')" x="914.0" y="370.0" name="West Hampstead">*</text>
+
+  <text [attr.opacity]="opacity('Westminster')" x="1243.0" y="758.0" name="Westminster">*</text>
+
+  <text [attr.opacity]="opacity('Willesden Junction')" x="683.0" y="470.5" name="Willesden Junction">*</text>
+
+  <text [attr.opacity]="opacity('Whitechapel')" x="1716.0" y="540.0" name="Whitechapel">*</text>
+
+  <text [attr.opacity]="opacity('Wood Lane')" x="648.0" y="748.0" name="Wood Lane">*</text>
+
+  <text [attr.opacity]="opacity('South Kenton')" x="537.0" y="369.5" name="South Kenton">*</text>
+
+  <text [attr.opacity]="opacity('North Wembley')" x="565.0" y="390.5" name="North Wembley">*</text>
+
+  <text [attr.opacity]="opacity('Stonebridge Park')" x="621.0" y="432.5" name="Stonebridge Park">*</text>
+
+  <text [attr.opacity]="opacity('Harlesden')" x="649.0" y="453.5" name="Harlesden">*</text>
+
+  <text [attr.opacity]="opacity('Kensal Green')" x="715.0" y="500.0" name="Kensal Green">*</text>
+
+  <text [attr.opacity]="opacity('Kilburn Park')" x="779.0" y="551.0" name="Kilburn Park">*</text>
+
+  <text [attr.opacity]="opacity('Maida Vale')" x="805.0" y="570.5" name="Maida Vale">*</text>
+
+  <text [attr.opacity]="opacity('Warwick Avenue')" x="831.0" y="590.0" name="Warwick Avenue">*</text>
+
+  <text [attr.opacity]="opacity('Marylebone')" x="991.0" y="517.5" name="Marylebone">*</text>
+
+  <text [attr.opacity]="opacity('Regent&#39;s Park')" x="1088.0" y="506.0" name="Regent&#39;s Park">*</text>
+
+  <text [attr.opacity]="opacity('Lambeth North')" x="1420.0" y="789.0" name="Lambeth North">*</text>
+
+  <text [attr.opacity]="opacity('West Ruislip')" x="142.0" y="251.5" name="West Ruislip">*</text>
+
+  <text [attr.opacity]="opacity('Ruislip Gardens')" x="130.0" y="348.0" name="Ruislip Gardens">*</text>
+
+  <text [attr.opacity]="opacity('South Ruislip')" x="130.0" y="398.0" name="South Ruislip">*</text>
+
+  <text [attr.opacity]="opacity('Northolt')" x="148.0" y="472.4" name="Northolt">*</text>
+
+  <text [attr.opacity]="opacity('Greenford')" x="214.0" y="521.9" name="Greenford">*</text>
+
+  <text [attr.opacity]="opacity('Perivale')" x="294.0" y="581.9" name="Perivale">*</text>
+
+  <text [attr.opacity]="opacity('Hanger Lane')" x="360.0" y="624.4" name="Hanger Lane">*</text>
+
+  <text [attr.opacity]="opacity('West Acton')" x="418.0" y="704.0" name="West Acton">*</text>
+
+  <text [attr.opacity]="opacity('North Acton')" x="491.0" y="682.0" name="North Acton">*</text>
+
+  <text [attr.opacity]="opacity('East Acton')" x="580.0" y="697.9" name="East Acton">*</text>
+
+  <text [attr.opacity]="opacity('White City')" x="624.0" y="741.0" name="White City">*</text>
+
+  <text [attr.opacity]="opacity('Holland Park')" x="806.0" y="745.0" name="Holland Park">*</text>
+
+  <text [attr.opacity]="opacity('Queensway')" x="930.0" y="744.9" name="Queensway">*</text>
+
+  <text [attr.opacity]="opacity('Lancaster Gate')" x="986.0" y="673.5" name="Lancaster Gate">*</text>
+
+  <text [attr.opacity]="opacity('Marble Arch')" x="1038.0" y="647.5" name="Marble Arch">*</text>
+
+  <text [attr.opacity]="opacity('Chancery Lane')" x="1330.0" y="539.0" name="Chancery Lane">*</text>
+
+  <text [attr.opacity]="opacity('St. Paul&#39;s')" x="1400.0" y="544.0" name="St. Paul&#39;s">*</text>
+
+  <text [attr.opacity]="opacity('Bethnal Green')" x="1655.0" y="439.0" name="Bethnal Green">*</text>
+
+  <text [attr.opacity]="opacity('Leyton')" x="1937.0" y="226.5" name="Leyton">*</text>
+
+  <text [attr.opacity]="opacity('Snaresbrook')" x="1914.0" y="110.0" name="Snaresbrook">*</text>
+
+  <text [attr.opacity]="opacity('South Woodford')" x="1914.0" y="80.0" name="South Woodford">*</text>
+
+  <text [attr.opacity]="opacity('Woodford')" x="1914.0" y="50.0" name="Woodford">*</text>
+
+  <text [attr.opacity]="opacity('Buckhurst Hill')" x="1914.0" y="20.0" name="Buckhurst Hill">*</text>
+
+  <text [attr.opacity]="opacity('Loughton')" x="1914.0" y="-10.0" name="Loughton">*</text>
+
+  <text [attr.opacity]="opacity('Debden')" x="1914.0" y="-40.0" name="Debden">*</text>
+
+  <text [attr.opacity]="opacity('Theydon Bois')" x="1914.0" y="-70.0" name="Theydon Bois">*</text>
+
+  <text [attr.opacity]="opacity('Epping')" x="1914.0" y="-100.0" name="Epping">*</text>
+
+  <text [attr.opacity]="opacity('Redbridge')" x="1996.0" y="107.0" name="Redbridge">*</text>
+
+  <text [attr.opacity]="opacity('Newbury Park')" x="2076.0" y="94.0" name="Newbury Park">*</text>
+
+  <text [attr.opacity]="opacity('Gants Hill')" x="2031.0" y="141.0" name="Gants Hill">*</text>
+
+  <text [attr.opacity]="opacity('Wanstead')" x="1940.0" y="141.0" name="Wanstead">*</text>
+
+  <text [attr.opacity]="opacity('Barkingside')" x="2123.0" y="94.0" name="Barkingside">*</text>
+
+  <text [attr.opacity]="opacity('Fairlop')" x="2123.0" y="70.0" name="Fairlop">*</text>
+
+  <text [attr.opacity]="opacity('Hainault')" x="2123.0" y="46.0" name="Hainault">*</text>
+
+  <text [attr.opacity]="opacity('Grange Hill')" x="2071.0" y="-3.0" name="Grange Hill">*</text>
+
+  <text [attr.opacity]="opacity('Chigwell')" x="2026.0" y="-3.0" name="Chigwell">*</text>
+
+  <text [attr.opacity]="opacity('Bayswater')" x="875.0" y="664.0" name="Bayswater">*</text>
+
+  <text [attr.opacity]="opacity('High Street Kensington')" x="918.0" y="793.5" name="High Street Kensington">*</text>
+
+  <text [attr.opacity]="opacity('Sloane Square')" x="1138.0" y="839.0" name="Sloane Square">*</text>
+
+  <text [attr.opacity]="opacity('St. James&#39;s Park')" x="1220.0" y="776.0" name="St. James&#39;s Park">*</text>
+
+  <text [attr.opacity]="opacity('Temple')" x="1336.0" y="652.0" name="Temple">*</text>
+
+  <text [attr.opacity]="opacity('Mansion House')" x="1402.0" y="602.0" name="Mansion House">*</text>
+
+  <text [attr.opacity]="opacity('Great Portland Street')" x="1101.0" y="447.0" name="Great Portland Street">*</text>
+
+  <text [attr.opacity]="opacity('Westbourne Park')" x="732.5" y="623.5" name="Westbourne Park">*</text>
+
+  <text [attr.opacity]="opacity('Latimer Road')" x="642.5" y="676.0" name="Latimer Road">*</text>
+
+  <text [attr.opacity]="opacity('Royal Oak')" x="800.0" y="641.0" name="Royal Oak">*</text>
+
+  <text [attr.opacity]="opacity('Ladbroke Grove')" x="699.5" y="684.5" name="Ladbroke Grove">*</text>
+
+  <text [attr.opacity]="opacity('Shepherd&#39;s Bush Market')" x="651.5" y="771.9" name="Shepherd&#39;s Bush Market">*</text>
+
+  <text [attr.opacity]="opacity('Goldhawk Road')" x="651.5" y="808.9" name="Goldhawk Road">*</text>
+
+  <text [attr.opacity]="opacity('Chiswick Park')" x="465.0" y="814.0" name="Chiswick Park">*</text>
+
+  <text [attr.opacity]="opacity('Turnham Green')" x="540.0" y="818.5" name="Turnham Green">*</text>
+
+  <text [attr.opacity]="opacity('Stamford Brook')" x="535.0" y="859.5" name="Stamford Brook">*</text>
+
+  <text [attr.opacity]="opacity('Ravenscourt Park')" x="587.0" y="890.4" name="Ravenscourt Park">*</text>
+
+  <text [attr.opacity]="opacity('Barons Court')" x="705.0" y="890.4" name="Barons Court">*</text>
+
+  <text [attr.opacity]="opacity('West Kensington')" x="780.0" y="890.4" name="West Kensington">*</text>
+
+  <text [attr.opacity]="opacity('Bromley-by-Bow')" x="1963.0" y="457.5" name="Bromley-by-Bow">*</text>
+
+  <text [attr.opacity]="opacity('Stepney Green')" x="1765.5" y="500.5" name="Stepney Green">*</text>
+
+  <text [attr.opacity]="opacity('Plaistow')" x="2081.0" y="439.0" name="Plaistow">*</text>
+
+  <text [attr.opacity]="opacity('Upton Park')" x="2111.0" y="416.5" name="Upton Park">*</text>
+
+  <text [attr.opacity]="opacity('East Ham')" x="2141.0" y="388.0" name="East Ham">*</text>
+
+  <text [attr.opacity]="opacity('Upney')" x="2201.0" y="349.0" name="Upney">*</text>
+
+  <text [attr.opacity]="opacity('Becontree')" x="2231.0" y="326.5" name="Becontree">*</text>
+
+  <text [attr.opacity]="opacity('Dagenham Heathway')" x="2261.0" y="304.0" name="Dagenham Heathway">*</text>
+
+  <text [attr.opacity]="opacity('Dagenham East')" x="2291.0" y="281.5" name="Dagenham East">*</text>
+
+  <text [attr.opacity]="opacity('Elm Park')" x="2321.0" y="259.0" name="Elm Park">*</text>
+
+  <text [attr.opacity]="opacity('Hornchurch')" x="2331.0" y="219.5" name="Hornchurch">*</text>
+
+  <text [attr.opacity]="opacity('Upminster Bridge')" x="2361.0" y="197.0" name="Upminster Bridge">*</text>
+
+  <text [attr.opacity]="opacity('Upminster')" x="2401.0" y="166.0" name="Upminster">*</text>
+
+  <text [attr.opacity]="opacity('Fulham Broadway')" x="819.0" y="964.0" name="Fulham Broadway">*</text>
+
+  <text [attr.opacity]="opacity('Parsons Green')" x="830.0" y="1000.0" name="Parsons Green">*</text>
+
+  <text [attr.opacity]="opacity('Putney Bridge')" x="851.0" y="1028.0" name="Putney Bridge">*</text>
+
+  <text [attr.opacity]="opacity('East Putney')" x="872.0" y="1056.0" name="East Putney">*</text>
+
+  <text [attr.opacity]="opacity('Southfields')" x="890.0" y="1080.0" name="Southfields">*</text>
+
+  <text [attr.opacity]="opacity('Wimbledon Park')" x="908.0" y="1104.0" name="Wimbledon Park">*</text>
+
+  <text [attr.opacity]="opacity('Wimbledon')" x="927.0" y="1132.0" name="Wimbledon">*</text>
+
+  <text [attr.opacity]="opacity('Stanmore')" x="663.0" y="166.0" name="Stanmore">*</text>
+
+  <text [attr.opacity]="opacity('Canons Park')" x="663.0" y="196.0" name="Canons Park">*</text>
+
+  <text [attr.opacity]="opacity('Queensbury')" x="663.0" y="226.0" name="Queensbury">*</text>
+
+  <text [attr.opacity]="opacity('Kingsbury')" x="663.0" y="256.0" name="Kingsbury">*</text>
+
+  <text [attr.opacity]="opacity('Neasden')" x="681.0" y="330.0" name="Neasden">*</text>
+
+  <text [attr.opacity]="opacity('Dollis Hill')" x="741.0" y="330.0" name="Dollis Hill">*</text>
+
+  <text [attr.opacity]="opacity('Willesden Green')" x="798.0" y="330.0" name="Willesden Green">*</text>
+
+  <text [attr.opacity]="opacity('Swiss Cottage')" x="947.5" y="423.5" name="Swiss Cottage">*</text>
+
+  <text [attr.opacity]="opacity('St. John&#39;s Wood')" x="985.0" y="473.5" name="St. John&#39;s Wood">*</text>
+
+  <text [attr.opacity]="opacity('Southwark')" x="1390.0" y="712.0" name="Southwark">*</text>
+
+  <text [attr.opacity]="opacity('Bermondsey')" x="1590.0" y="696.0" name="Bermondsey">*</text>
+
+  <text [attr.opacity]="opacity('North Greenwich')" x="2000.0" y="669.0" name="North Greenwich">*</text>
+
+  <text [attr.opacity]="opacity('Chesham')" x="136.0" y="42.0" name="Chesham">*</text>
+
+  <text [attr.opacity]="opacity('Amersham')" x="90.0" y="72.5" name="Amersham">*</text>
+
+  <text [attr.opacity]="opacity('Chalfont &amp; Latimer')" x="131.5" y="104.0" name="Chalfont &amp; Latimer">*</text>
+
+  <text [attr.opacity]="opacity('Chorleywood')" x="161.5" y="126.5" name="Chorleywood">*</text>
+
+  <text [attr.opacity]="opacity('Rickmansworth')" x="191.5" y="149.0" name="Rickmansworth">*</text>
+
+  <text [attr.opacity]="opacity('Croxley')" x="234.0" y="134.0" name="Croxley">*</text>
+
+  <text [attr.opacity]="opacity('Watford')" x="423.0" y="64.0" name="Watford">*</text>
+
+  <text [attr.opacity]="opacity('Moor Park')" x="249.0" y="160.0" name="Moor Park">*</text>
+
+  <text [attr.opacity]="opacity('Northwood')" x="279.0" y="182.5" name="Northwood">*</text>
+
+  <text [attr.opacity]="opacity('Northwood Hills')" x="309.0" y="205.0" name="Northwood Hills">*</text>
+
+  <text [attr.opacity]="opacity('Pinner')" x="339.0" y="227.5" name="Pinner">*</text>
+
+  <text [attr.opacity]="opacity('North Harrow')" x="369.0" y="250.0" name="North Harrow">*</text>
+
+  <text [attr.opacity]="opacity('West Harrow')" x="375.0" y="315.0" name="West Harrow">*</text>
+
+  <text [attr.opacity]="opacity('Uxbridge')" x="20.0" y="320.0" name="Uxbridge">*</text>
+
+  <text [attr.opacity]="opacity('Hillingdon')" x="60.0" y="281.0" name="Hillingdon">*</text>
+
+  <text [attr.opacity]="opacity('Ickenham')" x="100.0" y="320.0" name="Ickenham">*</text>
+
+  <text [attr.opacity]="opacity('Ruislip')" x="180.0" y="320.0" name="Ruislip">*</text>
+
+  <text [attr.opacity]="opacity('Ruislip Manor')" x="220.0" y="268.0" name="Ruislip Manor">*</text>
+
+  <text [attr.opacity]="opacity('Eastcote')" x="260.0" y="320.0" name="Eastcote">*</text>
+
+  <text [attr.opacity]="opacity('Harrow-on- the-Hill')" x="440.0" y="270.0" name="Harrow-on- the-Hill">*</text>
+
+  <text [attr.opacity]="opacity('Preston Road')" x="590.0" y="315.0" name="Preston Road">*</text>
+
+  <text [attr.opacity]="opacity('Edgware')" x="718.0" y="122.0" name="Edgware">*</text>
+
+  <text [attr.opacity]="opacity('Burnt Oak')" x="748.0" y="144.5" name="Burnt Oak">*</text>
+
+  <text [attr.opacity]="opacity('Colindale')" x="778.0" y="167.0" name="Colindale">*</text>
+
+  <text [attr.opacity]="opacity('Hendon Central')" x="808.0" y="189.5" name="Hendon Central">*</text>
+
+  <text [attr.opacity]="opacity('Brent Cross')" x="838.0" y="212.0" name="Brent Cross">*</text>
+
+  <text [attr.opacity]="opacity('Golders Green')" x="868.0" y="234.5" name="Golders Green">*</text>
+
+  <text [attr.opacity]="opacity('Hampstead')" x="898.0" y="257.0" name="Hampstead">*</text>
+
+  <text [attr.opacity]="opacity('Belsize Park')" x="1010.0" y="302.0" name="Belsize Park">*</text>
+
+  <text [attr.opacity]="opacity('Chalk Farm')" x="1090.0" y="302.0" name="Chalk Farm">*</text>
+
+  <text [attr.opacity]="opacity('Mill Hill East')" x="913.0" y="111.0" name="Mill Hill East">*</text>
+
+  <text [attr.opacity]="opacity('High Barnet')" x="864.0" y="0.0" name="High Barnet">*</text>
+
+  <text [attr.opacity]="opacity('Totteridge &amp; Whetstone')" x="894.0" y="22.5" name="Totteridge &amp; Whetstone">*</text>
+
+  <text [attr.opacity]="opacity('Woodside Park')" x="924.0" y="45.0" name="Woodside Park">*</text>
+
+  <text [attr.opacity]="opacity('West Finchley')" x="954.0" y="67.5" name="West Finchley">*</text>
+
+  <text [attr.opacity]="opacity('Finchley Central')" x="994.0" y="97.5" name="Finchley Central">*</text>
+
+  <text [attr.opacity]="opacity('East Finchley')" x="1024.0" y="120.0" name="East Finchley">*</text>
+
+  <text [attr.opacity]="opacity('Highgate')" x="1054.0" y="142.5" name="Highgate">*</text>
+
+  <text [attr.opacity]="opacity('Tufnell Park')" x="1116.0" y="191.5" name="Tufnell Park">*</text>
+
+  <text [attr.opacity]="opacity('Mornington Crescent')" x="1213.0" y="329.0" name="Mornington Crescent">*</text>
+
+  <text [attr.opacity]="opacity('Goodge Street')" x="1175.0" y="454.0" name="Goodge Street">*</text>
+
+  <text [attr.opacity]="opacity('Angel')" x="1418.0" y="405.0" name="Angel">*</text>
+
+  <text [attr.opacity]="opacity('Old Street')" x="1455.0" y="429.0" name="Old Street">*</text>
+
+  <text [attr.opacity]="opacity('Borough')" x="1491.0" y="734.0" name="Borough">*</text>
+
+  <text [attr.opacity]="opacity('Kennington')" x="1394.5" y="868.5" name="Kennington">*</text>
+
+  <text [attr.opacity]="opacity('Oval')" x="1346.5" y="904.5" name="Oval">*</text>
+
+  <text [attr.opacity]="opacity('Clapham Common')" x="1220.5" y="999.0" name="Clapham Common">*</text>
+
+  <text [attr.opacity]="opacity('Clapham South')" x="1190.5" y="1021.5" name="Clapham South">*</text>
+
+  <text [attr.opacity]="opacity('Balham')" x="1160.5" y="1044.0" name="Balham">*</text>
+
+  <text [attr.opacity]="opacity('Tooting Bec')" x="1130.5" y="1066.5" name="Tooting Bec">*</text>
+
+  <text [attr.opacity]="opacity('Tooting Broadway')" x="1100.5" y="1089.0" name="Tooting Broadway">*</text>
+
+  <text [attr.opacity]="opacity('Colliers Wood')" x="1070.5" y="1111.5" name="Colliers Wood">*</text>
+
+  <text [attr.opacity]="opacity('South Wimbledon')" x="1040.5" y="1135.5" name="South Wimbledon">*</text>
+
+  <text [attr.opacity]="opacity('Morden')" x="990.5" y="1149.5" name="Morden">*</text>
+
+  <text [attr.opacity]="opacity('South Harrow')" x="372.0" y="374.0" name="South Harrow">*</text>
+
+  <text [attr.opacity]="opacity('Sudbury Hill')" x="372.0" y="434.0" name="Sudbury Hill">*</text>
+
+  <text [attr.opacity]="opacity('Sudbury Town')" x="372.0" y="494.0" name="Sudbury Town">*</text>
+
+  <text [attr.opacity]="opacity('Alperton')" x="372.0" y="554.0" name="Alperton">*</text>
+
+  <text [attr.opacity]="opacity('Park Royal')" x="372.0" y="647.0" name="Park Royal">*</text>
+
+  <text [attr.opacity]="opacity('North Ealing')" x="372.0" y="674.0" name="North Ealing">*</text>
+
+  <text [attr.opacity]="opacity('Heathrow Terminal 5')" x="30.0" y="987.5" name="Heathrow Terminal 5">*</text>
+
+  <text [attr.opacity]="opacity('Heathrow Terminals 2 &amp; 3')" x="96.0" y="917.0" name="Heathrow Terminals 2 &amp; 3">*</text>
+
+  <text [attr.opacity]="opacity('Hatton Cross')" x="170.0" y="960.0" name="Hatton Cross">*</text>
+
+  <text [attr.opacity]="opacity('Hounslow West')" x="200.0" y="937.5" name="Hounslow West">*</text>
+
+  <text [attr.opacity]="opacity('Hounslow Central')" x="230.0" y="915.0" name="Hounslow Central">*</text>
+
+  <text [attr.opacity]="opacity('Hounslow East')" x="240.0" y="875.5" name="Hounslow East">*</text>
+
+  <text [attr.opacity]="opacity('Osterley')" x="270.0" y="853.0" name="Osterley">*</text>
+
+  <text [attr.opacity]="opacity('Boston Manor')" x="300.0" y="830.5" name="Boston Manor">*</text>
+
+  <text [attr.opacity]="opacity('Northfields')" x="330.0" y="808.0" name="Northfields">*</text>
+
+  <text [attr.opacity]="opacity('South Ealing')" x="360.0" y="785.5" name="South Ealing">*</text>
+
+  <text [attr.opacity]="opacity('Knightsbridge')" x="1102.6" y="770.0" name="Knightsbridge">*</text>
+
+  <text [attr.opacity]="opacity('Hyde Park Corner')" x="1102.6" y="724.0" name="Hyde Park Corner">*</text>
+
+  <text [attr.opacity]="opacity('Russell Square')" x="1302.0" y="449.0" name="Russell Square">*</text>
+
+  <text [attr.opacity]="opacity('Caledonian Road')" x="1302.0" y="282.0" name="Caledonian Road">*</text>
+
+  <text [attr.opacity]="opacity('Holloway Road')" x="1326.0" y="233.0" name="Holloway Road">*</text>
+
+  <text [attr.opacity]="opacity('Arsenal')" x="1356.0" y="210.5" name="Arsenal">*</text>
+
+  <text [attr.opacity]="opacity('Manor House')" x="1370.5" y="164.0" name="Manor House">*</text>
+
+  <text [attr.opacity]="opacity('Turnpike Lane')" x="1326.0" y="88.5" name="Turnpike Lane">*</text>
+
+  <text [attr.opacity]="opacity('Wood Green')" x="1296.0" y="66.0" name="Wood Green">*</text>
+
+  <text [attr.opacity]="opacity('Bounds Green')" x="1266.0" y="43.5" name="Bounds Green">*</text>
+
+  <text [attr.opacity]="opacity('Arnos Grove')" x="1236.0" y="21.0" name="Arnos Grove">*</text>
+
+  <text [attr.opacity]="opacity('Southgate')" x="1206.0" y="-1.5" name="Southgate">*</text>
+
+  <text [attr.opacity]="opacity('Oakwood')" x="1176.0" y="-24.0" name="Oakwood">*</text>
+
+  <text [attr.opacity]="opacity('Cockfosters')" x="1146.0" y="-46.5" name="Cockfosters">*</text>
+
+  <text [attr.opacity]="opacity('Tottenham Hale')" x="1530.0" y="133.0" name="Tottenham Hale">*</text>
+
+  <text [attr.opacity]="opacity('Pimlico')" x="1216.0" y="821.5" name="Pimlico">*</text>
+
+  <text [attr.opacity]="opacity('Vauxhall')" x="1246.0" y="861.5" name="Vauxhall">*</text>
+
+  <text [attr.opacity]="opacity('Brixton')" x="1317.0" y="962.0" name="Brixton">*</text>
+</g>

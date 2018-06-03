@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2500" height="1320" viewBox="-40.5 -120.5 2500 1320">
+<style type="text/css">
+text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-serif}
+/* #stname_Bakerloo_line { fill:brown } */
+#stname_interchanges {
+  fill: rebeccapurple;
+}
+#stname_Bakerloo_line  {
+   fill: #963;
+}
+#stname_Central_line  {
+   fill: #c33;
+}
+#stname_Jubilee_line  {
+   fill: #889;
+}
+/*
+#stname_Hammersmith-city_line  {
+   fill: #c99;
+}
+*/
+#stname_District_line_and_Hammersmith_And_City_line  {
+   fill: #063;
+}
+#stname_Metropolitan_line  {
+   fill: #a06;
+}
+#stname_Piccadilly_line  {
+   fill: #048;
+}
+#stname_Circle_line  {
+   fill: #fc0;
+    color: #333;
+}
+#stname_Victoria_line  {
+   fill: #09c;
+}
+</style>
+<g>
+  <text x="436.0" y="785.0" name="Acton Town">*</text>
+
+  <text x="1591.5" y="545.5" name="Aldgate">*</text>
+
+  <text x="1653.0" y="532.0" name="Aldgate East">*</text>
+
+  <text x="1062.0" y="173.5" name="Archway">*</text>
+
+  <text x="1053.0" y="532.0" name="Baker Street">*</text>
+
+  <text x="1465.0" y="559.0" name="Bank">*</text>
+
+  <text x="1444.0" y="481.0" name="Barbican">*</text>
+
+  <text x="2173.0" y="368.0" name="Barking">*</text>
+
+  <text x="1362.0" y="634.0" name="Blackfriars">*</text>
+
+  <text x="1602.0" y="92.0" name="Blackhorse Road">*</text>
+
+  <text x="1095.0" y="611.0" name="Bond Street">*</text>
+
+  <text x="1893.0" y="453.0" name="Bow Road">*</text>
+
+  <text x="1180.0" y="302.0" name="Camden Town">*</text>
+
+  <text x="1694.0" y="693.0" name="Canada Water">*</text>
+
+  <text x="1901.0" y="664.0" name="Canary Wharf">*</text>
+
+  <text x="2046.0" y="560.0" name="Canning Town">*</text>
+
+  <text x="1426.0" y="572.0" name="Cannon Street">*</text>
+
+  <text x="1277.0" y="681.0" name="Charing Cross">*</text>
+
+  <text x="1244.5" y="981.0" name="Clapham North">*</text>
+
+  <text x="340.0" y="696.0" name="Ealing Broadway">*</text>
+
+  <text x="395.0" y="753.0" name="Ealing Common">*</text>
+
+  <text x="871.0" y="890.4" name="Earl&#39;s Court">*</text>
+
+  <text x="961.0" y="540.0" name="Edgware Road">*</text>
+
+  <text x="1490.0" y="772.0" name="Elephant &amp; Castle">*</text>
+
+  <text x="1282.0" y="699.0" name="Embankment">*</text>
+
+  <text x="1215.0" y="366.0" name="Euston">*</text>
+
+  <text x="1211.0" y="421.0" name="Euston Square">*</text>
+
+  <text x="1396.0" y="456.0" name="Farringdon">*</text>
+
+  <text x="1376.0" y="497.0" name="Farringdon">*</text>
+
+  <text x="957.0" y="372.0" name="Finchley Road">*</text>
+
+  <text x="958.0" y="342.0" name="Finchley Road &amp; Frognal">*</text>
+
+  <text x="1375.0" y="187.0" name="Finsbury Park">*</text>
+
+  <text x="1142.0" y="674.0" name="Green Park">*</text>
+
+  <text x="1020.3" y="888.0" name="Gloucester Road">*</text>
+
+  <text x="439.0" y="832.0" name="Gunnersbury">*</text>
+
+  <text x="647.0" y="847.0" name="Hammersmith">*</text>
+
+  <text x="543.5" y="240.0" name="Harrow &amp; Wealdstone">*</text>
+
+  <text x="115.0" y="1003.0" name="Heathrow Terminal 4">*</text>
+
+  <text x="1426.0" y="322.0" name="Highbury &amp; Islington">*</text>
+
+  <text x="1284.0" y="514.0" name="Holborn">*</text>
+
+  <text x="818.0" y="810.0" name="Kensington (Olympia)">*</text>
+
+  <text x="1140.0" y="214.0" name="Kentish Town">*</text>
+
+  <text x="543.5" y="278.0" name="Kenton">*</text>
+
+  <text x="521.5" y="315.0" name="Northwick Park">*</text>
+
+  <text x="1295.0" y="353.0" name="King&#39;s Cross St. Pancras">*</text>
+
+  <text x="1269.0" y="599.0" name="Leicester Square">*</text>
+
+  <text x="1935.0" y="164.0" name="Leytonstone">*</text>
+
+  <text x="1564.0" y="456.0" name="Liverpool Street">*</text>
+
+  <text x="1535.0" y="534.0" name="Liverpool Street">*</text>
+
+  <text x="1535.0" y="534.0" name="Liverpool Street">*</text>
+
+  <text x="1485.0" y="693.0" name="London Bridge">*</text>
+
+  <text x="1816.0" y="463.5" name="Mile End">*</text>
+
+  <text x="1459.0" y="606.0" name="Monument">*</text>
+
+  <text x="1459.0" y="606.0" name="Monument">*</text>
+
+  <text x="1484.0" y="487.0" name="Moorgate">*</text>
+
+  <text x="869.0" y="704.5" name="Notting Hill Gate">*</text>
+
+  <text x="1164.0" y="578.0" name="Oxford Circus">*</text>
+
+  <text x="950.0" y="561.0" name="Paddington">*</text>
+
+  <text x="1213.0" y="641.0" name="Piccadilly Circus">*</text>
+
+  <text x="754.0" y="531.0" name="Queen&#39;s Park">*</text>
+
+  <text x="300.0" y="270.5" name="Rayners Lane">*</text>
+
+  <text x="371.0" y="917.9" name="Richmond">*</text>
+
+  <text x="1417.0" y="102.0" name="Seven Sisters">*</text>
+
+  <text x="1693.0" y="579.0" name="Shadwell">*</text>
+
+  <text x="713.0" y="703.0" name="Shepherd&#39;s Bush">*</text>
+
+  <text x="1296.0" y="937.0" name="Stockwell">*</text>
+
+  <text x="1962.0" y="322.0" name="Stratford">*</text>
+
+  <text x="1085.0" y="817.0" name="South Kensington">*</text>
+
+  <text x="1187.0" y="473.0" name="Tottenham Court Road">*</text>
+
+  <text x="1563.0" y="606.0" name="Tower Hill">*</text>
+
+  <text x="1121.0" y="173.5" name="Upper Holloway">*</text>
+
+  <text x="1188.0" y="797.0" name="Victoria">*</text>
+
+  <text x="1694.0" y="117.0" name="Walthamstow Central">*</text>
+
+  <text x="1148.0" y="408.0" name="Warren Street">*</text>
+
+  <text x="1347.0" y="741.0" name="Waterloo">*</text>
+
+  <text x="595.0" y="413.0" name="Wembley Central">*</text>
+
+  <text x="656.0" y="286.0" name="Wembley Park">*</text>
+
+  <text x="816.5" y="924.0" name="West Brompton">*</text>
+
+  <text x="2043.0" y="454.0" name="West Ham">*</text>
+
+  <text x="914.0" y="370.0" name="West Hampstead">*</text>
+
+  <text x="1243.0" y="758.0" name="Westminster">*</text>
+
+  <text x="683.0" y="470.5" name="Willesden Junction">*</text>
+
+  <text x="1716.0" y="540.0" name="Whitechapel">*</text>
+
+  <text x="648.0" y="748.0" name="Wood Lane">*</text>
+
+  <text x="537.0" y="369.5" name="South Kenton">*</text>
+
+  <text x="565.0" y="390.5" name="North Wembley">*</text>
+
+  <text x="621.0" y="432.5" name="Stonebridge Park">*</text>
+
+  <text x="649.0" y="453.5" name="Harlesden">*</text>
+
+  <text x="715.0" y="500.0" name="Kensal Green">*</text>
+
+  <text x="779.0" y="551.0" name="Kilburn Park">*</text>
+
+  <text x="805.0" y="570.5" name="Maida Vale">*</text>
+
+  <text x="831.0" y="590.0" name="Warwick Avenue">*</text>
+
+  <text x="991.0" y="517.5" name="Marylebone">*</text>
+
+  <text x="1088.0" y="506.0" name="Regent&#39;s Park">*</text>
+
+  <text x="1420.0" y="789.0" name="Lambeth North">*</text>
+
+  <text x="142.0" y="251.5" name="West Ruislip">*</text>
+
+  <text x="130.0" y="348.0" name="Ruislip Gardens">*</text>
+
+  <text x="130.0" y="398.0" name="South Ruislip">*</text>
+
+  <text x="148.0" y="472.4" name="Northolt">*</text>
+
+  <text x="214.0" y="521.9" name="Greenford">*</text>
+
+  <text x="294.0" y="581.9" name="Perivale">*</text>
+
+  <text x="360.0" y="624.4" name="Hanger Lane">*</text>
+
+  <text x="418.0" y="704.0" name="West Acton">*</text>
+
+  <text x="491.0" y="682.0" name="North Acton">*</text>
+
+  <text x="580.0" y="697.9" name="East Acton">*</text>
+
+  <text x="624.0" y="741.0" name="White City">*</text>
+
+  <text x="806.0" y="745.0" name="Holland Park">*</text>
+
+  <text x="930.0" y="744.9" name="Queensway">*</text>
+
+  <text x="986.0" y="673.5" name="Lancaster Gate">*</text>
+
+  <text x="1038.0" y="647.5" name="Marble Arch">*</text>
+
+  <text x="1330.0" y="539.0" name="Chancery Lane">*</text>
+
+  <text x="1400.0" y="544.0" name="St. Paul&#39;s">*</text>
+
+  <text x="1655.0" y="439.0" name="Bethnal Green">*</text>
+
+  <text x="1937.0" y="226.5" name="Leyton">*</text>
+
+  <text x="1914.0" y="110.0" name="Snaresbrook">*</text>
+
+  <text x="1914.0" y="80.0" name="South Woodford">*</text>
+
+  <text x="1914.0" y="50.0" name="Woodford">*</text>
+
+  <text x="1914.0" y="20.0" name="Buckhurst Hill">*</text>
+
+  <text x="1914.0" y="-10.0" name="Loughton">*</text>
+
+  <text x="1914.0" y="-40.0" name="Debden">*</text>
+
+  <text x="1914.0" y="-70.0" name="Theydon Bois">*</text>
+
+  <text x="1914.0" y="-100.0" name="Epping">*</text>
+
+  <text x="1996.0" y="107.0" name="Redbridge">*</text>
+
+  <text x="2076.0" y="94.0" name="Newbury Park">*</text>
+
+  <text x="2031.0" y="141.0" name="Gants Hill">*</text>
+
+  <text x="1940.0" y="141.0" name="Wanstead">*</text>
+
+  <text x="2123.0" y="94.0" name="Barkingside">*</text>
+
+  <text x="2123.0" y="70.0" name="Fairlop">*</text>
+
+  <text x="2123.0" y="46.0" name="Hainault">*</text>
+
+  <text x="2071.0" y="-3.0" name="Grange Hill">*</text>
+
+  <text x="2026.0" y="-3.0" name="Chigwell">*</text>
+
+  <text x="875.0" y="664.0" name="Bayswater">*</text>
+
+  <text x="918.0" y="793.5" name="High Street Kensington">*</text>
+
+  <text x="1138.0" y="839.0" name="Sloane Square">*</text>
+
+  <text x="1220.0" y="776.0" name="St. James&#39;s Park">*</text>
+
+  <text x="1336.0" y="652.0" name="Temple">*</text>
+
+  <text x="1402.0" y="602.0" name="Mansion House">*</text>
+
+  <text x="1101.0" y="447.0" name="Great Portland Street">*</text>
+
+  <text x="732.5" y="623.5" name="Westbourne Park">*</text>
+
+  <text x="642.5" y="676.0" name="Latimer Road">*</text>
+
+  <text x="800.0" y="641.0" name="Royal Oak">*</text>
+
+  <text x="699.5" y="684.5" name="Ladbroke Grove">*</text>
+
+  <text x="651.5" y="771.9" name="Shepherd&#39;s Bush Market">*</text>
+
+  <text x="651.5" y="808.9" name="Goldhawk Road">*</text>
+
+  <text x="465.0" y="814.0" name="Chiswick Park">*</text>
+
+  <text x="540.0" y="818.5" name="Turnham Green">*</text>
+
+  <text x="535.0" y="859.5" name="Stamford Brook">*</text>
+
+  <text x="587.0" y="890.4" name="Ravenscourt Park">*</text>
+
+  <text x="705.0" y="890.4" name="Barons Court">*</text>
+
+  <text x="780.0" y="890.4" name="West Kensington">*</text>
+
+  <text x="1963.0" y="457.5" name="Bromley-by-Bow">*</text>
+
+  <text x="1765.5" y="500.5" name="Stepney Green">*</text>
+
+  <text x="2081.0" y="439.0" name="Plaistow">*</text>
+
+  <text x="2111.0" y="416.5" name="Upton Park">*</text>
+
+  <text x="2141.0" y="388.0" name="East Ham">*</text>
+
+  <text x="2201.0" y="349.0" name="Upney">*</text>
+
+  <text x="2231.0" y="326.5" name="Becontree">*</text>
+
+  <text x="2261.0" y="304.0" name="Dagenham Heathway">*</text>
+
+  <text x="2291.0" y="281.5" name="Dagenham East">*</text>
+
+  <text x="2321.0" y="259.0" name="Elm Park">*</text>
+
+  <text x="2331.0" y="219.5" name="Hornchurch">*</text>
+
+  <text x="2361.0" y="197.0" name="Upminster Bridge">*</text>
+
+  <text x="2401.0" y="166.0" name="Upminster">*</text>
+
+  <text x="819.0" y="964.0" name="Fulham Broadway">*</text>
+
+  <text x="830.0" y="1000.0" name="Parsons Green">*</text>
+
+  <text x="851.0" y="1028.0" name="Putney Bridge">*</text>
+
+  <text x="872.0" y="1056.0" name="East Putney">*</text>
+
+  <text x="890.0" y="1080.0" name="Southfields">*</text>
+
+  <text x="908.0" y="1104.0" name="Wimbledon Park">*</text>
+
+  <text x="927.0" y="1132.0" name="Wimbledon">*</text>
+
+  <text x="663.0" y="166.0" name="Stanmore">*</text>
+
+  <text x="663.0" y="196.0" name="Canons Park">*</text>
+
+  <text x="663.0" y="226.0" name="Queensbury">*</text>
+
+  <text x="663.0" y="256.0" name="Kingsbury">*</text>
+
+  <text x="681.0" y="330.0" name="Neasden">*</text>
+
+  <text x="741.0" y="330.0" name="Dollis Hill">*</text>
+
+  <text x="798.0" y="330.0" name="Willesden Green">*</text>
+
+  <text x="947.5" y="423.5" name="Swiss Cottage">*</text>
+
+  <text x="985.0" y="473.5" name="St. John&#39;s Wood">*</text>
+
+  <text x="1390.0" y="712.0" name="Southwark">*</text>
+
+  <text x="1590.0" y="696.0" name="Bermondsey">*</text>
+
+  <text x="2000.0" y="669.0" name="North Greenwich">*</text>
+
+  <text x="136.0" y="42.0" name="Chesham">*</text>
+
+  <text x="90.0" y="72.5" name="Amersham">*</text>
+
+  <text x="131.5" y="104.0" name="Chalfont &amp; Latimer">*</text>
+
+  <text x="161.5" y="126.5" name="Chorleywood">*</text>
+
+  <text x="191.5" y="149.0" name="Rickmansworth">*</text>
+
+  <text x="234.0" y="134.0" name="Croxley">*</text>
+
+  <text x="423.0" y="64.0" name="Watford">*</text>
+
+  <text x="249.0" y="160.0" name="Moor Park">*</text>
+
+  <text x="279.0" y="182.5" name="Northwood">*</text>
+
+  <text x="309.0" y="205.0" name="Northwood Hills">*</text>
+
+  <text x="339.0" y="227.5" name="Pinner">*</text>
+
+  <text x="369.0" y="250.0" name="North Harrow">*</text>
+
+  <text x="375.0" y="315.0" name="West Harrow">*</text>
+
+  <text x="20.0" y="320.0" name="Uxbridge">*</text>
+
+  <text x="60.0" y="281.0" name="Hillingdon">*</text>
+
+  <text x="100.0" y="320.0" name="Ickenham">*</text>
+
+  <text x="180.0" y="320.0" name="Ruislip">*</text>
+
+  <text x="220.0" y="268.0" name="Ruislip Manor">*</text>
+
+  <text x="260.0" y="320.0" name="Eastcote">*</text>
+
+  <text x="440.0" y="270.0" name="Harrow-on- the-Hill">*</text>
+
+  <text x="590.0" y="315.0" name="Preston Road">*</text>
+
+  <text x="718.0" y="122.0" name="Edgware">*</text>
+
+  <text x="748.0" y="144.5" name="Burnt Oak">*</text>
+
+  <text x="778.0" y="167.0" name="Colindale">*</text>
+
+  <text x="808.0" y="189.5" name="Hendon Central">*</text>
+
+  <text x="838.0" y="212.0" name="Brent Cross">*</text>
+
+  <text x="868.0" y="234.5" name="Golders Green">*</text>
+
+  <text x="898.0" y="257.0" name="Hampstead">*</text>
+
+  <text x="1010.0" y="302.0" name="Belsize Park">*</text>
+
+  <text x="1090.0" y="302.0" name="Chalk Farm">*</text>
+
+  <text x="913.0" y="111.0" name="Mill Hill East">*</text>
+
+  <text x="864.0" y="0.0" name="High Barnet">*</text>
+
+  <text x="894.0" y="22.5" name="Totteridge &amp; Whetstone">*</text>
+
+  <text x="924.0" y="45.0" name="Woodside Park">*</text>
+
+  <text x="954.0" y="67.5" name="West Finchley">*</text>
+
+  <text x="994.0" y="97.5" name="Finchley Central">*</text>
+
+  <text x="1024.0" y="120.0" name="East Finchley">*</text>
+
+  <text x="1054.0" y="142.5" name="Highgate">*</text>
+
+  <text x="1116.0" y="191.5" name="Tufnell Park">*</text>
+
+  <text x="1213.0" y="329.0" name="Mornington Crescent">*</text>
+
+  <text x="1175.0" y="454.0" name="Goodge Street">*</text>
+
+  <text x="1418.0" y="405.0" name="Angel">*</text>
+
+  <text x="1455.0" y="429.0" name="Old Street">*</text>
+
+  <text x="1491.0" y="734.0" name="Borough">*</text>
+
+  <text x="1394.5" y="868.5" name="Kennington">*</text>
+
+  <text x="1346.5" y="904.5" name="Oval">*</text>
+
+  <text x="1220.5" y="999.0" name="Clapham Common">*</text>
+
+  <text x="1190.5" y="1021.5" name="Clapham South">*</text>
+
+  <text x="1160.5" y="1044.0" name="Balham">*</text>
+
+  <text x="1130.5" y="1066.5" name="Tooting Bec">*</text>
+
+  <text x="1100.5" y="1089.0" name="Tooting Broadway">*</text>
+
+  <text x="1070.5" y="1111.5" name="Colliers Wood">*</text>
+
+  <text x="1040.5" y="1135.5" name="South Wimbledon">*</text>
+
+  <text x="990.5" y="1149.5" name="Morden">*</text>
+
+  <text x="372.0" y="374.0" name="South Harrow">*</text>
+
+  <text x="372.0" y="434.0" name="Sudbury Hill">*</text>
+
+  <text x="372.0" y="494.0" name="Sudbury Town">*</text>
+
+  <text x="372.0" y="554.0" name="Alperton">*</text>
+
+  <text x="372.0" y="647.0" name="Park Royal">*</text>
+
+  <text x="372.0" y="674.0" name="North Ealing">*</text>
+
+  <text x="30.0" y="987.5" name="Heathrow Terminal 5">*</text>
+
+  <text x="96.0" y="917.0" name="Heathrow Terminals 2 &amp; 3">*</text>
+
+  <text x="170.0" y="960.0" name="Hatton Cross">*</text>
+
+  <text x="200.0" y="937.5" name="Hounslow West">*</text>
+
+  <text x="230.0" y="915.0" name="Hounslow Central">*</text>
+
+  <text x="240.0" y="875.5" name="Hounslow East">*</text>
+
+  <text x="270.0" y="853.0" name="Osterley">*</text>
+
+  <text x="300.0" y="830.5" name="Boston Manor">*</text>
+
+  <text x="330.0" y="808.0" name="Northfields">*</text>
+
+  <text x="360.0" y="785.5" name="South Ealing">*</text>
+
+  <text x="1102.6" y="770.0" name="Knightsbridge">*</text>
+
+  <text x="1102.6" y="724.0" name="Hyde Park Corner">*</text>
+
+  <text x="1302.0" y="449.0" name="Russell Square">*</text>
+
+  <text x="1302.0" y="282.0" name="Caledonian Road">*</text>
+
+  <text x="1326.0" y="233.0" name="Holloway Road">*</text>
+
+  <text x="1356.0" y="210.5" name="Arsenal">*</text>
+
+  <text x="1370.5" y="164.0" name="Manor House">*</text>
+
+  <text x="1326.0" y="88.5" name="Turnpike Lane">*</text>
+
+  <text x="1296.0" y="66.0" name="Wood Green">*</text>
+
+  <text x="1266.0" y="43.5" name="Bounds Green">*</text>
+
+  <text x="1236.0" y="21.0" name="Arnos Grove">*</text>
+
+  <text x="1206.0" y="-1.5" name="Southgate">*</text>
+
+  <text x="1176.0" y="-24.0" name="Oakwood">*</text>
+
+  <text x="1146.0" y="-46.5" name="Cockfosters">*</text>
+
+  <text x="1530.0" y="133.0" name="Tottenham Hale">*</text>
+
+  <text x="1216.0" y="821.5" name="Pimlico">*</text>
+
+  <text x="1246.0" y="861.5" name="Vauxhall">*</text>
+
+  <text x="1317.0" y="962.0" name="Brixton">*</text>
+</g>

@@ -17,6 +17,8 @@ export class MapSvgComponent implements OnInit {
     this.g_bg_elem = <SVGGraphicsElement>this.main_graphics.nativeElement;
   }
 
+  opacity(station : string) { return "1.0"; }
+
   get transform() { return `matrix(${this.sx},0,0,${this.sy},${this.dx},${this.dy})`; }
 
   get showKeyToLines() { return false; }

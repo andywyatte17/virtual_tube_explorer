@@ -19,10 +19,11 @@ import { RouteTabComponent } from './route-tab/route-tab.component';
 import { MapComponent } from './map/map.component';
 import { MapSvgComponent } from './map-svg/map-svg.component';
 import { TimetableService } from './timetable.service';
+import { PlacesSvgComponent } from './places-svg/places-svg.component';
 
 @NgModule({
   declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
-    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent, MapSvgComponent],
+    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent, MapSvgComponent, PlacesSvgComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule

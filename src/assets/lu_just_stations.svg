@@ -94,6 +94,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Road
    </tspan>
   </text>
+  <!--
   <text x="1910" y="418">
    Bow Church
   </text>
@@ -103,10 +104,13 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Road
    </tspan>
   </text>
+    -->
   <text class="end" x="1180" y="298">
+   <!--
    <title>
     Occasionally exit-only when the station is overcrowded, which usually occurs on Sundays.
    </title>
+   -->
    <tspan class="ul">
     Camden
    </tspan>
@@ -122,6 +126,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Water
    </tspan>
   </text>
+  <!--
   <text class="end ul" x="1870" y="635">
    <title>
     DLR trains from Stratford terminate here, except during peak hours trains continue to Lewisham.
@@ -131,6 +136,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="x" x="1901" y="633">
    Canary Wharf
   </text>
+  -->
   <text x="1901" y="660">
    Canary
    <tspan dy="15" x="1901">
@@ -152,15 +158,18 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="1277" y="677">
    Charing Cross
   </text>
+  <!--
   <text class="end" x="1265" y="915">
    Clapham
    <tspan dy="15" x="1265">
     High Street
    </tspan>
   </text>
+  -->
   <text x="1244.5" y="977">
    Clapham North
   </text>
+  <!-- >
   <text class="end" x="2210" y="607">
    Custom House
    <tspan dy="13" x="2210">
@@ -178,6 +187,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="1569" y="353.5">
    Dalston Junction
   </text>
+  -->
   <text class="mid" x="340" y="692">
    Ealing
    <tspan dy="0" x="365">
@@ -237,12 +247,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="1375" y="183">
    Finsbury Park
   </text>
+  <!-- 
   <text x="2050" y="287">
    Forest
    <tspan dy="13" x="2050">
     Gate
    </tspan>
   </text>
+  -->
   <text class="end" x="1142" y="670">
    Green Park
   </text>
@@ -287,12 +299,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text x="1140" y="210">
    Kentish Town
   </text>
+  <!--
   <text class="end" x="1133" y="242">
    Kentish Town
    <tspan dy="13" x="1133">
     West
    </tspan>
   </text>
+  -->
   <text x="543.5" y="274">
    Kenton
   </text>
@@ -317,12 +331,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text x="1935" y="160">
    Leytonstone
   </text>
+  <!--
   <text x="1956" y="180">
    Leytonstone
    <tspan dy="15" x="1956">
     High Road
    </tspan>
   </text>
+  -->
   <text class="mid" x="1564" y="452">
    Liverpool
    <tspan dy="0" x="1601">
@@ -346,9 +362,11 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Bridge
    </tspan>
   </text>
+  <!--
   <text x="2102" y="244">
    Manor Park
   </text>
+  -->
   <text x="1816" y="459.5">
    Mile
    <tspan dy="13" x="1816">
@@ -413,12 +431,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Bush
    </tspan>
   </text>
+  <!--
   <text x="1408" y="155">
    South
    <tspan dy="13" x="1408">
     Tottenham
    </tspan>
   </text>
+  -->
   <text x="1296" y="933">
    Stockwell
   </text>
@@ -440,12 +460,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     </tspan>
    </tspan>
   </text>
+  <!--
   <text x="1595" y="602">
    Tower
    <tspan dy="13" x="1595">
     Gateway
    </tspan>
   </text>
+  -->
   <text class="mid" x="1563" y="602">
    Tower
    <tspan dy="0" x="1586">
@@ -466,6 +488,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Central
    </tspan>
   </text>
+  <!--
   <text x="1694.75" y="155">
    Walthamstow
    <tspan dy="13" x="1694.75">
@@ -480,6 +503,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Park
    </tspan>
   </text>
+  -->
   <text class="end" x="1148" y="404">
    Warren Street
   </text>
@@ -519,9 +543,12 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text x="648" y="744">
    Wood Lane
   </text>
+  <!--
   <text x="2102" y="267">
    Woodgrange Park
   </text>
+  -->
+  <!--
   <text x="2330.67" y="671">
    Woolwich
   </text>
@@ -533,6 +560,7 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
     Arsenal
    </tspan>
   </text>
+  -->
  </g>
  <g id="stname_Bakerloo_line">
   <g class="end">
@@ -811,9 +839,9 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
    Chiswick Park
   </text>
   <text x="540" y="814.5">
-   <title>
+   <!--<title>
     Trains of Piccadilly line stop at Turnham Green only during late nights (weekend Night Tube), early mornings (until 06:25am/07:45am Sundays) and evenings (after 10:30pm).
-   </title>
+   </title>-->
    <tspan class="ul">
     Turnham
    </tspan>
@@ -957,12 +985,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
      Green
     </tspan>
    </text>
+   <!--
    <text class="b" x="861" y="326">
     <title>
      Free out-of-station interchange to Brondesbury Underground station within 20 minutes. 0.2-mile walking distance.
     </title>
     Kilburn
    </text>
+   -->
   </g>
   <text class="end" x="947.5" y="419.5">
    Swiss Cottage
@@ -1007,16 +1037,20 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text x="234" y="130">
    Croxley
   </text>
+  <!--
   <text class="mid x" x="323" y="107">
    Cassiobridge
   </text>
+  -->
   <text class="mid x" x="423" y="60">
    Watford
    <tspan dy="0" x="451">
    </tspan>
+   <!--
    <tspan dy="13" x="423">
     Vicarage Road
    </tspan>
+   -->
   </text>
   <text x="249" y="156">
    Moor Park
@@ -1192,12 +1226,14 @@ text {font-family:Arimo,Liberation Sans,HammersmithOne,Helvetica,Arial,sans-seri
   <text class="end" x="990.5" y="1145.5">
    Morden
   </text>
+  <!--
   <text class="end x" x="1194.5" y="892.5">
    Nine Elms
   </text>
   <text class="end x" x="1125" y="927.25">
    Battersea Power Station
   </text>
+  -->
  </g>
  <g id="stname_Piccadilly_line">
   <g class="end">

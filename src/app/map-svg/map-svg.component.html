@@ -3,9 +3,8 @@
   <button (click)="plus()">+</button>
   <button (click)="minus()">-</button>
 </div>
-<div draggable="true" (mousedown)="mousedown($event)" (mousemove)="mousemove($event)"
-                         (mouseup)="mouseup($event)">
-                         
+<div draggable="true" (mousedown)="mousedown($event)" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)">
+
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="-40.5 -120.5 2500 1320">
     <title>Route map of London Underground, London Overground, Docklands Light Railway and Elizabeth line (Crossrail) licensed under
       Creative Commons Attribution-Share Alike 4.0 International by Wikimedians</title>
@@ -1076,8 +1075,7 @@
           />
         </g>
       </g>
-      <g id="zone_switch" style="opacity:0;cursor:pointer"
-         [attr.visibility]="showZoneSwitch ? 'visible' : 'hidden'">
+      <g id="zone_switch" style="opacity:0;cursor:pointer" [attr.visibility]="showZoneSwitch ? 'visible' : 'hidden'">
         <g id="zone_switch_base">
           <rect x="-25" y="-80" width="10" height="10" style="fill:#fff;stroke:#000;stroke-width:1" />
           <text x="-10" y="-70" font-size="14px">Show fare zones</text>
@@ -1678,8 +1676,7 @@
           <use xlink:href="#DLR_route_over" class="sdlr2" id="DLR_route_stripe_over" />
         </g>
       </g>
-      <g id="key_to_symbols_box" transform="translate(1825,965)"
-         [attr.visibility]="showKeyToSymbols ? 'visible' : 'hidden'">
+      <g id="key_to_symbols_box" transform="translate(1825,965)" [attr.visibility]="showKeyToSymbols ? 'visible' : 'hidden'">
         <rect x="0.5" y="0.5" width="210" height="230" rx="25" fill="#fff" />
         <path fill="#eee" stroke="none" d="
 		M 0,73 H 210 v 40 H 0 z
@@ -1725,8 +1722,7 @@
           <text x="108" y="217">Airport</text>
         </g>
       </g>
-      <g id="key_to_lines_box" transform="translate(2045,770)"
-         [attr.visibility]="showKeyToLines ? 'visible' : 'hidden'">
+      <g id="key_to_lines_box" transform="translate(2045,770)" [attr.visibility]="showKeyToLines ? 'visible' : 'hidden'">
         <rect x="0.5" y="0.5" width="410" height="425" rx="25" fill="#fff" />
         <path fill="#eee" stroke="none" d="
 		M 0,185 H 410 v 160 H 0 z
@@ -3583,8 +3579,7 @@
           <use xlink:href="#x_arrow" transform="rotate(180)" />
         </g>
       </defs>
-      <g id="acc_switch" style="opacity:0;cursor:pointer"
-         [attr.visibility]="showStepFreeStuff ? 'visible' : 'hidden'">
+      <g id="acc_switch" style="opacity:0;cursor:pointer" [attr.visibility]="showStepFreeStuff ? 'visible' : 'hidden'">
         <g id="acc_switch_base">
           <rect x="-25" y="-55" width="10" height="10" style="fill:#fff;stroke:#000;stroke-width:1" />
           <text x="-10" y="-45" font-size="14px">Show step-free accessibility</text>
@@ -4961,11 +4956,13 @@
           </g>
         </g>
       </g>
-      <g id="title_header" transform="translate(-40,-120)"
-         [attr.visibility]="showRouteMapTitle ? 'visible' : 'hidden'">>
+      <g id="title_header" transform="translate(-40,-120)" [attr.visibility]="showRouteMapTitle ? 'visible' : 'hidden'">>
         <path class="ftfl" style="stroke:none" d="M -10,0 L 0,0 v 27 h 982 q 15,0 27,-9 l 12,-9 q 12,-9 27,-9 z" />
         <text x="7" y="20" class="b" style="font-size:20px;fill:#fff">Route map of London Underground, London Overground, Docklands Light Railway and Elizabeth line</text>
       </g>
     </g>
   </svg>
+  <!-- -->
+  <app-places-svg></app-places-svg>
+  <!-- -->
 </div>
