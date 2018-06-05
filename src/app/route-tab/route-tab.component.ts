@@ -110,7 +110,7 @@ export class RouteTabComponent implements OnInit {
       //this.timetable.LookupTimetable(fromId,
     } else {
       const line = this.stationModel.selectedLine;
-      const isNonTrain = line == "walk" || line == "bus";
+      const isNonTrain = line == "walk" || line == "bus/other";
       const t = this.tableEntries[this.tableEntries.length - 1].toTime;
       const toId = this.stationModel.selectedStationId;
       const fromId = this.tableEntries[this.tableEntries.length - 1]
@@ -373,5 +373,12 @@ export class RouteTabComponent implements OnInit {
       return this.sanitizer.bypassSecurityTrustUrl( url );
     }
     return null;
+  }
+
+  slimmedTableEntries() {
+    const n = this.tableEntries.length;
+    return this.tableEntries.filter( (x, index:number) => {
+      return index<3 || index>n-3;
+    });
   }
 }

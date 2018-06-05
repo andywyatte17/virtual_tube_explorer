@@ -125,7 +125,7 @@ export class TimetableService {
     ApplicationID: string = null,
     ApplicationKey: string = null
   ) {
-    if (line == "walk" || line == "bus")
+    if (line == "walk" || line == "bus/other")
       return this.MakeWalkTimetablePromise(
         line,
         fromNaptanId,
@@ -223,7 +223,10 @@ export class TimetableService {
             const b1 = (b.startHh * 60 + b.startMm);
             return a1 < b1 ? -1 : b1 < a1 ? 1 : 0;
           });
-          resolve(new FromLineToTimes(tr.fromNaptanId, tr.line, tr.toNaptanId, timesSorted));
+          let ts2 = timesSorted.filter((value: Times) => {
+            return (value.startHh * 60 + value.startMm) >= (startHh * 60 + startMm);
+          });
+          resolve(new FromLineToTimes(tr.fromNaptanId, tr.line, tr.toNaptanId, ts2));
         })
         .catch(err => reject(err));
     });

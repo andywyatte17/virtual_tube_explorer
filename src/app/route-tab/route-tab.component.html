@@ -22,9 +22,11 @@
     </p>
   </div>
   <div *ngIf="this.tableEntries.length!=0">
-    <img [attr.src]="osmMapUrl">
-    <button (click)="zoomMinus()">Z-</button>
-    <button (click)="zoomPlus()">Z+</button>
+    <p>
+      <img [attr.src]="osmMapUrl" width="64" height="64">
+      <button (click)="zoomMinus()">Z-</button>
+      <button (click)="zoomPlus()">Z+</button>
+    </p>
     <!--    
     <label for="stationNameFilter">Filter:</label>
     <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">
@@ -64,7 +66,7 @@
       <td>To Time</td>
       <td>Stations Left</td>
     </thead>
-    <tr *ngFor='let entry of tableEntries'>
+    <tr *ngFor='let entry of slimmedTableEntries()'>
       <td>{{entry.index}}</td>
       <td>{{entry.fromStationName}}</td>
       <td>{{entry.fromTime}}</td>
