@@ -5,10 +5,12 @@ import {
   DaySet,
   FromLineToTimes,
   PaddedTime,
-  AreEquivalent
+  AreEquivalent,
+  Times
 } from "./timetable.service";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { HttpModule } from "@angular/http";
+import { MakeTubeNaptans, Naptan } from "./naptans/naptans";
 
 describe("TimetableService", () => {
   let originalTimeout;
@@ -137,6 +139,79 @@ describe("TimetableService", () => {
           expect(value.times[n].endHh).toEqual(24);
           expect(value.times[n].endMm).toEqual(33);
           // ...
+          done();
+        });
+    })();
+  });
+
+  // ...
+
+  fit("Northern - Edgware -> Camden Town", done => {
+    inject([TimetableService], (service: TimetableService) => {
+      service
+        .LookupTimetable(
+          "northern",
+          "940GZZLUEGW",
+          "940GZZLUMTC",
+          DaySet.sat, 10, 8
+        )
+        .then((value: FromLineToTimes) => {
+          let N = MakeTubeNaptans();
+          let stations = value.times[0].stopNaptans.map((naptan: string) => {
+            let found = N.find((value: Naptan) => value.id == naptan);
+            return found.name;
+          });
+          expect(stations).toEqual([
+            "Edgware",
+            "Burnt Oak",
+            "Colindale",
+            "Hendon Central",
+            "Brent Cross",
+            "Golders Green",
+            "Hampstead",
+            "Belsize Park",
+            "Chalk Farm",
+            "Camden Town",
+            "Mornington Crescent"
+          ]);
+          done();
+        });
+      })();
+  });
+
+  // ...
+
+  fit("Piccadilly - Cockfosters -> Kings Cross", done => {
+    // see https://tfl.gov.uk/tube/timetable/metropolitan?FromId=940GZZLUCAL&fromText=Chalfont&toText=Amersham&ToId=940GZZLUAMS
+    inject([TimetableService], (service: TimetableService) => {
+      service
+        .LookupTimetable(
+          "piccadilly",
+          "940GZZLUCKS",
+          "940GZZLUKSX",
+          DaySet.sat, 17, 19
+        )
+        .then((value: FromLineToTimes) => {
+          let N = MakeTubeNaptans();
+          let stations = value.times[0].stopNaptans.map((naptan: string) => {
+            let found = N.find((value: Naptan) => value.id == naptan);
+            return found.name;
+          });
+          expect(stations).toEqual([
+            "Cockfosters",
+            "Oakwood",
+            "Southgate",
+            "Arnos Grove",
+            "Bounds Green",
+            "Wood Green",
+            "Turnpike Lane",
+            "Manor House",
+            "Finsbury Park",
+            "Arsenal",
+            "Holloway Road",
+            "Caledonian Road",
+            "King's Cross St. Pancras"
+          ]);
           done();
         });
     })();
