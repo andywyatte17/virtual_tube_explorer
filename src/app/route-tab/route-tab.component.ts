@@ -13,6 +13,8 @@ import {
 import { ApiKeys } from "../my_tfl_api_key";
 import { HhMm } from "../time";
 import { MakeTableEntry, ITableEntryEx, ITableEntry, MakeTableEntryFromObject } from "./table-entry";
+import { osm_url } from "../map/osm-tile";
+import { CheckStations, CheckStationsR, Lookup } from "../naptans/latitude_longitude";
 
 declare var base64js: any;
 declare var TextEncoderLite: any;
@@ -240,7 +242,9 @@ export class RouteTabComponent implements OnInit {
   }
 
   constructor(private http: HttpClient, private timetable: TimetableService,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer) {
+      //CheckStationsR();
+    }
 
   stationModel = new StationModel(this.http);
 
@@ -345,5 +349,29 @@ export class RouteTabComponent implements OnInit {
 
   popLast() {
     this.tableEntries.pop();
+  }
+
+  private zoom = 14;
+  
+  zoomMinus()
+  {
+    this.zoom -= 1;
+    this.zoom = Math.min(17, Math.max(1, this.zoom));
+  }
+
+  zoomPlus()
+  {
+    this.zoom += 1;
+    this.zoom = Math.min(17, Math.max(1, this.zoom));
+  }
+  
+  get osmMapUrl() {
+    let nll = Lookup(this.fromStation);
+    console.log("nll", nll);
+    if(nll) {
+      let url = osm_url(parseFloat(nll.lon), parseFloat(nll.lat), this.zoom);
+      return this.sanitizer.bypassSecurityTrustUrl( url );
+    }
+    return null;
   }
 }

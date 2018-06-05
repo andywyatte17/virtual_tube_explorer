@@ -22,6 +22,9 @@
     </p>
   </div>
   <div *ngIf="this.tableEntries.length!=0">
+    <img [attr.src]="osmMapUrl">
+    <button (click)="zoomMinus()">Z-</button>
+    <button (click)="zoomPlus()">Z+</button>
     <!--    
     <label for="stationNameFilter">Filter:</label>
     <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">

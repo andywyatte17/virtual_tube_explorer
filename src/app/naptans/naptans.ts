@@ -287,7 +287,7 @@ export function MakeTubeNaptans(sorted = true) {
     ['940GZZLUTFP', 'Tufnell Park'],
     ['940GZZLUWFN', 'West Finchley'],
     ['940GZZLUWOP', 'Woodside Park'],
-    ['910GENFCOAK', 'Oakwood Station'],
+    //['910GENFCOAK', 'Oakwood Station'],
     ['940GZZLUALP', 'Alperton'],
     ['940GZZLUASG', 'Arnos Grove'],
     ['940GZZLUASL', 'Arsenal'],
