@@ -15,6 +15,7 @@ import { HhMm } from "../time";
 import { MakeTableEntry, ITableEntryEx, ITableEntry, MakeTableEntryFromObject } from "./table-entry";
 import { osm_url } from "../map/osm-tile";
 import { CheckStations, CheckStationsR, Lookup } from "../naptans/latitude_longitude";
+import { initialize, setLatLonZoom } from "../map/slippy";
 
 declare var base64js: any;
 declare var TextEncoderLite: any;
@@ -93,11 +94,15 @@ export class RouteTabComponent implements OnInit {
 
   public _selectedDayOfWeek: string = "Monday";
 
-  get selectedDayOfWeek() { return this._selectedDayOfWeek; }
+  get selectedDayOfWeek() {
+    return this._selectedDayOfWeek;
+  }
 
   set selectedDayOfWeek(dow: string) {
     this._selectedDayOfWeek = dow;
-    this.selectedDayOfWeekEx = this.daysOfWeek.find((x: DayOfWeek) => x.name == dow);
+    this.selectedDayOfWeekEx = this.daysOfWeek.find(
+      (x: DayOfWeek) => x.name == dow
+    );
   }
 
   public selectedDayOfWeekEx = new DayOfWeek("Monday", DaySet.mon);
@@ -146,6 +151,11 @@ export class RouteTabComponent implements OnInit {
     return this.tableEntries.length == 0
       ? ""
       : this.tableEntries[this.tableEntries.length - 1].toStationName;
+  }
+
+  bumpMap() {
+    let nll = Lookup(this.fromStation);
+    if (nll) setLatLonZoom(parseFloat(nll.lat), parseFloat(nll.lon));
   }
 
   get trains() {
@@ -204,7 +214,7 @@ export class RouteTabComponent implements OnInit {
         )
       };
 
-      const Base64Encode = (str, encoding = 'utf-8') => {
+      const Base64Encode = (str, encoding = "utf-8") => {
         var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);
         return base64js.fromByteArray(bytes);
       };
@@ -213,6 +223,8 @@ export class RouteTabComponent implements OnInit {
       route_json = Base64Encode(route_json);
       route_json = "data:application/json;base64," + route_json;
       this.route_json = this.sanitizer.bypassSecurityTrustUrl(route_json);
+
+      this.bumpMap();
     }
   }
 
@@ -231,7 +243,9 @@ export class RouteTabComponent implements OnInit {
         tis.forEach((ti: ITableEntry) => {
           this.tableEntries.push(MakeTableEntryFromObject(ti));
         });
-      } catch (e) { }
+      } catch (e) {}
+
+      this.bumpMap();
     });
     reader.readAsText(blob);
   }
@@ -241,14 +255,34 @@ export class RouteTabComponent implements OnInit {
     this.train = this.trains.length == 0 ? "" : this.trains[0].text;
   }
 
-  constructor(private http: HttpClient, private timetable: TimetableService,
-    private sanitizer: DomSanitizer) {
-      //CheckStationsR();
-    }
+  constructor(
+    private http: HttpClient,
+    private timetable: TimetableService,
+    private sanitizer: DomSanitizer
+  ) {
+    //CheckStationsR();
+  }
 
   stationModel = new StationModel(this.http);
 
-  ngOnInit() { }
+  private googleMapIsInitialized = false;
+
+  private tryInitializeGoogleMap() {
+    if (this.googleMapIsInitialized) return true;
+    const gmid = "google_map";
+    let gm = document.getElementById(gmid);
+    if (!gm) {
+      setTimeout( () => this.tryInitializeGoogleMap(), 1000 );
+      return false;
+    }
+    initialize(gmid);
+    this.googleMapIsInitialized = true;
+    return true;
+  }
+
+  ngOnInit() {
+    this.tryInitializeGoogleMap();
+  }
 
   dayOfWeekChanged() {
     console.log(this.selectedDayOfWeekEx);
@@ -274,6 +308,8 @@ export class RouteTabComponent implements OnInit {
         this.calculateNaptansLeft(nextNaptanIds)
       )
     );
+
+    this.bumpMap();
   }
 
   private MakeTime(oldTime: string, minutes: number): string {
@@ -308,6 +344,7 @@ export class RouteTabComponent implements OnInit {
           this.calculateNaptansLeft(nextNaptanIds)
         )
       );
+      this.bumpMap();
     }
   }
 
@@ -325,8 +362,12 @@ export class RouteTabComponent implements OnInit {
   }
 
   get fromInfo() {
-    return this.fromStation + ' @ ' + this.tableEntries[this.tableEntries.length - 1].toTime
-      + ` (${this.selectedDayOfWeek})`;
+    return (
+      this.fromStation +
+      " @ " +
+      this.tableEntries[this.tableEntries.length - 1].toTime +
+      ` (${this.selectedDayOfWeek})`
+    );
   }
 
   clickWalkRadio() {
@@ -352,33 +393,21 @@ export class RouteTabComponent implements OnInit {
   }
 
   private zoom = 14;
-  
-  zoomMinus()
-  {
+
+  zoomMinus() {
     this.zoom -= 1;
     this.zoom = Math.min(17, Math.max(1, this.zoom));
   }
 
-  zoomPlus()
-  {
+  zoomPlus() {
     this.zoom += 1;
     this.zoom = Math.min(17, Math.max(1, this.zoom));
-  }
-  
-  get osmMapUrl() {
-    let nll = Lookup(this.fromStation);
-    console.log("nll", nll);
-    if(nll) {
-      let url = osm_url(parseFloat(nll.lon), parseFloat(nll.lat), this.zoom);
-      return this.sanitizer.bypassSecurityTrustUrl( url );
-    }
-    return null;
   }
 
   slimmedTableEntries() {
     const n = this.tableEntries.length;
-    return this.tableEntries.filter( (x, index:number) => {
-      return index<3 || index>n-3;
+    return this.tableEntries.filter((x, index: number) => {
+      return index < 3 || index > n - 3;
     });
   }
 }

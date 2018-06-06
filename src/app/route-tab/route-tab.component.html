@@ -1,5 +1,7 @@
 <div>
   <!-- -->
+  <div id="google_map">
+  </div>
   <div *ngIf="this.tableEntries.length==0">
     <p>Start...
       <label for="time">Time:</label>
@@ -22,11 +24,6 @@
     </p>
   </div>
   <div *ngIf="this.tableEntries.length!=0">
-    <p>
-      <img [attr.src]="osmMapUrl" width="64" height="64">
-      <button (click)="zoomMinus()">Z-</button>
-      <button (click)="zoomPlus()">Z+</button>
-    </p>
     <!--    
     <label for="stationNameFilter">Filter:</label>
     <input style="width: 6em" type="text" name="stationNameFilter" [ngModel]="stationModel.filter" (ngModelChange)="stationModel.filterDidChange($event)">

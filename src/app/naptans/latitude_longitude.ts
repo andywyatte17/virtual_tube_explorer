@@ -1,5 +1,4 @@
 import { MakeTubeNaptans, Naptan } from "./naptans";
-import { lookup } from "dns";
 
 export const name_lat_lon = [
   ["Acton Town", "51.502500", "-0.278126"],
