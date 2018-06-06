@@ -16,6 +16,7 @@ import { MakeTableEntry, ITableEntryEx, ITableEntry, MakeTableEntryFromObject } 
 import { osm_url } from "../map/osm-tile";
 import { CheckStations, CheckStationsR, Lookup } from "../naptans/latitude_longitude";
 import { initialize, setLatLonZoom } from "../map/slippy";
+import { Check } from "../tfl_api/adjacent-stations";
 
 declare var base64js: any;
 declare var TextEncoderLite: any;
@@ -282,6 +283,7 @@ export class RouteTabComponent implements OnInit {
 
   ngOnInit() {
     this.tryInitializeGoogleMap();
+    Check();
   }
 
   dayOfWeekChanged() {
