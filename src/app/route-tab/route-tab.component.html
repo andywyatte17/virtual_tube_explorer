@@ -32,25 +32,36 @@
     <span style="color:chocolate">{{ fromInfo }}</span>
     <!-- -->
     <label for="stationSelect">Station:</label>
-    <select id="stationSelector" name="stationSelect" [(ngModel)]='stationModel.selectedStationId' (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()">
-      <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">{{ station.name }}</option>
+    <select id="stationSelector" name="stationSelect"
+       [(ngModel)]='stationModel.selectedStationId'
+       (ngModelChange)="stationModel.stationDidChange(); this.bumpTrains()"
+       accesskey="S">
+      <option *ngFor='let station of stationModel.filteredStations' [value]="station.id">
+        {{ station.name }}
+      </option>
     </select>
     <!-- -->
     <select id="lineSelector"
        [(ngModel)]='stationModel.selectedLine'
-       (ngModelChange)="stationModel.lineDidChange(); this.bumpTrains()">
-      <option *ngFor='let line of stationModel.lines' [value]="line">{{ line }}</option>
+       (ngModelChange)="stationModel.lineDidChange(); this.bumpTrains()"
+       accesskey="L">
+      <option *ngFor='let line of stationModel.lines' [value]="line">
+        {{ line }}
+      </option>
     </select>
     <!-- -->
-    <select id="trainSelector" [(ngModel)]='train' [disabled]='trainIsProcessing'
-      (ngModelChange)="trainDidChange($event)">
-      <option *ngFor='let aTrain of trains' [value]="aTrain.text">{{ aTrain.text }}</option>
+    <select id="trainSelector" [(ngModel)]='train'
+      (ngModelChange)="trainDidChange($event)"
+      accesskey="T">
+      <option *ngFor='let aTrain of trains' [value]="aTrain.text">
+        {{ aTrain.text }}
+      </option>
     </select>
     <!-- -->
     <img src="assets/vline.png" class="spinner" [hidden]='!trainIsProcessing'>
     <!-- -->
-    <button (click)="refresh()">Refresh</button>
-    <button (click)="addTrain()">Add</button>
+    <button (click)="refresh()" accesskey="R">Refresh</button>
+    <button (click)="addTrain()" accesskey="A">Add</button>
     <!-- -->
     <p>
       <button (click)="popLast()">Pop Last</button>

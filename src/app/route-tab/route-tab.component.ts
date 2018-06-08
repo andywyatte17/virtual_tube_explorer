@@ -146,6 +146,9 @@ export class RouteTabComponent implements OnInit {
             // console.log(t1, t2);
             return new Train(fromId, toId, t1, t2, isNonTrain, x.stopNaptans);
           });
+          
+          this.train = this._trains.length==0 ? null : this._trains[0].text;
+
           //console.log(this._trains);
           this.trainIsProcessing = false;
         });
@@ -270,7 +273,7 @@ export class RouteTabComponent implements OnInit {
 
   stationModel = new StationModel(this.http);
 
-  trainIsProcessing = true;
+  trainIsProcessing = false;
 
   private googleMapIsInitialized = false;
 
