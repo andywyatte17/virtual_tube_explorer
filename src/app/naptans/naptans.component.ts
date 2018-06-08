@@ -4,13 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { Arrival } from '../tfl_api/arrivals';
 
 import { MakeTubeNaptans, Naptan } from './naptans';
-import { ApiKeys } from '../my_tfl_api_key';
 import { MakeTubeLines, TestLinesAPI } from '../tfl_api/lines';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArrivalInfoComponent } from '../arrival-info/arrival-info.component';
 import { Passenger, CurrentVehicle } from '../passenger/passenger';
 import { PlacesService } from '../places.service';
 import { unique } from '../other/algorithm';
+import { ApiKeys } from '../../environments/api-key';
 
 @Component({
   selector: 'app-naptans',
@@ -101,7 +101,7 @@ export class NaptansComponent implements OnInit {
     let promises = linesToUse.map((line: string) => {
       let naptan = this.selectedNaptanId;
       let url = `https://api.tfl.gov.uk/Line/${line}/Arrivals/${naptan}`;
-      url = url + ApiKeys.htmlPrefix();
+      url = ApiKeys.AddKeys(url);
       console.log(url);
       return new Promise<any>((resolve, reject) => {
         this.http.get<any>(url).subscribe((arrivals2: Array<Arrival>) => {

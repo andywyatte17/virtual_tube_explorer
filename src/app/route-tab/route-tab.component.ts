@@ -10,13 +10,13 @@ import {
   Times,
   PaddedTime
 } from "../timetable.service";
-import { ApiKeys } from "../my_tfl_api_key";
 import { HhMm } from "../time";
 import { MakeTableEntry, ITableEntryEx, ITableEntry, MakeTableEntryFromObject } from "./table-entry";
 import { osm_url } from "../map/osm-tile";
 import { CheckStations, CheckStationsR, Lookup } from "../naptans/latitude_longitude";
 import { initialize, setLatLonZoom } from "../map/slippy";
 import { Check } from "../tfl_api/adjacent-stations";
+import { ApiKeys } from "../../environments/api-key";
 
 declare var base64js: any;
 declare var TextEncoderLite: any;
@@ -121,7 +121,7 @@ export class RouteTabComponent implements OnInit {
       const toId = this.stationModel.selectedStationId;
       const fromId = this.tableEntries[this.tableEntries.length - 1]
         .toStationId;
-      let ApplicationIDKey = ApiKeys.ApplicationIDKey;
+      let ApplicationIDKey = ApiKeys.ApplicationIDKey();
       const hhmm = HhMm.fromString(t);
       if (!hhmm) return;
       this.timetable

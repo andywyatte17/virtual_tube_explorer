@@ -16,6 +16,7 @@ import {
   KnownJourney
 } from "./timetable-logic";
 import { HhMm } from "./time";
+import { ApiKeys } from "../environments/api-key";
 
 export enum DaySet {
   _monThu1_ = "Monday - Thursday",
@@ -135,11 +136,11 @@ export class TimetableService {
         startMm
       );
 
+    console.log("Here");
     let makePromise = (direction: Direction) => {
       let url = `https://api.tfl.gov.uk/Line/${line}/Timetable/${fromNaptanId}?direction=${direction}`;
-
       if (ApplicationID && ApplicationKey)
-        url += `&app_id=${ApplicationID}&app_key=${ApplicationKey}`;
+        url = ApiKeys.AddKeys2([ApplicationID, ApplicationKey], url);
 
       return new Promise((resolve, reject) => {
         this.http.get<any>(url).subscribe(

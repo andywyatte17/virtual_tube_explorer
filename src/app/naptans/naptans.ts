@@ -3,9 +3,9 @@
 //
 
 import { HttpClient } from '@angular/common/http';
-import { ApiKeys } from '../my_tfl_api_key';
 import { MakeTubeLines } from '../tfl_api/lines';
 import { unique } from '../other/algorithm';
+import { ApiKeys } from '../../environments/api-key';
 
 export class Naptan {
   constructor(public id: string, public name: string) { }
@@ -20,7 +20,7 @@ export class Naptan {
 
     return new Promise((resolve, reject) => {
       let url = `https://api.tfl.gov.uk/StopPoint/${naptan}`;
-      url += ApiKeys.htmlPrefix();
+      url = ApiKeys.AddKeys(url);
       http.get<any>(url).subscribe((v: any) => {
         const lines = MakeTubeLines();
         let v_lines = <Array<any>>v["lines"];

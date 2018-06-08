@@ -3,7 +3,7 @@
 //
 
 import { HttpClient } from '@angular/common/http';
-import { ApiKeys } from '../my_tfl_api_key';
+import { ApiKeys } from '../../environments/api-key';
 
 /**
  * Line names as defined in the Tfl API.
@@ -76,7 +76,7 @@ interface LineAPIResult {
 
 export function TestLinesAPI(http: HttpClient, line: string) {
     let url = `https://api.tfl.gov.uk/Line/${line}/Route`;
-    url = url + ApiKeys.htmlPrefix();
+    url = ApiKeys.AddKeys(url);
     console.log(url);
     http.get(url).subscribe((lines: LineAPIResult) => {
         let result2 = lines.routeSections.map((v: RouteSection) => {

@@ -4,11 +4,11 @@
 
 import { Naptan } from "../naptans/naptans";
 import { HttpClient } from '@angular/common/http';
-import { ApiKeys } from "../my_tfl_api_key";
 import { Arrival } from "../tfl_api/arrivals";
 import { Injectable, EventEmitter } from "@angular/core";
 import { NotifierService } from "../notifier.service";
 import * as lodash from 'lodash';
+import { ApiKeys } from "../../environments/api-key";
 
 export class PassengerPlace {
   constructor(public arrival: Arrival, public details: string) { }
@@ -50,7 +50,8 @@ export class Passenger {
         (resolve, reject) => {
           let cv = this.currentVehicle;
           //let url = `https://api.tfl.gov.uk/Mode/tube/Arrivals` + ApiKeys.htmlPrefix();
-          let url = `https://api.tfl.gov.uk/line/${cv.line}/arrivals` + ApiKeys.htmlPrefix();
+          let url = `https://api.tfl.gov.uk/line/${cv.line}/arrivals`;
+          url = ApiKeys.AddKeys(url);
           let resolved = false;
           console.log(url);
           http.get<Array<Arrival>>(url).subscribe((arrivals: Array<Arrival>) => {

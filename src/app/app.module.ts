@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NaptansComponent } from './naptans/naptans.component';
-import { StartupComponent } from './startup/startup.component';
 import { ArrivalInfoComponent } from './arrival-info/arrival-info.component';
 import { Passenger } from './passenger/passenger';
 import { PlacesComponent } from './places/places.component';
@@ -22,14 +21,14 @@ import { TimetableService } from './timetable.service';
 import { PlacesSvgComponent } from './places-svg/places-svg.component';
 
 @NgModule({
-  declarations: [AppComponent, StartupComponent, ArrivalInfoComponent,
+  declarations: [AppComponent, ArrivalInfoComponent,
     NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent, MapSvgComponent, PlacesSvgComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
   ],
   providers: [Passenger, PlacesService, NotifierService, TimetableService],
-  entryComponents: [StartupComponent, ArrivalInfoComponent, PlacesComponent],
+  entryComponents: [ArrivalInfoComponent, PlacesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
