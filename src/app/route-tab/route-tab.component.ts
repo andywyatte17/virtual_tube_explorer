@@ -124,6 +124,9 @@ export class RouteTabComponent implements OnInit {
       let ApplicationIDKey = ApiKeys.ApplicationIDKey();
       const hhmm = HhMm.fromString(t);
       if (!hhmm) return;
+
+      this.trainIsProcessing = true;
+
       this.timetable
         .LookupTimetable(
           line,
@@ -144,6 +147,7 @@ export class RouteTabComponent implements OnInit {
             return new Train(fromId, toId, t1, t2, isNonTrain, x.stopNaptans);
           });
           //console.log(this._trains);
+          this.trainIsProcessing = false;
         });
     }
   }
@@ -266,6 +270,8 @@ export class RouteTabComponent implements OnInit {
 
   stationModel = new StationModel(this.http);
 
+  trainIsProcessing = true;
+
   private googleMapIsInitialized = false;
 
   private tryInitializeGoogleMap() {
@@ -276,6 +282,8 @@ export class RouteTabComponent implements OnInit {
       setTimeout( () => this.tryInitializeGoogleMap(), 1000 );
       return false;
     }
+    if(gm.hidden)
+      return;
     initialize(gmid);
     this.googleMapIsInitialized = true;
     return true;

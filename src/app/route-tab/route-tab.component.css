@@ -2,3 +2,24 @@
   width: 256px;
   height: 256px;
 }
+
+#stationSelector {
+  width: 8em;
+}
+
+#lineSelector {
+  width: 8em;
+}
+
+#trainSelector {
+  width: 8em;
+}
+
+.spinner {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
