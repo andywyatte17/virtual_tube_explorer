@@ -136,7 +136,6 @@ export class TimetableService {
         startMm
       );
 
-    console.log("Here");
     let makePromise = (direction: Direction) => {
       let url = `https://api.tfl.gov.uk/Line/${line}/Timetable/${fromNaptanId}?direction=${direction}`;
       if (ApplicationID && ApplicationKey)
@@ -160,7 +159,7 @@ export class TimetableService {
 
     let processResult = (api: TflRouteAPI) => {
       api.timetable.routes.forEach((route: Route) => {
-        const m = ExtractStationIntervals(fromNaptanId, toNaptanId, route);
+        const m = ExtractStationIntervals(fromNaptanId, toNaptanId, route, line);
 
         // ...
         route.schedules.forEach((schedule: Schedule, index: number) => {

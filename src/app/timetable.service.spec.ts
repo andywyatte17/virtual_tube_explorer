@@ -181,7 +181,7 @@ describe("TimetableService", () => {
 
   // ...
 
-  xit("Piccadilly - Cockfosters -> Kings Cross", done => {
+  it("Piccadilly - Cockfosters -> Kings Cross", done => {
     // see https://tfl.gov.uk/tube/timetable/metropolitan?FromId=940GZZLUCAL&fromText=Chalfont&toText=Amersham&ToId=940GZZLUAMS
     inject([TimetableService], (service: TimetableService) => {
       service

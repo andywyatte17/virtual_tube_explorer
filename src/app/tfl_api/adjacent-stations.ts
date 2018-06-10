@@ -2,7 +2,7 @@
 // adjacent-stations.ts
 //
 
-import { MakeTubeNaptans, Naptan } from "../naptans/naptans";
+import { MakeTubeNaptans, Naptan, StationNaptanToName, StationNameToNaptan } from "../naptans/naptans";
 // ...
 import { northern1, northern2, northern3 } from './adjacent-stations-northern';
 import { hammersmith } from './adjacent-stations-hammersmith-city';
@@ -63,4 +63,49 @@ export function Check() : Array<string> {
       });
     });
   return result;
+}
+
+/**
+ * Extend the naptans list from TFL APIs (ie timetable) with our
+ * lists of stations on lines. This is used to work around
+ * limitations in TFL API data.
+ * @param naptans Input list (naptans) with additional stations added.
+ *   Stations will have been added where they rightly appear on,
+ *   say, the tube map.
+ * @param line Line such as piccadilly or central
+ * @returns Input list (naptans) with additional stations added.
+ *   Stations will have been added where they rightly appear on,
+ *   say, the tube map.
+ */
+export function ExtendNaptansVisitedFromTFL(naptans : Array<string>, line : string) : Array<string>
+{
+  let result : Array<string> = null;
+  const first = naptans[0];
+  const firstN = StationNaptanToName(first);
+  const last = naptans[naptans.length-1];
+  const lastN = StationNaptanToName(last);
+
+  adjacentStations.forEach(
+    (lineStations: LineStations) => {
+      if (result)
+        return;
+      if (lineStations.stations.indexOf(firstN) >= 0 &&
+        lineStations.stations.indexOf(lastN) >= 0) {
+        let stationsNames = lineStations.stations.split("\n");
+        let stationsNaptans = stationsNames.map((st) => StationNameToNaptan(st));
+        const firstIx = stationsNaptans.findIndex((value: string) => first == value);
+        const lastIx = stationsNaptans.findIndex((value: string) => last == value);
+        if (firstIx < 0 || lastIx < 0)
+          return;
+        if (firstIx < lastIx)
+          result = stationsNaptans.filter((_, index: number) => firstIx <= index && index <= lastIx);
+        else if (lastIx < firstIx) {
+          result = stationsNaptans.filter((_, index: number) => lastIx <= index && index <= firstIx);
+          result = result.reverse();
+        }
+      }
+    });
+
+  if(result) return result;
+  return naptans;
 }

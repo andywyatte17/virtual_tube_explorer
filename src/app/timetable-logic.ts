@@ -1,3 +1,5 @@
+import { ExtendNaptansVisitedFromTFL } from "./tfl_api/adjacent-stations";
+
 //
 // timetable-logic.ts
 //
@@ -83,7 +85,8 @@ export function StationIntervalMapper(r: JourneyInfo[]) {
 export function ExtractStationIntervals(
   fromNaptanId: string,
   toNaptanId: string,
-  route: Route
+  route: Route,
+  line: string
 ) {
   let m = new Map<IntervalId, JourneyInfo>();
   // ...
@@ -96,10 +99,11 @@ export function ExtractStationIntervals(
     let ji: JourneyInfo = null;
     intervals.forEach((interval: Interval) => {
       naptansSoFar.push(interval.stopId);
+      let naptansSoFar2 = ExtendNaptansVisitedFromTFL(naptansSoFar, line);
       let v = <JourneyInfo>{
         stopId: interval.stopId,
         timeToArrival: interval.timeToArrival,
-        naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar)),
+        naptansSoFar: JSON.parse(JSON.stringify(naptansSoFar2)),
         lastStopId: intervals[intervals.length - 1].stopId
       };
       //console.log({id:id, sim:StationIntervalMapper([v])[0]});
