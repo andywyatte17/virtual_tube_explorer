@@ -13,6 +13,7 @@ import { piccadilly1 } from "./adjacent-stations-piccadilly";
 import { central2, central1 } from "./adjacent-stations-central";
 import { district1, district2, district3 } from "./adjacent-stations-district";
 import { bakerloo } from "./adjacent-stations-bakerloo";
+import { circle1 } from "./adjacent-stations-circle";
 // ...
 
 export type LineStations = { line: string, stations: string };
@@ -20,6 +21,8 @@ export type LineStations = { line: string, stations: string };
 export const adjacentStations: Array<LineStations> = [
   // ...
   {line:"bakerloo", stations:bakerloo },
+  // ...
+  {line:"circle", stations:circle1 },
   // ...
   {line:"central", stations:central1 },
   {line:"central", stations:central2 },
