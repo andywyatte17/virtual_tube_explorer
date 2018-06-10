@@ -1,0 +1,28 @@
+export const jubilee = {
+  line: 'jubilee', stations: `Stanmore
+Canons Park
+Queensbury
+Kingsbury
+Wembley Park
+Neasden
+Dollis Hill
+Willesden Green
+Kilburn
+West Hampstead
+Finchley Road
+Swiss Cottage
+St. John's Wood
+Baker Street
+Bond Street
+Green Park
+Westminster
+Waterloo
+Southwark
+London Bridge
+Bermondsey
+Canada Water
+Canary Wharf
+North Greenwich
+Canning Town
+West Ham
+Stratford`};
