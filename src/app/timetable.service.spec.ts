@@ -146,7 +146,7 @@ describe("TimetableService", () => {
 
   // ...
 
-  fit("Northern - Edgware -> Camden Town", done => {
+  xit("Northern - Edgware -> Camden Town", done => {
     inject([TimetableService], (service: TimetableService) => {
       service
         .LookupTimetable(
@@ -181,7 +181,7 @@ describe("TimetableService", () => {
 
   // ...
 
-  fit("Piccadilly - Cockfosters -> Kings Cross", done => {
+  xit("Piccadilly - Cockfosters -> Kings Cross", done => {
     // see https://tfl.gov.uk/tube/timetable/metropolitan?FromId=940GZZLUCAL&fromText=Chalfont&toText=Amersham&ToId=940GZZLUAMS
     inject([TimetableService], (service: TimetableService) => {
       service

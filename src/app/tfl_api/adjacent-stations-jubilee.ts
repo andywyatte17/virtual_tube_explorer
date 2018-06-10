@@ -1,5 +1,4 @@
-export const jubilee = {
-  line: 'jubilee', stations: `Stanmore
+export const jubilee = `Stanmore
 Canons Park
 Queensbury
 Kingsbury
@@ -25,4 +24,4 @@ Canary Wharf
 North Greenwich
 Canning Town
 West Ham
-Stratford`};
+Stratford`;

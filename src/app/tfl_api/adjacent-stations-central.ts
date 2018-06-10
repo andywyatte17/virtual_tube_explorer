@@ -2,9 +2,7 @@
 // adjacent-stations-central
 //
 
-export const central1 =
-  {
-    line: 'central', stations: `Epping
+export const central1 = `Epping
 Theydon Bois
 Debden
 Loughton
@@ -30,16 +28,14 @@ Lancaster Gate
 Queensway
 Notting Hill Gate
 Holland Park
-Shepherd's Bush
+Shepherd's Bush (Central)
 White City
 East Acton
 North Acton
 West Acton
-Ealing Broadway`};
+Ealing Broadway`;
 
-export const central2 =
-  {
-    line: 'central', stations: `Roding Valley
+export const central2 = `Roding Valley
 Chigwell
 Grange Hill
 Hainault
@@ -67,7 +63,7 @@ Lancaster Gate
 Queensway
 Notting Hill Gate
 Holland Park
-Shepherd's Bush
+Shepherd's Bush (Central)
 White City
 East Acton
 North Acton
@@ -77,4 +73,4 @@ Greenford
 Northolt
 South Ruislip
 Ruislip Gardens
-West Ruislip`};
+West Ruislip`;

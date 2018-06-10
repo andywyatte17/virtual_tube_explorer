@@ -1,6 +1,4 @@
-const export piccadilly1 = {
-  line: 'piccadilly',
-  stations: `Cockfosters
+export const piccadilly1 = `Cockfosters
 Oakwood
 Southgate
 Arnos Grove
@@ -25,7 +23,7 @@ South Kensington
 Gloucester Road
 Earl's Court
 Barons Court
-Hammersmith
+Hammersmith (Dist&Picc Line)
 Turnham Green
 Acton Town
 Ealing Common
@@ -41,4 +39,4 @@ Ruislip Manor
 Ruislip
 Ickenham
 Hillingdon
-Uxbridge`};
+Uxbridge`;

@@ -3,212 +3,61 @@
 //
 
 import { MakeTubeNaptans, Naptan } from "../naptans/naptans";
+// ...
+import { northern1, northern2, northern3 } from './adjacent-stations-northern';
+import { hammersmith } from './adjacent-stations-hammersmith-city';
+import { metropolitan1, metropolitan2, metropolitan3, metropolitan4 } from './adjacent-stations-metropolitan';
+import { victoria } from "./adjacent-stations-victoria";
+import { jubilee } from "./adjacent-stations-jubilee";
+import { piccadilly1 } from "./adjacent-stations-piccadilly";
+import { central2, central1 } from "./adjacent-stations-central";
+import { district1, district2, district3 } from "./adjacent-stations-district";
+import { bakerloo } from "./adjacent-stations-bakerloo";
+// ...
 
 export type LineStations = { line: string, stations: string };
 
-/*
-line: 'old_circle', {
-stations: `Aldgate
-Tower Hill
-Monument
-Cannon Street
-Mansion House
-Blackfriars
-Temple
-Embankment
-Westminster
-St. James's Park
-Victoria
-Sloane Square
-South Kensington
-Gloucester Road
-High Street Kensington
-Notting Hill Gate
-Bayswater
-Paddington
-Edgware Road
-Baker Street
-Great Portland Street
-Euston Square
-King's Cross St. Pancras
-Farringdon
-Barbican
-Moorgate
-Liverpool Street` } */
-
-export const adjacentStations: Array<string> = [
-  `Barking
-East Ham
-Upton Park
-West Ham
-Bromley-by-Bow
-Bow Road
-Mile End
-Stepney Green
-Whitechapel
-Aldgate East
-Liverpool Street
-Moorgate
-Barbican
-Farringdon
-King's Cross St. Pancras
-Euston Square
-Great Portland Street
-Baker Street
-Edgware Road
-Paddington
-Royal Oak
-Westbourne Park
-Ladbroke Grove
-Latimer Road
-Wood Lane
-Shepherd's Bush Market
-Goldhawk Road
-Hammersmith`,
-  `Aldgate
-Liverpool Street
-Moorgate
-Barbican
-Farringdon
-King's Cross St. Pancras
-Euston Square
-Great Portland Street
-Baker Street
-Finchley Road
-Wembley Park
-Preston Road
-Northwick Park
-Harrow-on-the-Hill
-North Harrow
-Pinner
-Northwood Hills
-Northwood
-Moor Park
-Croxley
-Watford`,
-  `Aldgate
-Liverpool Street
-Moorgate
-Barbican
-Farringdon
-King's Cross St. Pancras
-Euston Square
-Great Portland Street
-Baker Street
-Finchley Road
-Wembley Park
-Preston Road
-Northwick Park
-Harrow-on-the-Hill
-North Harrow
-Pinner
-Northwood Hills
-Northwood
-Moor Park
-Rickmansworth
-Chorleywood
-Chalfont & Latimer
-Amersham`,
-  `Chalfont & Latimer
-Chesham`,
-  `Aldgate
-Liverpool Street
-Moorgate
-Barbican
-Farringdon
-King's Cross St. Pancras
-Euston Square
-Great Portland Street
-Baker Street
-Finchley Road
-Wembley Park
-Preston Road
-Northwick Park
-Harrow-on-the-Hill
-West Harrow
-Rayners Lane
-Eastcote
-Ruislip Manor
-Ruislip
-Ickenham
-Hillingdon
-Uxbridge`,
-  `Morden
-South Wimbledon
-Colliers Wood
-Tooting Broadway
-Tooting Bec
-Balham
-Clapham South
-Clapham Common
-Clapham North
-Stockwell
-Oval
-Kennington
-Waterloo
-Embankment
-Charing Cross
-Leicester Square
-Tottenham Court Road
-Goodge Street
-Warren Street
-Euston
-Mornington Crescent
-Camden Town
-Chalk Farm
-Belsize Park
-Hampstead
-Golders Green
-Brent Cross
-Hendon Central
-Colindale
-Burnt Oak
-Edgware`,
-  `Morden
-South Wimbledon
-Colliers Wood
-Tooting Broadway
-Tooting Bec
-Balham
-Clapham South
-Clapham Common
-Clapham North
-Stockwell
-Oval
-Kennington
-Elephant & Castle
-Borough
-London Bridge
-Bank
-Moorgate
-Old Street
-Angel
-King's Cross St. Pancras
-Euston
-Camden Town
-Kentish Town
-Tufnell Park
-Archway
-Highgate
-East Finchley
-Finchley Central
-West Finchley
-Woodside Park
-Totteridge & Whetstone
-High Barnet`,
-  `Finchley Central
-Mill Hill East`
+export const adjacentStations: Array<LineStations> = [
+  // ...
+  {line:"bakerloo", stations:bakerloo },
+  // ...
+  {line:"central", stations:central1 },
+  {line:"central", stations:central2 },
+  // ...
+  {line:"district", stations:district1 },
+  {line:"district", stations:district2 },
+  {line:"district", stations:district3 },
+  // ...
+  {line:"hammersmith-city", stations:hammersmith },
+  // ...
+  {line:"jubilee", stations:jubilee},
+  // ...
+  {line:"metropolitan", stations:metropolitan1 },
+  {line:"metropolitan", stations:metropolitan2 },
+  {line:"metropolitan", stations:metropolitan3 },
+  {line:"metropolitan", stations:metropolitan4 },
+  // ...
+  {line:"northern", stations:northern1 },
+  {line:"northern", stations:northern2 },
+  {line:"northern", stations:northern3 },
+  // ...
+  {line:"piccadilly", stations:piccadilly1 },
+  // ...
+  {line:"victoria", stations:victoria },
+  // ...
 ];
 
-export function Check() {
+export function Check() : Array<string> {
   const naptans = MakeTubeNaptans();
-
+  let result = [];
   adjacentStations.forEach(
-    (s: string) => {
+    (ls: LineStations) => {
+      const s = ls.stations;
       s.split("\n").forEach((name: string) => {
         const found = naptans.find((value: Naptan) => value.name == name);
         if (!found)
-          console.log(name);
+          result.push(name);
       });
     });
+  return result;
 }

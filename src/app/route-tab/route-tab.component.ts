@@ -294,7 +294,6 @@ export class RouteTabComponent implements OnInit {
 
   ngOnInit() {
     this.tryInitializeGoogleMap();
-    Check();
   }
 
   dayOfWeekChanged() {

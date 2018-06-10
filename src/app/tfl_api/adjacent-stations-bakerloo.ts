@@ -2,10 +2,7 @@
 // adjacent-stations-bakerloo.ts
 //
 
-export const bakerloo = {
-  line: 'bakerloo',
-  stations:
-    `Elephant & Castle
+export const bakerloo = `Elephant & Castle
 Lambeth North
 Waterloo
 Embankment
@@ -15,7 +12,7 @@ Oxford Circus
 Regent's Park
 Baker Street
 Marylebone
-Edgware Road
+Edgware Road (Bakerloo)
 Paddington
 Warwick Avenue
 Maida Vale
@@ -29,4 +26,4 @@ Wembley Central
 North Wembley
 South Kenton
 Kenton
-Harrow & Wealdstone`};
+Harrow & Wealdstone`;

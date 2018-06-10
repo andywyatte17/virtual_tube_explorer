@@ -1,5 +1,4 @@
-export const district1 = {
-  line: 'district', station: `Upminster
+export const district1 = `Upminster
 Upminster Bridge
 Hornchurch
 Elm Park
@@ -34,16 +33,15 @@ Gloucester Road
 Earl's Court
 West Kensington
 Barons Court
-Hammersmith
+Hammersmith (Dist&Picc Line)
 Ravenscourt Park
 Stamford Brook
 Turnham Green
 Gunnersbury
 Kew Gardens
-Richmond`};
+Richmond`;
 
-export const district2 = {
-  line: 'district', stations: `Upminster
+export const district2 = `Upminster
 Upminster Bridge
 Hornchurch
 Elm Park
@@ -78,17 +76,16 @@ Gloucester Road
 Earl's Court
 West Kensington
 Barons Court
-Hammersmith
+Hammersmith (Dist&Picc Line)
 Ravenscourt Park
 Stamford Brook
 Turnham Green
 Chiswick Park
 Acton Town
 Ealing Common
-Ealing Broadway`};
+Ealing Broadway`;
 
-export const district3 = {
-  line: 'district', stations: `Upminster
+export const district3 = `Upminster
 Upminster Bridge
 Hornchurch
 Elm Park
@@ -128,4 +125,4 @@ Putney Bridge
 East Putney
 Southfields
 Wimbledon Park
-Wimbledon`};
+Wimbledon`;

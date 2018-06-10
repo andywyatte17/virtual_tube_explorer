@@ -2,8 +2,7 @@
 // adjacent-stations-victoria.ts
 //
 
-export const victoria = {
-  line: 'victoria', stations: `Walthamstow Central
+export const victoria = `Walthamstow Central
 Blackhorse Road
 Tottenham Hale
 Seven Sisters
@@ -18,4 +17,4 @@ Victoria
 Pimlico
 Vauxhall
 Stockwell
-Brixton`};
+Brixton`;
