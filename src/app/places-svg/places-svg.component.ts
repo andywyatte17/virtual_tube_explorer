@@ -27,12 +27,16 @@ export class PlacesSvgComponent implements OnInit {
   }
 
   get style() {
-    let s = 20 / this.sx;
-    return this.domSantizier.bypassSecurityTrustStyle(`font-size:${s}px;`);
+    let s = 8 / this.sx;
+    return this.domSantizier.bypassSecurityTrustStyle(`font-size:${s}px; font-family: monospace;`);
   }
 
   textStyle(station: string) {
-    return this.domSantizier.bypassSecurityTrustStyle('fill:red');
+    let s = 10 / this.sx;
+    const fs = `font-size:${s}px; font-family: monospace;`;
+    if(station=="Acton Town")
+      return this.domSantizier.bypassSecurityTrustStyle(`fill:blue; ${fs}`);
+    return this.domSantizier.bypassSecurityTrustStyle(`fill:red; ${fs}`);
   }
 
   opacity(station: string) {

@@ -1,10 +1,9 @@
 <!-- -->
-<div>
-  <button (click)="plus()">+</button>
-  <button (click)="minus()">-</button>
-</div>
-<div draggable="true" (mousedown)="mousedown($event)" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)">
-
+<div draggable="true" (mousedown)="mousedown($event)" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)" hidden>
+  <div>
+    <button (click)="plus()">+</button>
+    <button (click)="minus()">-</button>
+  </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="-40.5 -120.5 2500 1320">
     <title>Route map of London Underground, London Overground, Docklands Light Railway and Elizabeth line (Crossrail) licensed under
       Creative Commons Attribution-Share Alike 4.0 International by Wikimedians</title>
@@ -4962,7 +4961,7 @@
       </g>
     </g>
   </svg>
-  <!-- -->
-  <app-places-svg></app-places-svg>
-  <!-- -->
 </div>
+<!-- -->
+<app-places-svg></app-places-svg>
+<!-- -->
