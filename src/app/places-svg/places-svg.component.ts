@@ -46,7 +46,13 @@ export class PlacesSvgComponent implements OnInit {
     let s = 10 / this.sx;
     const fs = `font-size:${s}px; font-family: monospace `;
     const opacity = `fill-opacity: 1.0 `;
-    let line = station_to_line[ this.nameToNaptan[ station ] ];
+
+    let line : string = null;
+    try {
+      line = station_to_line[ this.nameToNaptan[ station ] ];
+    } catch(e) {}
+    if(!line)
+      line = station_to_line[ station ];
     
     const lineToColor = () => {
       switch (line) {
