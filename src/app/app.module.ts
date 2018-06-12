@@ -19,10 +19,12 @@ import { MapComponent } from './map/map.component';
 import { MapSvgComponent } from './map-svg/map-svg.component';
 import { TimetableService } from './timetable.service';
 import { PlacesSvgComponent } from './places-svg/places-svg.component';
+import { QuickRouteComponent } from './quick-route/quick-route.component';
 
 @NgModule({
   declarations: [AppComponent, ArrivalInfoComponent,
-    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent, MapComponent, MapSvgComponent, PlacesSvgComponent],
+    NaptansComponent, PlacesComponent, PredictionSummaryComponent, RouteTabComponent,
+     MapComponent, MapSvgComponent, PlacesSvgComponent, QuickRouteComponent],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
