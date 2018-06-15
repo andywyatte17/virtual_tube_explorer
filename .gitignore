@@ -3,3 +3,4 @@ node_modules
 apikey.py
 dist/*
 environment.withkeys.ts
+src/app/places-svg/places.svg

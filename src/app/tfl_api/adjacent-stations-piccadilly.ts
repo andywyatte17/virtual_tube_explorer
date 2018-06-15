@@ -40,3 +40,15 @@ Ruislip
 Ickenham
 Hillingdon
 Uxbridge`;
+
+export const piccadilly2 = `Heathrow Terminal 5
+Heathrow Terminals 1-2-3
+Hatton Cross
+Hounslow West
+Hounslow Central
+Hounslow East
+Osterley
+Boston Manor
+Northfields
+South Ealing
+Acton Town`;

@@ -1,7 +1,14 @@
 <div>
   <label for="stationInput">Station:</label>
-  <input id="quick_route_station_input" name="stationInput" type="text" (keyup.enter)="onStationEnter($event)" (keyup)="onStationKeyUp($event)">
-  <span>{{foundStation}}</span>
+  <input id="quick_route_station_input" name="stationInput" type="text"
+     (keyup.enter)="onStationEnter($event)"
+     (keyup)="onStationKeyUp($event)"
+     (keydown.arrowup)="incrementRouteIndex($event, 1)"
+     (keydown.arrowdown)="incrementRouteIndex($event, -1)"
+     >
+  <span>{{foundStation}}&nbsp;</span>
+  <span>{{proposedLine}}&nbsp;</span>
+  <button (click)="popLastStation()">Pop</button>
   <p>
     <ng-container *ngFor="let ls of lineStations;">
       <span *ngIf="ls.line!=null">{{ls.line}};&nbsp;</span>

@@ -9,8 +9,8 @@ import { hammersmith } from './adjacent-stations-hammersmith-city';
 import { metropolitan1, metropolitan2, metropolitan3, metropolitan4 } from './adjacent-stations-metropolitan';
 import { victoria } from "./adjacent-stations-victoria";
 import { jubilee } from "./adjacent-stations-jubilee";
-import { piccadilly1 } from "./adjacent-stations-piccadilly";
-import { central2, central1 } from "./adjacent-stations-central";
+import { piccadilly1, piccadilly2 } from "./adjacent-stations-piccadilly";
+import { central2, central1, central3 } from "./adjacent-stations-central";
 import { district1, district2, district3 } from "./adjacent-stations-district";
 import { bakerloo } from "./adjacent-stations-bakerloo";
 import { circle1 } from "./adjacent-stations-circle";
@@ -26,6 +26,7 @@ export const adjacentStations: Array<LineStations> = [
   // ...
   {line:"central", stations:central1 },
   {line:"central", stations:central2 },
+  {line:"central", stations:central3 },
   // ...
   {line:"district", stations:district1 },
   {line:"district", stations:district2 },
@@ -45,6 +46,7 @@ export const adjacentStations: Array<LineStations> = [
   {line:"northern", stations:northern3 },
   // ...
   {line:"piccadilly", stations:piccadilly1 },
+  {line:"piccadilly", stations:piccadilly2 },
   // ...
   {line:"victoria", stations:victoria },
   // ...
@@ -108,4 +110,34 @@ export function ExtendNaptansVisitedFromTFL(naptans : Array<string>, line : stri
 
   if(result) return result;
   return naptans;
+}
+
+export function RoutesBetweenStations(naptan1: string, naptan2: string) {
+  const first = naptan1;
+  const last = naptan2;
+  const firstN = StationNaptanToName(first);
+  const lastN = StationNaptanToName(last);
+  type T = { naptans: Array<string>, line: string };
+  let results = new Array<T>();
+  for (let lineStations of adjacentStations) {
+    if (lineStations.stations.indexOf(firstN) >= 0 &&
+      lineStations.stations.indexOf(lastN) >= 0) {
+      let stationsNames = lineStations.stations.split("\n");
+      let stationsNaptans = stationsNames.map((st) => StationNameToNaptan(st));
+      const firstIx = stationsNaptans.findIndex((value: string) => first == value);
+      const lastIx = stationsNaptans.findIndex((value: string) => last == value);
+      if (firstIx < 0 || lastIx < 0)
+        return;
+      let result = new Array<string>();
+      if (firstIx < lastIx)
+        result = stationsNaptans.filter((_, index: number) => firstIx <= index && index <= lastIx);
+      else if (lastIx < firstIx) {
+        result = stationsNaptans.filter((_, index: number) => lastIx <= index && index <= firstIx);
+        result = result.reverse();
+      }
+      let v = { naptans: result, line: lineStations.line };
+      results.push(v);
+    }
+  }
+  return results;
 }

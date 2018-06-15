@@ -3,7 +3,7 @@
 //
 
 import { QuickRouteLogic } from "./quick-route-logic";
-import { NameToNaptan, StationNaptanToName } from "../naptans/naptans";
+import { StationNaptanToName } from "../naptans/naptans";
 
 describe("QuickRouteLogic", () => {
   let originalTimeout;
@@ -14,9 +14,9 @@ describe("QuickRouteLogic", () => {
 
   fit("Test 1", () => {
     let qrl = new QuickRouteLogic();
-    qrl.add(NameToNaptan("Amersham"));
-    qrl.add(NameToNaptan("Chalfont & Latimer"), "metropolitan");
-    qrl.add(NameToNaptan("Chesham"), "metropolitan");
+    qrl.add(StationNameToNaptan("Amersham"));
+    qrl.add(StationNameToNaptan("Chalfont & Latimer"), "metropolitan");
+    qrl.add(StationNameToNaptan("Chesham"), "metropolitan");
     let visited = qrl.visited();
     visited = visited.map( (x) => StationNaptanToName(x) );
     expect(visited.toString()).toEqual("Amersham,Chalfont & Latimer,Chesham");
@@ -26,10 +26,10 @@ describe("QuickRouteLogic", () => {
 
   fit("Test 2", () => {
     let qrl = new QuickRouteLogic();
-    qrl.add(NameToNaptan("Amersham"));
-    qrl.add(NameToNaptan("Chalfont & Latimer"), "metropolitan");
-    qrl.add(NameToNaptan("Chesham"), "metropolitan");
-    qrl.add(NameToNaptan("Moor Park"), "metropolitan");
+    qrl.add(StationNameToNaptan("Amersham"));
+    qrl.add(StationNameToNaptan("Chalfont & Latimer"), "metropolitan");
+    qrl.add(StationNameToNaptan("Chesham"), "metropolitan");
+    qrl.add(StationNameToNaptan("Moor Park"), "metropolitan");
     let visited = qrl.visited();
     visited = visited.map( (x) => StationNaptanToName(x) );
     expect(visited.toString()).toEqual("Amersham,Chalfont & Latimer,Chesham");

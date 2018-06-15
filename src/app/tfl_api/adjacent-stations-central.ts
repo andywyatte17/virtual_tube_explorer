@@ -74,3 +74,9 @@ Northolt
 South Ruislip
 Ruislip Gardens
 West Ruislip`;
+
+export const central3 = `Woodford
+Roding Valley
+Chigwell
+Grange Hill
+Hainault`;

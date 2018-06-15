@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { station_to_line } from "../tfl_api/station-to-line";
-import { MakeTubeNaptans, Naptan } from "../naptans/naptans";
+import { MakeTubeNaptans, Naptan, StationNameToNaptan, StationNaptanToName } from "../naptans/naptans";
 import { PlacesSvgService } from "./places-svg.service";
 
 @Component({
@@ -46,24 +46,17 @@ export class PlacesSvgComponent implements OnInit {
     return this.domSantizier.bypassSecurityTrustStyle(`font-size:${s}px; font-family: monospace;`);
   }
 
-  private nameToNaptan = ( () => {
-    let m = MakeTubeNaptans();
-    let rv = <any>{};
-    m.forEach( (v:Naptan) => {
-      rv[v.name] = v.id;
-    });
-    return rv;
-  })();
-
   textStyle(station: string) {
     let s = 10 / this.sx;
     const fs = `font-size:${s}px; font-family: monospace `;
-    const naptan = this.nameToNaptan[ station ];
+    let naptan = station;
+    if(!StationNaptanToName(naptan))
+      naptan = StationNameToNaptan( station );
 
     let opacity = `fill-opacity: 1.0 `;
     const sv = this._stationsVisited;
     if (naptan && sv && sv.indexOf(naptan) >= 0)
-      opacity = `fill-opacity: 0.2 `;
+      opacity = `fill-opacity: 0.3 `;
 
     let line : string = null;
     try {
