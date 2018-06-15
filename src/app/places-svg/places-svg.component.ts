@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { station_to_line } from "../tfl_api/station-to-line";
 import { MakeTubeNaptans, Naptan } from "../naptans/naptans";
+import { PlacesSvgService } from "./places-svg.service";
 
 @Component({
   selector: "app-places-svg",
@@ -14,7 +15,19 @@ export class PlacesSvgComponent implements OnInit {
   dx = 0.0;
   dy = 0.0;
 
-  constructor(public readonly domSantizier: DomSanitizer) { }
+  private _stationsVisited : Array<string> = null;
+
+  constructor(public readonly domSantizier: DomSanitizer,
+    public readonly placesSvgService: PlacesSvgService) {
+    this.hookInStationsVisitedHandler();
+  }
+
+  private hookInStationsVisitedHandler() {
+    this.placesSvgService.placesVisitedDidChange.subscribe(
+      (stationsVisited: Array<string>) => {
+        this._stationsVisited = stationsVisited.map((x) => x);
+      });
+  }
 
   ngOnInit() { }
 
@@ -45,11 +58,16 @@ export class PlacesSvgComponent implements OnInit {
   textStyle(station: string) {
     let s = 10 / this.sx;
     const fs = `font-size:${s}px; font-family: monospace `;
-    const opacity = `fill-opacity: 0.0 `;
+    const naptan = this.nameToNaptan[ station ];
+
+    let opacity = `fill-opacity: 1.0 `;
+    const sv = this._stationsVisited;
+    if (naptan && sv && sv.indexOf(naptan) >= 0)
+      opacity = `fill-opacity: 0.2 `;
 
     let line : string = null;
     try {
-      line = station_to_line[ this.nameToNaptan[ station ] ];
+      line = station_to_line[ naptan ];
     } catch(e) {}
     if(!line)
       line = station_to_line[ station ];

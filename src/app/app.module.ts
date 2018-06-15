@@ -18,8 +18,9 @@ import { RouteTabComponent } from './route-tab/route-tab.component';
 import { MapComponent } from './map/map.component';
 import { MapSvgComponent } from './map-svg/map-svg.component';
 import { TimetableService } from './timetable.service';
-import { PlacesSvgComponent } from './places-svg/places-svg.component';
 import { QuickRouteComponent } from './quick-route/quick-route.component';
+import { PlacesSvgComponent } from './places-svg/places-svg.component';
+import { PlacesSvgService } from './places-svg/places-svg.service';
 
 @NgModule({
   declarations: [AppComponent, ArrivalInfoComponent,
@@ -29,7 +30,7 @@ import { QuickRouteComponent } from './quick-route/quick-route.component';
     BrowserModule, FormsModule, NgbModule.forRoot(), HttpClientModule,
     HttpModule, MaterialModule
   ],
-  providers: [Passenger, PlacesService, NotifierService, TimetableService],
+  providers: [Passenger, PlacesService, NotifierService, TimetableService, PlacesSvgService],
   entryComponents: [ArrivalInfoComponent, PlacesComponent],
   bootstrap: [AppComponent]
 })

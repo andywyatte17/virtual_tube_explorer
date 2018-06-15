@@ -1,6 +1,6 @@
 <div>
   <label for="stationInput">Station:</label>
-  <input name="stationInput" type="text" (keyup.enter)="onStationEnter($event)" (keyup)="onStationKeyUp($event)">
+  <input id="quick_route_station_input" name="stationInput" type="text" (keyup.enter)="onStationEnter($event)" (keyup)="onStationKeyUp($event)">
   <span>{{foundStation}}</span>
   <p>
     <ng-container *ngFor="let ls of lineStations;">
