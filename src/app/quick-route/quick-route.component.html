@@ -1,1 +1,12 @@
+<div>
+  <label for="stationInput">Station:</label>
+  <input name="stationInput" type="text" (keyup.enter)="onStationEnter($event)" (keyup)="onStationKeyUp($event)">
+  <span>{{foundStation}}</span>
+  <p>
+    <ng-container *ngFor="let ls of lineStations;">
+      <span *ngIf="ls.line!=null">{{ls.line}};&nbsp;</span>
+      <span>{{ls.station}};&nbsp;</span>
+    </ng-container>
+  </p>
+</div>
 <app-places-svg></app-places-svg>

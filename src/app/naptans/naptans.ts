@@ -335,6 +335,12 @@ export function MakeTubeNaptans(sorted = true) {
   return rv;
 }
 
+export function NameToNaptan(name: string) {
+  let found = names_naptans.find((n: [string, string]) => n[1] === name);
+  if (found) return found[0];
+  return null;
+}
+
 export function StationNameToNaptan(name:string) : string
 {
   let found = names_naptans.find( (nap_nam) => name==nap_nam[1] );

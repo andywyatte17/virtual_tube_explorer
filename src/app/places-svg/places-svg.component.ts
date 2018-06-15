@@ -45,7 +45,7 @@ export class PlacesSvgComponent implements OnInit {
   textStyle(station: string) {
     let s = 10 / this.sx;
     const fs = `font-size:${s}px; font-family: monospace `;
-    const opacity = `fill-opacity: 1.0 `;
+    const opacity = `fill-opacity: 0.0 `;
 
     let line : string = null;
     try {

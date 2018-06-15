@@ -44,7 +44,20 @@ Chorleywood
 Chalfont & Latimer
 Amersham`;
 
-export const metropolitan3 = `Chalfont & Latimer
+export const metropolitan3 = `Baker Street
+Finchley Road
+Wembley Park
+Preston Road
+Northwick Park
+Harrow-on-the-Hill
+North Harrow
+Pinner
+Northwood Hills
+Northwood
+Moor Park
+Rickmansworth
+Chorleywood
+Chalfont & Latimer
 Chesham`;
 
 export const metropolitan4 = `Aldgate
