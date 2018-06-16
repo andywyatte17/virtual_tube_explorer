@@ -126,3 +126,6 @@ East Putney
 Southfields
 Wimbledon Park
 Wimbledon`;
+
+export const district4 = `Kensington (Olympia)
+Earl's Court`;

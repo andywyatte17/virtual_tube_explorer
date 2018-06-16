@@ -11,9 +11,10 @@ import { victoria } from "./adjacent-stations-victoria";
 import { jubilee } from "./adjacent-stations-jubilee";
 import { piccadilly1, piccadilly2 } from "./adjacent-stations-piccadilly";
 import { central2, central1, central3 } from "./adjacent-stations-central";
-import { district1, district2, district3 } from "./adjacent-stations-district";
+import { district1, district2, district3, district4 } from "./adjacent-stations-district";
 import { bakerloo } from "./adjacent-stations-bakerloo";
 import { circle1 } from "./adjacent-stations-circle";
+import { waterloo_city_1 } from "./adjacent-stations-wateroo-city";
 // ...
 
 export type LineStations = { line: string, stations: string };
@@ -31,6 +32,7 @@ export const adjacentStations: Array<LineStations> = [
   {line:"district", stations:district1 },
   {line:"district", stations:district2 },
   {line:"district", stations:district3 },
+  {line:"district", stations:district4 },
   // ...
   {line:"hammersmith-city", stations:hammersmith },
   // ...
@@ -50,6 +52,7 @@ export const adjacentStations: Array<LineStations> = [
   // ...
   {line:"victoria", stations:victoria },
   // ...
+  {line:"waterloo-city", stations:waterloo_city_1}
 ];
 
 export function Check() : Array<string> {

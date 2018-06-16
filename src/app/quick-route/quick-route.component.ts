@@ -83,7 +83,7 @@ export class QuickRouteComponent implements OnInit {
       this._quickRoute.add(StationNameToNaptan(this.foundStation));
     else {
       this._quickRoute.add(StationNameToNaptan(this.foundStation));
-      this._quickRoute.pickLineBetweenLastStationPair(this._routeIndex);
+      this._quickRoute.pickLineBetweenLastStationPair(this.routeIndex-1);
     }
     this.bumpStationsView();
   }
@@ -99,27 +99,28 @@ export class QuickRouteComponent implements OnInit {
     return this._quickRoute.lineStations;
   }
 
-  private _routeIndex = 0;
+  /* 1-based route index - picks from RoutesBetweenStations(..) values */
+  public routeIndex = 1;
+
   private _proposedLine = "";
 
   bumpProposedRoute() {
     if (this._quickRoute.length > 0) {
       let ls = this._quickRoute.lineStations;
       let routes = RoutesBetweenStations(StationNameToNaptan(ls[ls.length - 1].station), StationNameToNaptan(this.foundStation));
-      if(routes.length<1) {
-        this._routeIndex = 0;
+      if(routes.length<2) {
+        this.routeIndex = 1;
         return;
       }
-      this._routeIndex = Math.min(routes.length-1, this._routeIndex);
-      this._proposedLine = routes[this._routeIndex].line + "-" + StationNaptanToName(routes[this._routeIndex].naptans[1]);
+      this.routeIndex = Math.min(routes.length, this.routeIndex);
+      this._proposedLine = routes[this.routeIndex-1].line + "-" + StationNaptanToName(routes[this.routeIndex-1].naptans[1]);
     }
   }
 
   incrementRouteIndex(event : KeyboardEvent, n: number) {
-    console.log("this._routeIndex", this._routeIndex);
     event.preventDefault();
-    this._routeIndex += n;
-    if (this._routeIndex < 0) this._routeIndex = 0;
+    this.routeIndex += n;
+    if (this.routeIndex < 1) this.routeIndex = 1;
     this.bumpProposedRoute();
   }
 

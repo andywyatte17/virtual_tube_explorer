@@ -21,7 +21,7 @@ describe("QuickRouteLogic", () => {
     qrl.add(StationNameToNaptan("Chesham"));
     qrl.pickLineBetweenLastStationPair(0);
     let visited = qrl.visited();
-    visited = visited.map( (x) => StationNaptanToName(x) );
+    visited = visited.map((x) => StationNaptanToName(x));
     expect(visited.toString()).toEqual("Amersham,Chalfont & Latimer,Chesham");
   });
 
@@ -37,7 +37,7 @@ describe("QuickRouteLogic", () => {
     qrl.add(StationNameToNaptan("Moor Park"));
     qrl.pickLineBetweenLastStationPair(0);
     let visited = qrl.visited();
-    visited = visited.map( (x) => StationNaptanToName(x) );
+    visited = visited.map((x) => StationNaptanToName(x));
     expect(visited.toString()).toEqual("Amersham,Chalfont & Latimer,Chesham,Chorleywood,Moor Park,Rickmansworth");
   });
 
@@ -50,7 +50,7 @@ describe("QuickRouteLogic", () => {
     qrl.add(StationNameToNaptan("Edgware"));
     qrl.pickLineBetweenLastStationPair(0);
     let visited = qrl.visited();
-    visited = visited.map( (x) => StationNaptanToName(x) );
+    visited = visited.map((x) => StationNaptanToName(x));
     const expectedVisited = ["Euston", "Mornington Crescent", "Camden Town", "Chalk Farm", "Belsize Park",
       "Hampstead", "Golders Green", "Brent Cross", "Hendon Central", "Colindale", "Burnt Oak", "Edgware"]
       .map(x => StationNameToNaptan(x))
@@ -59,7 +59,7 @@ describe("QuickRouteLogic", () => {
       .join(",");
     expect(visited.toString()).toEqual(expectedVisited);
   });
-  
+
   // ...
 
   it("Test 4 (0)", () => {
@@ -78,6 +78,33 @@ describe("QuickRouteLogic", () => {
       '940GZZLUEMB', '940GZZLUWSM', '940GZZLUSJP', '940GZZLUVIC',
       '940GZZLUSSQ', '940GZZLUSKS', '940GZZLUGTR', '940GZZLUHSK',
       '940GZZLUNHG', '940GZZLUBWT', '940GZZLUPAC', '940GZZLUERC']);
+  });
+
+  // ...
+
+  it("Test 5", () => {
+    let routes = RoutesBetweenStations(StationNameToNaptan("Kensington (Olympia)"),
+      StationNameToNaptan("Earl's Court"));
+    expect(routes[0].naptans).toEqual(['940GZZLUKOY', '940GZZLUECT']);
+  });
+
+  // ...
+
+  it("Test 6", () => {
+    let routes = RoutesBetweenStations(StationNameToNaptan("High Street Kensington"),
+      StationNameToNaptan("Paddington"));
+    expect(routes[1].naptans).toEqual(['940GZZLUHSK', '940GZZLUNHG', '940GZZLUBWT', '940GZZLUPAC']);
+  });
+
+  // ...
+
+  it("Test 7", () => {
+    let qrl = new QuickRouteLogic();
+    qrl.add(StationNameToNaptan("High Street Kensington"));
+    qrl.add(StationNameToNaptan("Paddington"));
+    qrl.pickLineBetweenLastStationPair(1);
+    let visited = qrl.visited();
+    expect(visited.toString()).toEqual('940GZZLUBWT,940GZZLUHSK,940GZZLUNHG,940GZZLUPAC');
   });
 
   // ...

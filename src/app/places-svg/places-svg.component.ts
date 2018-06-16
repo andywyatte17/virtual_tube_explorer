@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { station_to_line } from "../tfl_api/station-to-line";
-import { MakeTubeNaptans, Naptan, StationNameToNaptan, StationNaptanToName, ShortNaptanToName } from "../naptans/naptans";
+import { MakeTubeNaptans, Naptan, StationNameToNaptan, StationNaptanToName, ShortNaptanToName, ShortNaptanToNaptan } from "../naptans/naptans";
 import { PlacesSvgService } from "./places-svg.service";
 
 @Component({
@@ -49,7 +49,7 @@ export class PlacesSvgComponent implements OnInit {
   textStyle(station: string) {
     let s = 10 / this.sx;
     const fs = `font-size:${s}px; font-family: monospace `;
-    let naptan = ShortNaptanToName(station);
+    let naptan = ShortNaptanToNaptan(station);
 
     let opacity = `fill-opacity: 1.0 `;
     const sv = this._stationsVisited;

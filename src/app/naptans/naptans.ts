@@ -363,3 +363,16 @@ export function ShortNaptanToName(naptan:string) : string
     return found[1];
   return null;
 }
+
+export function ShortNaptanToNaptan(naptan:string) : string
+{
+  let found = names_naptans.find( (nap_nam) => {
+    let naptan_n = nap_nam[0];
+    if(naptan.substr(naptan.length-3)===naptan_n.substr(naptan_n.length-3))
+      return true;
+    return false;
+  });
+  if(found)
+    return found[0];
+  return null;
+}

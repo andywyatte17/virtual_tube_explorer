@@ -47,7 +47,7 @@ export class QuickRouteLogic {
       const a = this._naptansLines[n].naptan;
       const b = this._naptansLines[n + 1].naptan;
       let routes = RoutesBetweenStations(a, b);
-      if(!routes)
+      if(!routes || routes.length<1)
         return;
       if (0 <= routeIndex && routeIndex < routes.length) {
         this._naptansLines[n + 1].routeIndex = routeIndex;
@@ -101,16 +101,12 @@ export class QuickRouteLogic {
       const nextNaptan = naptanLine.naptan;
       const lineToNext = naptanLine.lineFromLastToHere;
       let ProcessRoute = () => {
-        for (let x of adjacentStations2) {
-          if (x.line !== lineToNext) continue;
-          let ixCurrent = x.stations.indexOf(currentNaptan);
-          let ixNext = x.stations.indexOf(nextNaptan);
-          if (ixCurrent >= 0 && ixNext >= 0) {
-            for (let station of x.stations.slice(Math.min(ixCurrent, ixNext), Math.max(ixCurrent, ixNext) + 1)) {
-              visited.push(station);
-            }
-            return true;
-          }
+        let routes = RoutesBetweenStations(currentNaptan, nextNaptan);
+        if(routes && routes.length>0) {
+          const route = routes[naptanLine.routeIndex];
+          for(let routeNaptan of route.naptans)
+            visited.push(routeNaptan);
+          return true;
         }
         return false;
       };
