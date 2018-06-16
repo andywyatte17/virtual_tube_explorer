@@ -47,6 +47,8 @@ export class QuickRouteLogic {
       const a = this._naptansLines[n].naptan;
       const b = this._naptansLines[n + 1].naptan;
       let routes = RoutesBetweenStations(a, b);
+      if(!routes)
+        return;
       if (0 <= routeIndex && routeIndex < routes.length) {
         this._naptansLines[n + 1].routeIndex = routeIndex;
         this._naptansLines[n + 1].lineFromLastToHere = routes[routeIndex].line;

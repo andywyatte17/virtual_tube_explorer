@@ -120,14 +120,15 @@ export function RoutesBetweenStations(naptan1: string, naptan2: string) {
   type T = { naptans: Array<string>, line: string };
   let results = new Array<T>();
   for (let lineStations of adjacentStations) {
-    if (lineStations.stations.indexOf(firstN) >= 0 &&
-      lineStations.stations.indexOf(lastN) >= 0) {
+    const ix1 = lineStations.stations.indexOf(firstN);
+    const ix2 = lineStations.stations.indexOf(lastN);
+    if (ix1>=0 && ix2>=0) {
       let stationsNames = lineStations.stations.split("\n");
       let stationsNaptans = stationsNames.map((st) => StationNameToNaptan(st));
       const firstIx = stationsNaptans.findIndex((value: string) => first == value);
       const lastIx = stationsNaptans.findIndex((value: string) => last == value);
       if (firstIx < 0 || lastIx < 0)
-        return;
+        continue;
       let result = new Array<string>();
       if (firstIx < lastIx)
         result = stationsNaptans.filter((_, index: number) => firstIx <= index && index <= lastIx);
