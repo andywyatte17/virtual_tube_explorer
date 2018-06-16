@@ -119,7 +119,8 @@ export function RoutesBetweenStations(naptan1: string, naptan2: string) {
   const lastN = StationNaptanToName(last);
   type T = { naptans: Array<string>, line: string };
   let results = new Array<T>();
-  for (let lineStations of adjacentStations) {
+
+  const Pass = (lineStations : LineStations) => {
     const ix1 = lineStations.stations.indexOf(firstN);
     const ix2 = lineStations.stations.indexOf(lastN);
     if (ix1>=0 && ix2>=0) {
@@ -128,7 +129,7 @@ export function RoutesBetweenStations(naptan1: string, naptan2: string) {
       const firstIx = stationsNaptans.findIndex((value: string) => first == value);
       const lastIx = stationsNaptans.findIndex((value: string) => last == value);
       if (firstIx < 0 || lastIx < 0)
-        continue;
+        return;
       let result = new Array<string>();
       if (firstIx < lastIx)
         result = stationsNaptans.filter((_, index: number) => firstIx <= index && index <= lastIx);
@@ -136,9 +137,24 @@ export function RoutesBetweenStations(naptan1: string, naptan2: string) {
         result = stationsNaptans.filter((_, index: number) => lastIx <= index && index <= firstIx);
         result = result.reverse();
       }
-      let v = { naptans: result, line: lineStations.line };
-      results.push(v);
+      return { naptans: result, line: lineStations.line };
     }
+    return null;
+  };
+
+  for (let lineStations of adjacentStations) {
+    let result = Pass(lineStations);
+    if(!result)
+      continue;
+    results.push(result);
+    // Handle reverse case - this is for odd lines like 'circle'
+    let ls2 = {
+      line: lineStations.line,
+      stations: lineStations.stations.split("\n").reverse().join("\n")
+    };
+    let result2 = Pass(ls2);
+    if (result2 && result2.naptans.slice().reverse() !== result.naptans)
+      results.push(result2);
   }
   return results;
 }
