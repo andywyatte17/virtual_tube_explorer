@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build_vte": "ng build --aot --prod --base-href /vte --deploy-url /vte"
+    "build_vte": "ng build --aot --prod --base-href /vte --deploy-url /vte",
+    "build_vte_to": "ng build --aot --prod --base-href /vte --deploy-url /vte --output-path"
   },
   "private": true,
   "dependencies": {
