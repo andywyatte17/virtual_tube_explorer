@@ -1,16 +1,16 @@
 <div>
 </div>
 <div>
-  <button (click)="plus()">+</button>
-  <button (click)="minus()">-</button>
+  <button class="btn btn-outline-secondary" (click)="plus()">Z+</button>
+  <button class="btn btn-outline-secondary" (click)="minus()">Z-</button>
 </div>
 <svg height="1720" width="2500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g [attr.style]="style" [attr.transform]="transform">
+  <g [attr.style]="style" [attr.transform]="transform" (mouseover)="mov($event)">
     <text [attr.style]="textStyle('ACT')" x="439" y="918">ACT</text>
     <text [attr.style]="textStyle('ADE')" x="1656" y="665">ADE</text>
     <text [attr.style]="textStyle('ALD')" x="1595" y="679">ALD</text>
     <text [attr.style]="textStyle('ALP')" x="375" y="687">ALP</text>
-    <text [attr.style]="textStyle('AMS')" x="93" y="206">AMS</text>
+    <text sn="AMS" [attr.style]="textStyle('AMS')" x="93" y="206" (mouseover)="mov($event)" (mouseout)="mout($event)">{{ t('AMS') }}</text>
     <text [attr.style]="textStyle('AGL')" x="1421" y="538">AGL</text>
     <text [attr.style]="textStyle('ACY')" x="1065" y="307">ACY</text>
     <text [attr.style]="textStyle('ASG')" x="1239" y="154">ASG</text>
@@ -50,7 +50,7 @@
     <text [attr.style]="textStyle('CFM')" x="1093" y="435">CFM</text>
     <text [attr.style]="textStyle('CHL')" x="1333" y="672">CHL</text>
     <text [attr.style]="textStyle('CHX')" x="1280" y="814">CHX</text>
-    <text [attr.style]="textStyle('CSM')" x="139" y="175">CSM</text>
+    <text sn="CSM" [attr.style]="textStyle('CSM')" x="139" y="175" (mouseover)="mov($event)">{{t('CSM')}}</text>
     <text [attr.style]="textStyle('CWL')" x="2029" y="130">CWL</text>
     <text [attr.style]="textStyle('CWP')" x="468" y="947">CWP</text>
     <text [attr.style]="textStyle('CYD')" x="165" y="260">CYD</text>

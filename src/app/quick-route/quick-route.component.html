@@ -1,20 +1,21 @@
 <div>
-  <label for="stationInput">Station:</label>
-  <input id="quick_route_station_input" name="stationInput" type="text"
-     (keyup.enter)="onStationEnter($event)"
-     (keyup)="onStationKeyUp($event)"
-     (keydown.arrowup)="incrementRouteIndex($event, 1)"
-     (keydown.arrowdown)="incrementRouteIndex($event, -1)"
-     >
-  <span>{{ foundStation }}&nbsp;</span>
-  <span>{{ proposedLine }}&nbsp;</span>
-  <span>({{ routeIndex }})&nbsp;</span>
-  <button (click)="popLastStation()">Pop</button>
+  <div class="input-group mb-3">
+    <label for="stationInput">Station:</label>
+    <input id="quick_route_station_input" name="stationInput" type="text" (keyup.enter)="onStationEnter($event)"
+      (keyup)="onStationKeyUp($event)" (keydown.arrowup)="incrementRouteIndex($event, 1)" (keydown.arrowdown)="incrementRouteIndex($event, -1)">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="onStationAdd()">+</button>
+    </div>
+    <span>{{ foundStation }}&nbsp;</span>
+    <span>{{ proposedLine }}&nbsp;</span>
+    <span>({{ routeIndex }})&nbsp;</span>
+  </div>
   <p>
     <ng-container *ngFor="let ls of lineStations;">
       <span *ngIf="ls.line!=null">-{{ ls.line }}-&nbsp;</span>
       <span>{{ ls.station }}&nbsp;</span>
     </ng-container>
+    <button [hidden]="lineStations.length<1" class="btn btn-outline-secondary" type="button" (click)="onStationRemoveLast()">-</button>
   </p>
 </div>
 <app-places-svg></app-places-svg>

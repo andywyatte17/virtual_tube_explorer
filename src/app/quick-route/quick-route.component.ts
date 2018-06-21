@@ -73,22 +73,31 @@ export class QuickRouteComponent implements OnInit {
     this.placesSvgService.placesVisitedDidChange.emit(visited);
   }
 
-  onStationEnter(event) {
+  onStationEnter(someEvent) {
     if (!this.foundStation)
       return;
-    let inputElem = <HTMLInputElement>event.srcElement;
-    console.log('event', typeof (event), event);
-    console.log(inputElem.value);
     if (this._quickRoute.length < 1)
       this._quickRoute.add(StationNameToNaptan(this.foundStation));
     else {
       this._quickRoute.add(StationNameToNaptan(this.foundStation));
-      this._quickRoute.pickLineBetweenLastStationPair(this.routeIndex-1);
+      this._quickRoute.pickLineBetweenLastStationPair(this.routeIndex - 1);
     }
     this.bumpStationsView();
   }
 
-  popLastStation() {
+  onStationAdd() {
+    if (this._stationInput) {
+      if (this._quickRoute.length < 1)
+        this._quickRoute.add(StationNameToNaptan(this.foundStation));
+      else {
+        this._quickRoute.add(StationNameToNaptan(this.foundStation));
+        this._quickRoute.pickLineBetweenLastStationPair(this.routeIndex - 1);
+      }
+      this.bumpStationsView();
+    }
+  }
+
+  onStationRemoveLast() {
     if (this._quickRoute.length > 0) {
       this._quickRoute.pop();
       this.bumpStationsView();
@@ -108,16 +117,16 @@ export class QuickRouteComponent implements OnInit {
     if (this._quickRoute.length > 0) {
       let ls = this._quickRoute.lineStations;
       let routes = RoutesBetweenStations(StationNameToNaptan(ls[ls.length - 1].station), StationNameToNaptan(this.foundStation));
-      if(routes.length<2) {
+      if (routes.length < 2) {
         this.routeIndex = 1;
         return;
       }
       this.routeIndex = Math.min(routes.length, this.routeIndex);
-      this._proposedLine = routes[this.routeIndex-1].line + "-" + StationNaptanToName(routes[this.routeIndex-1].naptans[1]);
+      this._proposedLine = routes[this.routeIndex - 1].line + "-" + StationNaptanToName(routes[this.routeIndex - 1].naptans[1]);
     }
   }
 
-  incrementRouteIndex(event : KeyboardEvent, n: number) {
+  incrementRouteIndex(event: KeyboardEvent, n: number) {
     event.preventDefault();
     this.routeIndex += n;
     if (this.routeIndex < 1) this.routeIndex = 1;

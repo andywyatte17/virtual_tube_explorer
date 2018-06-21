@@ -48,7 +48,10 @@ export class PlacesSvgComponent implements OnInit {
 
   textStyle(station: string) {
     let s = 10 / this.sx;
-    const fs = `font-size:${s}px; font-family: monospace `;
+    
+    // see https://www.cssfontstack.com/lucida-console
+    const fs = `font-size:${s}px; font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; `;
+
     let naptan = ShortNaptanToNaptan(station);
 
     let opacity = `fill-opacity: 1.0 `;
@@ -85,7 +88,25 @@ export class PlacesSvgComponent implements OnInit {
     return this.domSantizier.bypassSecurityTrustStyle(`fill:#8f0; ${fs}; ${opacity}`);
   }
 
+  public primeStation : string = null;
+
+  t(shortNaptan:string)
+  {
+    if(this.primeStation!==shortNaptan)
+      return shortNaptan;
+    return ShortNaptanToName(shortNaptan);
+  }
+
   get transform() {
     return `matrix(${this.sx}, 0, 0, ${this.sy}, ${this.dx}, ${this.dy})`;
+  }
+
+  mov(event : MouseEvent) {
+    this.primeStation = (<SVGTextElement>event.target).getAttribute('sn');
+  }
+
+  mout(event : MouseEvent) {
+    if(this.primeStation===(<SVGTextElement>event.target).getAttribute('sn'))
+      this.primeStation = null;
   }
 }
