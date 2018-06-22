@@ -3,6 +3,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { station_to_line } from "../tfl_api/station-to-line";
 import { MakeTubeNaptans, Naptan, StationNameToNaptan, StationNaptanToName, ShortNaptanToName, ShortNaptanToNaptan } from "../naptans/naptans";
 import { PlacesSvgService } from "./places-svg.service";
+import { SafeStyle } from "@angular/platform-browser/src/security/dom_sanitization_service";
 
 @Component({
   selector: "app-places-svg",
@@ -46,6 +47,22 @@ export class PlacesSvgComponent implements OnInit {
     return this.domSantizier.bypassSecurityTrustStyle(`font-size:${s}px; font-family: monospace;`);
   }
 
+  private colorForLine(line: string) {
+    switch (line) {
+      case "bakerloo": return ["#963", "#000"];
+      case "central": return ["#c33", "#000"];
+      case "jubilee": return ["#889", "#000"];
+      case "northern": return ["#000", "#fff"];
+      case "hammersmith-city": return ["#c99", "#000"];
+      case "district": return ["#063", "#fff"];
+      case "metropolitan": return ["#a06", "#000"];
+      case "piccadilly": return ["#048", "#fff"];
+      case "circle": return ["#fc0", "#000"];
+      case "victoria": return ["#09c", "#000"];
+    }
+    return null;
+  }
+
   textStyle(station: string) {
     let s = 10 / this.sx;
     
@@ -59,32 +76,20 @@ export class PlacesSvgComponent implements OnInit {
     if (naptan && sv && sv.indexOf(naptan) >= 0)
       opacity = `fill-opacity: 0.3 `;
 
+    // ...
+
     let line : string = null;
     try {
       line = station_to_line[ naptan ];
     } catch(e) {}
-    if(!line)
+    if(!line && station)
       line = station_to_line[ station ];
-    
-    const lineToColor = () => {
-      switch (line) {
-        case "bakerloo": return "#963";
-        case "central": return "#c33";
-        case "jubilee": return "#889";
-        case "northern": return "#000";
-        case "hammersmith-city": return "#c99";
-        case "district": return "#063";
-        case "metropolitan": return "#a06";
-        case "piccadilly": return "#048";
-        case "circle": return "#fc0";
-        case "victoria": return "#09c";
-      }
-      return null;
-    };
 
-    let color = lineToColor();
-    if(color)
-      return this.domSantizier.bypassSecurityTrustStyle(`fill:${color}; ${fs}; ${opacity}`);
+    // ...
+
+    const cb = this.colorForLine(line);
+    if(cb)
+      return this.domSantizier.bypassSecurityTrustStyle(`fill:${cb[0]}; ${fs}; ${opacity}`);
     return this.domSantizier.bypassSecurityTrustStyle(`fill:#8f0; ${fs}; ${opacity}`);
   }
 
@@ -92,9 +97,9 @@ export class PlacesSvgComponent implements OnInit {
 
   t(shortNaptan:string)
   {
-    if(this.primeStation!==shortNaptan)
-      return shortNaptan;
-    return ShortNaptanToName(shortNaptan);
+    //if(this.primeStation!==shortNaptan)
+    return shortNaptan;
+    //return ShortNaptanToName(shortNaptan);
   }
 
   get transform() {
@@ -102,11 +107,72 @@ export class PlacesSvgComponent implements OnInit {
   }
 
   mov(event : MouseEvent) {
-    this.primeStation = (<SVGTextElement>event.target).getAttribute('sn');
+    let elem = (<SVGTextElement>event.target);
+    this.primeStation = elem.getAttribute('id');
+    if(this.primeStation) {
+      this.selX = (parseFloat(elem.getAttribute("x")) + 80).toString();
+      this.selY = (parseFloat(elem.getAttribute("y")) + 12 / this.sx).toString();
+      this.selText = ShortNaptanToName(this.primeStation);
+      let s = 24 / this.sx;
+      let w = 1;
+
+      let style = "stroke-opacity:0.5; fill-opacity:1.0; " + 
+                  "stroke-width:" + w.toString() + "px; " +
+                  "font-weight:bold; font-size:" + s.toString() + "px; ";
+      
+      const line = station_to_line[ShortNaptanToNaptan(this.primeStation)];
+      const cb = this.colorForLine(line);
+      if(cb) {
+        style = style + "fill:" + cb[0] + "; ";
+        style = style + "stroke:" + cb[1] + "; ";
+      }
+
+      this.selStyle = this.domSantizier.bypassSecurityTrustStyle(style);
+    } else {
+      this.selStyle = this.domSantizier.bypassSecurityTrustStyle("fill-opacity: 0.0; ");
+    }
   }
 
   mout(event : MouseEvent) {
-    if(this.primeStation===(<SVGTextElement>event.target).getAttribute('sn'))
+    let elem = (<SVGTextElement>event.target);
+    if(this.primeStation===elem.getAttribute('id'))
+    {
       this.primeStation = null;
+      this.selStyle = this.domSantizier.bypassSecurityTrustStyle("fill-opacity: 0.0; ");
+    }
   }
+
+  md_xy = <{x:number, y:number}>null;
+
+  private make_md_xy(event:MouseEvent)
+  {
+    if(event.buttons&1)
+      return { x: event.screenX, y: event.screenY };
+    return null;
+  }
+
+  md(event : MouseEvent) {
+    //console.log("md", event);
+    this.md_xy = this.make_md_xy(event);
+  }
+
+  mm(event : MouseEvent) {
+    //console.log("mm", event);
+    let next = this.make_md_xy(event);
+    if(next && this.md_xy) {
+      this.dx += next.x - this.md_xy.x;
+      this.dy += next.y - this.md_xy.y;
+    }
+    this.md_xy = next;
+  }
+
+  mu(event : MouseEvent) {
+    //console.log("mu", event);
+    this.md_xy = null;
+  }
+
+  selX = "0.0";
+  selY = "0.0";
+  selText = "";
+  selStyle : SafeStyle = null;
 }

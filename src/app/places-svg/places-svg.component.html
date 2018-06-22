@@ -4,272 +4,275 @@
   <button class="btn btn-outline-secondary" (click)="plus()">Z+</button>
   <button class="btn btn-outline-secondary" (click)="minus()">Z-</button>
 </div>
+<div (mousedown)="md($event)" (mousemove)="mm($event)" (mouseup)="mu($event)">
 <svg height="1720" width="2500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g [attr.style]="style" [attr.transform]="transform" (mouseover)="mov($event)">
-    <text [attr.style]="textStyle('ACT')" x="439" y="918">ACT</text>
-    <text [attr.style]="textStyle('ADE')" x="1656" y="665">ADE</text>
-    <text [attr.style]="textStyle('ALD')" x="1595" y="679">ALD</text>
-    <text [attr.style]="textStyle('ALP')" x="375" y="687">ALP</text>
-    <text sn="AMS" [attr.style]="textStyle('AMS')" x="93" y="206" (mouseover)="mov($event)" (mouseout)="mout($event)">{{ t('AMS') }}</text>
-    <text [attr.style]="textStyle('AGL')" x="1421" y="538">AGL</text>
-    <text [attr.style]="textStyle('ACY')" x="1065" y="307">ACY</text>
-    <text [attr.style]="textStyle('ASG')" x="1239" y="154">ASG</text>
-    <text [attr.style]="textStyle('ASL')" x="1359" y="344">ASL</text>
-    <text [attr.style]="textStyle('BST')" x="1056" y="665">BST</text>
-    <text [attr.style]="textStyle('BLM')" x="1164" y="1177">BLM</text>
-    <text [attr.style]="textStyle('BNK')" x="1468" y="692">BNK</text>
-    <text [attr.style]="textStyle('BBN')" x="1447" y="614">BBN</text>
-    <text [attr.style]="textStyle('BKG')" x="2176" y="501">BKG</text>
-    <text [attr.style]="textStyle('BKE')" x="2126" y="227">BKE</text>
-    <text [attr.style]="textStyle('BSC')" x="708" y="1024">BSC</text>
-    <text [attr.style]="textStyle('BWT')" x="878" y="797">BWT</text>
-    <text [attr.style]="textStyle('BEC')" x="2234" y="460">BEC</text>
-    <text [attr.style]="textStyle('BZP')" x="1013" y="435">BZP</text>
-    <text [attr.style]="textStyle('BMY')" x="1593" y="829">BMY</text>
-    <text [attr.style]="textStyle('BLG')" x="1658" y="572">BLG</text>
-    <text [attr.style]="textStyle('BKF')" x="1365" y="767">BKF</text>
-    <text [attr.style]="textStyle('BLR')" x="1605" y="225">BLR</text>
-    <text [attr.style]="textStyle('BND')" x="1098" y="744">BND</text>
-    <text [attr.style]="textStyle('BOR')" x="1494" y="867">BOR</text>
-    <text [attr.style]="textStyle('BOS')" x="303" y="964">BOS</text>
-    <text [attr.style]="textStyle('BDS')" x="1269" y="177">BDS</text>
-    <text [attr.style]="textStyle('BWR')" x="1896" y="586">BWR</text>
-    <text [attr.style]="textStyle('BTX')" x="841" y="345">BTX</text>
-    <text [attr.style]="textStyle('BXN')" x="1320" y="1095">BXN</text>
-    <text [attr.style]="textStyle('BBB')" x="1966" y="591">BBB</text>
-    <text [attr.style]="textStyle('BKH')" x="1917" y="153">BKH</text>
-    <text [attr.style]="textStyle('BTK')" x="751" y="278">BTK</text>
-    <text [attr.style]="textStyle('CAR')" x="1305" y="415">CAR</text>
-    <text [attr.style]="textStyle('CTN')" x="1183" y="435">CTN</text>
-    <text [attr.style]="textStyle('CWR')" x="1697" y="826">CWR</text>
-    <text [attr.style]="textStyle('CYF')" x="1904" y="797">CYF</text>
-    <text [attr.style]="textStyle('CGT')" x="2049" y="693">CGT</text>
-    <text [attr.style]="textStyle('CST')" x="1429" y="705">CST</text>
-    <text [attr.style]="textStyle('CPK')" x="666" y="329">CPK</text>
-    <text [attr.style]="textStyle('CAL')" x="135" y="237">CAL</text>
-    <text [attr.style]="textStyle('CFM')" x="1093" y="435">CFM</text>
-    <text [attr.style]="textStyle('CHL')" x="1333" y="672">CHL</text>
-    <text [attr.style]="textStyle('CHX')" x="1280" y="814">CHX</text>
-    <text sn="CSM" [attr.style]="textStyle('CSM')" x="139" y="175" (mouseover)="mov($event)">{{t('CSM')}}</text>
-    <text [attr.style]="textStyle('CWL')" x="2029" y="130">CWL</text>
-    <text [attr.style]="textStyle('CWP')" x="468" y="947">CWP</text>
-    <text [attr.style]="textStyle('CYD')" x="165" y="260">CYD</text>
-    <text [attr.style]="textStyle('CPC')" x="1224" y="1132">CPC</text>
-    <text [attr.style]="textStyle('CPN')" x="1248" y="1114">CPN</text>
-    <text [attr.style]="textStyle('CPS')" x="1194" y="1155">CPS</text>
-    <text [attr.style]="textStyle('CKS')" x="1149" y="87">CKS</text>
-    <text [attr.style]="textStyle('CND')" x="781" y="300">CND</text>
-    <text [attr.style]="textStyle('CSD')" x="1074" y="1245">CSD</text>
-    <text [attr.style]="textStyle('CXY')" x="237" y="267">CXY</text>
-    <text [attr.style]="textStyle('DGE')" x="2294" y="415">DGE</text>
-    <text [attr.style]="textStyle('DGY')" x="2264" y="437">DGY</text>
-    <text [attr.style]="textStyle('DBN')" x="1917" y="93">DBN</text>
-    <text [attr.style]="textStyle('DOH')" x="744" y="463">DOH</text>
-    <text [attr.style]="textStyle('EBY')" x="343" y="829">EBY</text>
-    <text [attr.style]="textStyle('ECM')" x="398" y="886">ECM</text>
-    <text [attr.style]="textStyle('ECT')" x="874" y="1024">ECT</text>
-    <text [attr.style]="textStyle('EAN')" x="583" y="831">EAN</text>
-    <text [attr.style]="textStyle('EFY')" x="1027" y="253">EFY</text>
-    <text [attr.style]="textStyle('EHM')" x="2144" y="521">EHM</text>
-    <text [attr.style]="textStyle('EPY')" x="875" y="1189">EPY</text>
-    <text [attr.style]="textStyle('EAE')" x="263" y="453">EAE</text>
-    <text [attr.style]="textStyle('ERB')" x="964" y="473">ERB</text>
-    <text [attr.style]="textStyle('ERC')" x="954" y="483">ERC</text>
-    <text [attr.style]="textStyle('EGW')" x="721" y="255">EGW</text>
-    <text [attr.style]="textStyle('EAC')" x="1493" y="905">EAC</text>
-    <text [attr.style]="textStyle('EPK')" x="2324" y="392">EPK</text>
-    <text [attr.style]="textStyle('EMB')" x="1285" y="832">EMB</text>
-    <text [attr.style]="textStyle('EPG')" x="1917" y="33">EPG</text>
-    <text [attr.style]="textStyle('ESQ')" x="1214" y="554">ESQ</text>
-    <text [attr.style]="textStyle('EUS')" x="1218" y="499">EUS</text>
-    <text [attr.style]="textStyle('FLP')" x="2126" y="203">FLP</text>
-    <text [attr.style]="textStyle('FCN')" x="1379" y="630">FCN</text>
-    <text [attr.style]="textStyle('FYC')" x="997" y="231">FYC</text>
-    <text [attr.style]="textStyle('FYR')" x="960" y="505">FYR</text>
-    <text [attr.style]="textStyle('FPK')" x="1378" y="320">FPK</text>
-    <text [attr.style]="textStyle('FBY')" x="822" y="1097">FBY</text>
-    <text [attr.style]="textStyle('GTH')" x="2034" y="274">GTH</text>
-    <text [attr.style]="textStyle('GTR')" x="1024" y="1021">GTR</text>
-    <text [attr.style]="textStyle('GGN')" x="871" y="368">GGN</text>
-    <text [attr.style]="textStyle('GHK')" x="655" y="942">GHK</text>
-    <text [attr.style]="textStyle('GDG')" x="1178" y="587">GDG</text>
-    <text [attr.style]="textStyle('GGH')" x="2074" y="130">GGH</text>
-    <text [attr.style]="textStyle('GPS')" x="1104" y="580">GPS</text>
-    <text [attr.style]="textStyle('GPK')" x="1145" y="807">GPK</text>
-    <text [attr.style]="textStyle('GFD')" x="217" y="655">GFD</text>
-    <text [attr.style]="textStyle('GBY')" x="442" y="965">GBY</text>
-    <text [attr.style]="textStyle('HLT')" x="2126" y="179">HLT</text>
-    <text [attr.style]="textStyle('HSC')" x="650" y="780">HSC</text>
-    <text [attr.style]="textStyle('HSD')" x="663" y="1024">HSD</text>
-    <text [attr.style]="textStyle('HTD')" x="901" y="390">HTD</text>
-    <text [attr.style]="textStyle('HGR')" x="363" y="758">HGR</text>
-    <text [attr.style]="textStyle('HSN')" x="652" y="587">HSN</text>
-    <text [attr.style]="textStyle('HAW')" x="547" y="373">HAW</text>
-    <text [attr.style]="textStyle('HOH')" x="473" y="448">HOH</text>
-    <text [attr.style]="textStyle('HNX')" x="173" y="1093">HNX</text>
-    <text [attr.style]="textStyle('HR')" x="118" y="1136">HR4</text>
-    <text [attr.style]="textStyle('HR')" x="33" y="1121">HR5</text>
-    <text [attr.style]="textStyle('HRC')" x="100" y="1100">HRC</text>
-    <text [attr.style]="textStyle('HCL')" x="811" y="323">HCL</text>
-    <text [attr.style]="textStyle('HBT')" x="867" y="133">HBT</text>
-    <text [attr.style]="textStyle('HSK')" x="921" y="927">HSK</text>
-    <text [attr.style]="textStyle('HAI')" x="1429" y="455">HAI</text>
-    <text [attr.style]="textStyle('HGT')" x="1057" y="276">HGT</text>
-    <text [attr.style]="textStyle('HGD')" x="63" y="414">HGD</text>
-    <text [attr.style]="textStyle('HBN')" x="1287" y="647">HBN</text>
-    <text [attr.style]="textStyle('HPK')" x="809" y="878">HPK</text>
-    <text [attr.style]="textStyle('HWY')" x="1329" y="366">HWY</text>
-    <text [attr.style]="textStyle('HCH')" x="2334" y="353">HCH</text>
-    <text [attr.style]="textStyle('HWC')" x="233" y="1048">HWC</text>
-    <text [attr.style]="textStyle('HWE')" x="243" y="1009">HWE</text>
-    <text [attr.style]="textStyle('HWT')" x="203" y="1071">HWT</text>
-    <text [attr.style]="textStyle('HPC')" x="1106" y="857">HPC</text>
-    <text [attr.style]="textStyle('ICK')" x="103" y="453">ICK</text>
-    <text [attr.style]="textStyle('KNG')" x="1398" y="1002">KNG</text>
-    <text [attr.style]="textStyle('KSL')" x="718" y="633">KSL</text>
-    <text [attr.style]="textStyle('KOY')" x="821" y="943">KOY</text>
-    <text [attr.style]="textStyle('KSH')" x="1143" y="347">KSH</text>
-    <text [attr.style]="textStyle('KEN')" x="547" y="411">KEN</text>
-    <text [attr.style]="textStyle('KPK')" x="782" y="684">KPK</text>
-    <text [attr.style]="textStyle('KSX')" x="1298" y="486">KSX</text>
-    <text [attr.style]="textStyle('KBY')" x="666" y="389">KBY</text>
-    <text [attr.style]="textStyle('KNB')" x="1106" y="903">KNB</text>
-    <text [attr.style]="textStyle('LAD')" x="703" y="818">LAD</text>
-    <text [attr.style]="textStyle('LBN')" x="1423" y="922">LBN</text>
-    <text [attr.style]="textStyle('LGT')" x="989" y="807">LGT</text>
-    <text [attr.style]="textStyle('LRD')" x="646" y="809">LRD</text>
-    <text [attr.style]="textStyle('LSQ')" x="1272" y="732">LSQ</text>
-    <text [attr.style]="textStyle('LYN')" x="1940" y="360">LYN</text>
-    <text [attr.style]="textStyle('LYS')" x="1938" y="297">LYS</text>
-    <text [attr.style]="textStyle('LVT')" x="1567" y="589">LVT</text>
-    <text [attr.style]="textStyle('LNB')" x="1488" y="826">LNB</text>
-    <text [attr.style]="textStyle('LGN')" x="1917" y="123">LGN</text>
-    <text [attr.style]="textStyle('MVL')" x="808" y="704">MVL</text>
-    <text [attr.style]="textStyle('MRH')" x="1374" y="297">MRH</text>
-    <text [attr.style]="textStyle('MSH')" x="1405" y="735">MSH</text>
-    <text [attr.style]="textStyle('MBA')" x="1041" y="781">MBA</text>
-    <text [attr.style]="textStyle('MYB')" x="994" y="651">MYB</text>
-    <text [attr.style]="textStyle('MED')" x="1819" y="597">MED</text>
-    <text [attr.style]="textStyle('MHL')" x="916" y="244">MHL</text>
-    <text [attr.style]="textStyle('MMT')" x="1462" y="739">MMT</text>
-    <text [attr.style]="textStyle('MPK')" x="252" y="293">MPK</text>
-    <text [attr.style]="textStyle('MGT')" x="1487" y="620">MGT</text>
-    <text [attr.style]="textStyle('MDN')" x="994" y="1283">MDN</text>
-    <text [attr.style]="textStyle('MTC')" x="1216" y="462">MTC</text>
-    <text [attr.style]="textStyle('NDN')" x="684" y="463">NDN</text>
-    <text [attr.style]="textStyle('NBP')" x="2079" y="227">NBP</text>
-    <text [attr.style]="textStyle('NAN')" x="494" y="815">NAN</text>
-    <text [attr.style]="textStyle('NEN')" x="375" y="807">NEN</text>
-    <text [attr.style]="textStyle('NGW')" x="2003" y="802">NGW</text>
-    <text [attr.style]="textStyle('NHA')" x="372" y="383">NHA</text>
-    <text [attr.style]="textStyle('NWY')" x="568" y="524">NWY</text>
-    <text [attr.style]="textStyle('NFD')" x="333" y="941">NFD</text>
-    <text [attr.style]="textStyle('NHT')" x="151" y="606">NHT</text>
-    <text [attr.style]="textStyle('NKP')" x="525" y="448">NKP</text>
-    <text [attr.style]="textStyle('NWH')" x="312" y="338">NWH</text>
-    <text [attr.style]="textStyle('NOW')" x="282" y="316">NOW</text>
-    <text [attr.style]="textStyle('NHG')" x="872" y="838">NHG</text>
-    <text [attr.style]="textStyle('OAK')" x="1179" y="109">OAK</text>
-    <text [attr.style]="textStyle('ODS')" x="1458" y="562">ODS</text>
-    <text [attr.style]="textStyle('OSY')" x="273" y="986">OSY</text>
-    <text [attr.style]="textStyle('OVL')" x="1350" y="1038">OVL</text>
-    <text [attr.style]="textStyle('OXC')" x="1167" y="711">OXC</text>
-    <text [attr.style]="textStyle('PAC')" x="953" y="694">PAC</text>
-    <text [attr.style]="textStyle('PKR')" x="375" y="780">PKR</text>
-    <text [attr.style]="textStyle('PSG')" x="833" y="1133">PSG</text>
-    <text [attr.style]="textStyle('PVL')" x="297" y="715">PVL</text>
-    <text [attr.style]="textStyle('PCC')" x="1216" y="774">PCC</text>
-    <text [attr.style]="textStyle('PCO')" x="1219" y="955">PCO</text>
-    <text [attr.style]="textStyle('PNR')" x="342" y="361">PNR</text>
-    <text [attr.style]="textStyle('PLW')" x="2084" y="572">PLW</text>
-    <text [attr.style]="textStyle('PRD')" x="593" y="448">PRD</text>
-    <text [attr.style]="textStyle('PYB')" x="854" y="1161">PYB</text>
-    <text [attr.style]="textStyle('QPS')" x="757" y="664">QPS</text>
-    <text [attr.style]="textStyle('QBY')" x="666" y="359">QBY</text>
-    <text [attr.style]="textStyle('QWY')" x="933" y="878">QWY</text>
-    <text [attr.style]="textStyle('RVP')" x="590" y="1024">RVP</text>
-    <text [attr.style]="textStyle('RYL')" x="303" y="404">RYL</text>
-    <text [attr.style]="textStyle('RBG')" x="1999" y="240">RBG</text>
-    <text [attr.style]="textStyle('RGP')" x="1091" y="639">RGP</text>
-    <text [attr.style]="textStyle('RMD')" x="374" y="1051">RMD</text>
-    <text [attr.style]="textStyle('RKW')" x="195" y="282">RKW</text>
-    <text [attr.style]="textStyle('RYO')" x="803" y="774">RYO</text>
-    <text [attr.style]="textStyle('RSG')" x="133" y="481">RSG</text>
-    <text [attr.style]="textStyle('RSM')" x="223" y="401">RSM</text>
-    <text [attr.style]="textStyle('RSP')" x="183" y="453">RSP</text>
-    <text [attr.style]="textStyle('RSQ')" x="1305" y="582">RSQ</text>
-    <text [attr.style]="textStyle('SVS')" x="1420" y="235">SVS</text>
-    <text [attr.style]="textStyle('SBM')" x="655" y="905">SBM</text>
-    <text [attr.style]="textStyle('SBC')" x="703" y="874">SBC</text>
-    <text [attr.style]="textStyle('SSQ')" x="1141" y="972">SSQ</text>
-    <text [attr.style]="textStyle('SNB')" x="1917" y="243">SNB</text>
-    <text [attr.style]="textStyle('SEA')" x="363" y="919">SEA</text>
-    <text [attr.style]="textStyle('SHH')" x="375" y="507">SHH</text>
-    <text [attr.style]="textStyle('SKS')" x="1088" y="950">SKS</text>
-    <text [attr.style]="textStyle('SKT')" x="540" y="503">SKT</text>
-    <text [attr.style]="textStyle('SRP')" x="133" y="531">SRP</text>
-    <text [attr.style]="textStyle('SWN')" x="1044" y="1269">SWN</text>
-    <text [attr.style]="textStyle('SWF')" x="1917" y="213">SWF</text>
-    <text [attr.style]="textStyle('SFS')" x="893" y="1213">SFS</text>
-    <text [attr.style]="textStyle('SGT')" x="1209" y="132">SGT</text>
-    <text [attr.style]="textStyle('SWK')" x="1393" y="845">SWK</text>
-    <text [attr.style]="textStyle('SJP')" x="1223" y="909">SJP</text>
-    <text [attr.style]="textStyle('SJW')" x="988" y="607">SJW</text>
-    <text [attr.style]="textStyle('SPU')" x="1403" y="677">SPU</text>
-    <text [attr.style]="textStyle('SFB')" x="538" y="993">SFB</text>
-    <text [attr.style]="textStyle('STM')" x="666" y="299">STM</text>
-    <text [attr.style]="textStyle('SGN')" x="1769" y="634">SGN</text>
-    <text [attr.style]="textStyle('SKW')" x="1299" y="1070">SKW</text>
-    <text [attr.style]="textStyle('SGP')" x="624" y="566">SGP</text>
-    <text [attr.style]="textStyle('STD')" x="1965" y="455">STD</text>
-    <text [attr.style]="textStyle('SUH')" x="375" y="567">SUH</text>
-    <text [attr.style]="textStyle('SUT')" x="375" y="627">SUT</text>
-    <text [attr.style]="textStyle('SWC')" x="951" y="557">SWC</text>
-    <text [attr.style]="textStyle('TMP')" x="1339" y="785">TMP</text>
-    <text [attr.style]="textStyle('THB')" x="1917" y="63">THB</text>
-    <text [attr.style]="textStyle('TBC')" x="1134" y="1200">TBC</text>
-    <text [attr.style]="textStyle('TBY')" x="1104" y="1222">TBY</text>
-    <text [attr.style]="textStyle('TCR')" x="1190" y="606">TCR</text>
-    <text [attr.style]="textStyle('TMH')" x="1533" y="266">TMH</text>
-    <text [attr.style]="textStyle('TAW')" x="897" y="156">TAW</text>
-    <text [attr.style]="textStyle('TWH')" x="1566" y="739">TWH</text>
-    <text [attr.style]="textStyle('TFP')" x="1119" y="325">TFP</text>
-    <text [attr.style]="textStyle('TNG')" x="543" y="952">TNG</text>
-    <text [attr.style]="textStyle('TPN')" x="1329" y="222">TPN</text>
-    <text [attr.style]="textStyle('UPB')" x="2364" y="330">UPB</text>
-    <text [attr.style]="textStyle('UPM')" x="2404" y="299">UPM</text>
-    <text [attr.style]="textStyle('UPY')" x="2204" y="482">UPY</text>
-    <text [attr.style]="textStyle('UPK')" x="2114" y="550">UPK</text>
-    <text [attr.style]="textStyle('UXB')" x="23" y="453">UXB</text>
-    <text [attr.style]="textStyle('VXL')" x="1249" y="995">VXL</text>
-    <text [attr.style]="textStyle('VIC')" x="1191" y="930">VIC</text>
-    <text [attr.style]="textStyle('WWL')" x="1697" y="250">WWL</text>
-    <text [attr.style]="textStyle('WSD')" x="1943" y="274">WSD</text>
-    <text [attr.style]="textStyle('WRR')" x="1151" y="541">WRR</text>
-    <text [attr.style]="textStyle('WKA')" x="834" y="723">WKA</text>
-    <text [attr.style]="textStyle('WLO')" x="1350" y="874">WLO</text>
-    <text [attr.style]="textStyle('WAF')" x="426" y="197">WAF</text>
-    <text [attr.style]="textStyle('WYC')" x="598" y="546">WYC</text>
-    <text [attr.style]="textStyle('WYP')" x="659" y="419">WYP</text>
-    <text [attr.style]="textStyle('WTA')" x="421" y="837">WTA</text>
-    <text [attr.style]="textStyle('WBN')" x="820" y="1057">WBN</text>
-    <text [attr.style]="textStyle('WFN')" x="957" y="201">WFN</text>
-    <text [attr.style]="textStyle('WHM')" x="2046" y="587">WHM</text>
-    <text [attr.style]="textStyle('WHP')" x="917" y="503">WHP</text>
-    <text [attr.style]="textStyle('WHW')" x="378" y="448">WHW</text>
-    <text [attr.style]="textStyle('WKN')" x="783" y="1024">WKN</text>
-    <text [attr.style]="textStyle('WRP')" x="145" y="385">WRP</text>
-    <text [attr.style]="textStyle('WSP')" x="736" y="757">WSP</text>
-    <text [attr.style]="textStyle('WSM')" x="1246" y="891">WSM</text>
-    <text [attr.style]="textStyle('WCY')" x="627" y="874">WCY</text>
-    <text [attr.style]="textStyle('WPL')" x="1719" y="673">WPL</text>
-    <text [attr.style]="textStyle('WIG')" x="801" y="463">WIG</text>
-    <text [attr.style]="textStyle('WJN')" x="686" y="604">WJN</text>
-    <text [attr.style]="textStyle('WIP')" x="911" y="1237">WIP</text>
-    <text [attr.style]="textStyle('WIM')" x="930" y="1265">WIM</text>
-    <text [attr.style]="textStyle('WOG')" x="1299" y="199">WOG</text>
-    <text [attr.style]="textStyle('WLA')" x="651" y="881">WLA</text>
-    <text [attr.style]="textStyle('WOF')" x="1917" y="183">WOF</text>
-    <text [attr.style]="textStyle('WOP')" x="927" y="178">WOP</text>
+  <g [attr.style]="style" [attr.transform]="transform">
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ACT')" id="ACT" x="439" y="918">{{ t('ACT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ADE')" id="ADE" x="1656" y="665">{{ t('ADE') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ALD')" id="ALD" x="1595" y="679">{{ t('ALD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ALP')" id="ALP" x="375" y="687">{{ t('ALP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('AMS')" id="AMS" x="93" y="206" >{{ t('AMS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('AGL')" id="AGL" x="1421" y="538">{{ t('AGL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ACY')" id="ACY" x="1065" y="307">{{ t('ACY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ASG')" id="ASG" x="1239" y="154">{{ t('ASG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ASL')" id="ASL" x="1359" y="344">{{ t('ASL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BST')" id="BST" x="1056" y="665">{{ t('BST') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BLM')" id="BLM" x="1164" y="1177">{{ t('BLM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BNK')" id="BNK" x="1468" y="692">{{ t('BNK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BBN')" id="BBN" x="1447" y="614">{{ t('BBN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BKG')" id="BKG" x="2176" y="501">{{ t('BKG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BKE')" id="BKE" x="2126" y="227">{{ t('BKE') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BSC')" id="BSC" x="708" y="1024">{{ t('BSC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BWT')" id="BWT" x="878" y="797">{{ t('BWT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BEC')" id="BEC" x="2234" y="460">{{ t('BEC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BZP')" id="BZP" x="1013" y="435">{{ t('BZP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BMY')" id="BMY" x="1593" y="829">{{ t('BMY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BLG')" id="BLG" x="1658" y="572">{{ t('BLG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BKF')" id="BKF" x="1365" y="767">{{ t('BKF') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BLR')" id="BLR" x="1605" y="225">{{ t('BLR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BND')" id="BND" x="1098" y="744">{{ t('BND') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BOR')" id="BOR" x="1494" y="867">{{ t('BOR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BOS')" id="BOS" x="303" y="964">{{ t('BOS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BDS')" id="BDS" x="1269" y="177">{{ t('BDS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BWR')" id="BWR" x="1896" y="586">{{ t('BWR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BTX')" id="BTX" x="841" y="345">{{ t('BTX') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BXN')" id="BXN" x="1320" y="1095">{{ t('BXN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BBB')" id="BBB" x="1966" y="591">{{ t('BBB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BKH')" id="BKH" x="1917" y="153">{{ t('BKH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('BTK')" id="BTK" x="751" y="278">{{ t('BTK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CAR')" id="CAR" x="1305" y="415">{{ t('CAR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CTN')" id="CTN" x="1183" y="435">{{ t('CTN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CWR')" id="CWR" x="1697" y="826">{{ t('CWR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CYF')" id="CYF" x="1904" y="797">{{ t('CYF') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CGT')" id="CGT" x="2049" y="693">{{ t('CGT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CST')" id="CST" x="1429" y="705">{{ t('CST') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CPK')" id="CPK" x="666" y="329">{{ t('CPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CAL')" id="CAL" x="135" y="237">{{ t('CAL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CFM')" id="CFM" x="1093" y="435">{{ t('CFM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CHL')" id="CHL" x="1333" y="672">{{ t('CHL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CHX')" id="CHX" x="1280" y="814">{{ t('CHX') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CSM')" id="CSM" x="139" y="175">{{ t('CSM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CWL')" id="CWL" x="2029" y="130">{{ t('CWL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CWP')" id="CWP" x="468" y="947">{{ t('CWP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CYD')" id="CYD" x="165" y="260">{{ t('CYD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CPC')" id="CPC" x="1224" y="1132">{{ t('CPC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CPN')" id="CPN" x="1248" y="1114">{{ t('CPN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CPS')" id="CPS" x="1194" y="1155">{{ t('CPS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CKS')" id="CKS" x="1149" y="87">{{ t('CKS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CND')" id="CND" x="781" y="300">{{ t('CND') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CSD')" id="CSD" x="1074" y="1245">{{ t('CSD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('CXY')" id="CXY" x="237" y="267">{{ t('CXY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('DGE')" id="DGE" x="2294" y="415">{{ t('DGE') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('DGY')" id="DGY" x="2264" y="437">{{ t('DGY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('DBN')" id="DBN" x="1917" y="93">{{ t('DBN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('DOH')" id="DOH" x="744" y="463">{{ t('DOH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EBY')" id="EBY" x="343" y="829">{{ t('EBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ECM')" id="ECM" x="398" y="886">{{ t('ECM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ECT')" id="ECT" x="874" y="1024">{{ t('ECT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EAN')" id="EAN" x="583" y="831">{{ t('EAN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EFY')" id="EFY" x="1027" y="253">{{ t('EFY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EHM')" id="EHM" x="2144" y="521">{{ t('EHM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EPY')" id="EPY" x="875" y="1189">{{ t('EPY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EAE')" id="EAE" x="263" y="453">{{ t('EAE') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ERB')" id="ERB" x="964" y="473">{{ t('ERB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ERC')" id="ERC" x="954" y="483">{{ t('ERC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EGW')" id="EGW" x="721" y="255">{{ t('EGW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EAC')" id="EAC" x="1493" y="905">{{ t('EAC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EPK')" id="EPK" x="2324" y="392">{{ t('EPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EMB')" id="EMB" x="1285" y="832">{{ t('EMB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EPG')" id="EPG" x="1917" y="33">{{ t('EPG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ESQ')" id="ESQ" x="1214" y="554">{{ t('ESQ') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('EUS')" id="EUS" x="1218" y="499">{{ t('EUS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FLP')" id="FLP" x="2126" y="203">{{ t('FLP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FCN')" id="FCN" x="1379" y="630">{{ t('FCN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FYC')" id="FYC" x="997" y="231">{{ t('FYC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FYR')" id="FYR" x="960" y="505">{{ t('FYR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FPK')" id="FPK" x="1378" y="320">{{ t('FPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('FBY')" id="FBY" x="822" y="1097">{{ t('FBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GTH')" id="GTH" x="2034" y="274">{{ t('GTH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GTR')" id="GTR" x="1024" y="1021">{{ t('GTR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GGN')" id="GGN" x="871" y="368">{{ t('GGN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GHK')" id="GHK" x="655" y="942">{{ t('GHK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GDG')" id="GDG" x="1178" y="587">{{ t('GDG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GGH')" id="GGH" x="2074" y="130">{{ t('GGH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GPS')" id="GPS" x="1104" y="580">{{ t('GPS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GPK')" id="GPK" x="1145" y="807">{{ t('GPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GFD')" id="GFD" x="217" y="655">{{ t('GFD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('GBY')" id="GBY" x="442" y="965">{{ t('GBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HLT')" id="HLT" x="2126" y="179">{{ t('HLT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HSC')" id="HSC" x="650" y="780">{{ t('HSC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HSD')" id="HSD" x="663" y="1024">{{ t('HSD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HTD')" id="HTD" x="901" y="390">{{ t('HTD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HGR')" id="HGR" x="363" y="758">{{ t('HGR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HSN')" id="HSN" x="652" y="587">{{ t('HSN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HAW')" id="HAW" x="547" y="373">{{ t('HAW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HOH')" id="HOH" x="473" y="448">{{ t('HOH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HNX')" id="HNX" x="173" y="1093">{{ t('HNX') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HR')" id="HR" x="118" y="1136">HR4</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HR')" id="HR" x="33" y="1121">HR5</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HRC')" id="HRC" x="100" y="1100">{{ t('HRC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HCL')" id="HCL" x="811" y="323">{{ t('HCL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HBT')" id="HBT" x="867" y="133">{{ t('HBT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HSK')" id="HSK" x="921" y="927">{{ t('HSK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HAI')" id="HAI" x="1429" y="455">{{ t('HAI') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HGT')" id="HGT" x="1057" y="276">{{ t('HGT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HGD')" id="HGD" x="63" y="414">{{ t('HGD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HBN')" id="HBN" x="1287" y="647">{{ t('HBN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HPK')" id="HPK" x="809" y="878">{{ t('HPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HWY')" id="HWY" x="1329" y="366">{{ t('HWY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HCH')" id="HCH" x="2334" y="353">{{ t('HCH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HWC')" id="HWC" x="233" y="1048">{{ t('HWC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HWE')" id="HWE" x="243" y="1009">{{ t('HWE') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HWT')" id="HWT" x="203" y="1071">{{ t('HWT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('HPC')" id="HPC" x="1106" y="857">{{ t('HPC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ICK')" id="ICK" x="103" y="453">{{ t('ICK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KNG')" id="KNG" x="1398" y="1002">{{ t('KNG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KSL')" id="KSL" x="718" y="633">{{ t('KSL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KOY')" id="KOY" x="821" y="943">{{ t('KOY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KSH')" id="KSH" x="1143" y="347">{{ t('KSH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KEN')" id="KEN" x="547" y="411">{{ t('KEN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KPK')" id="KPK" x="782" y="684">{{ t('KPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KSX')" id="KSX" x="1298" y="486">{{ t('KSX') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KBY')" id="KBY" x="666" y="389">{{ t('KBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('KNB')" id="KNB" x="1106" y="903">{{ t('KNB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LAD')" id="LAD" x="703" y="818">{{ t('LAD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LBN')" id="LBN" x="1423" y="922">{{ t('LBN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LGT')" id="LGT" x="989" y="807">{{ t('LGT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LRD')" id="LRD" x="646" y="809">{{ t('LRD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LSQ')" id="LSQ" x="1272" y="732">{{ t('LSQ') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LYN')" id="LYN" x="1940" y="360">{{ t('LYN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LYS')" id="LYS" x="1938" y="297">{{ t('LYS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LVT')" id="LVT" x="1567" y="589">{{ t('LVT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LNB')" id="LNB" x="1488" y="826">{{ t('LNB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('LGN')" id="LGN" x="1917" y="123">{{ t('LGN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MVL')" id="MVL" x="808" y="704">{{ t('MVL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MRH')" id="MRH" x="1374" y="297">{{ t('MRH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MSH')" id="MSH" x="1405" y="735">{{ t('MSH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MBA')" id="MBA" x="1041" y="781">{{ t('MBA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MYB')" id="MYB" x="994" y="651">{{ t('MYB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MED')" id="MED" x="1819" y="597">{{ t('MED') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MHL')" id="MHL" x="916" y="244">{{ t('MHL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MMT')" id="MMT" x="1462" y="739">{{ t('MMT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MPK')" id="MPK" x="252" y="293">{{ t('MPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MGT')" id="MGT" x="1487" y="620">{{ t('MGT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MDN')" id="MDN" x="994" y="1283">{{ t('MDN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('MTC')" id="MTC" x="1216" y="462">{{ t('MTC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NDN')" id="NDN" x="684" y="463">{{ t('NDN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NBP')" id="NBP" x="2079" y="227">{{ t('NBP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NAN')" id="NAN" x="494" y="815">{{ t('NAN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NEN')" id="NEN" x="375" y="807">{{ t('NEN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NGW')" id="NGW" x="2003" y="802">{{ t('NGW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NHA')" id="NHA" x="372" y="383">{{ t('NHA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NWY')" id="NWY" x="568" y="524">{{ t('NWY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NFD')" id="NFD" x="333" y="941">{{ t('NFD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NHT')" id="NHT" x="151" y="606">{{ t('NHT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NKP')" id="NKP" x="525" y="448">{{ t('NKP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NWH')" id="NWH" x="312" y="338">{{ t('NWH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NOW')" id="NOW" x="282" y="316">{{ t('NOW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('NHG')" id="NHG" x="872" y="838">{{ t('NHG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('OAK')" id="OAK" x="1179" y="109">{{ t('OAK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('ODS')" id="ODS" x="1458" y="562">{{ t('ODS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('OSY')" id="OSY" x="273" y="986">{{ t('OSY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('OVL')" id="OVL" x="1350" y="1038">{{ t('OVL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('OXC')" id="OXC" x="1167" y="711">{{ t('OXC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PAC')" id="PAC" x="953" y="694">{{ t('PAC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PKR')" id="PKR" x="375" y="780">{{ t('PKR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PSG')" id="PSG" x="833" y="1133">{{ t('PSG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PVL')" id="PVL" x="297" y="715">{{ t('PVL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PCC')" id="PCC" x="1216" y="774">{{ t('PCC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PCO')" id="PCO" x="1219" y="955">{{ t('PCO') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PNR')" id="PNR" x="342" y="361">{{ t('PNR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PLW')" id="PLW" x="2084" y="572">{{ t('PLW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PRD')" id="PRD" x="593" y="448">{{ t('PRD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('PYB')" id="PYB" x="854" y="1161">{{ t('PYB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('QPS')" id="QPS" x="757" y="664">{{ t('QPS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('QBY')" id="QBY" x="666" y="359">{{ t('QBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('QWY')" id="QWY" x="933" y="878">{{ t('QWY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RVP')" id="RVP" x="590" y="1024">{{ t('RVP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RYL')" id="RYL" x="303" y="404">{{ t('RYL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RBG')" id="RBG" x="1999" y="240">{{ t('RBG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RGP')" id="RGP" x="1091" y="639">{{ t('RGP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RMD')" id="RMD" x="374" y="1051">{{ t('RMD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RKW')" id="RKW" x="195" y="282">{{ t('RKW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RYO')" id="RYO" x="803" y="774">{{ t('RYO') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RSG')" id="RSG" x="133" y="481">{{ t('RSG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RSM')" id="RSM" x="223" y="401">{{ t('RSM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RSP')" id="RSP" x="183" y="453">{{ t('RSP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('RSQ')" id="RSQ" x="1305" y="582">{{ t('RSQ') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SVS')" id="SVS" x="1420" y="235">{{ t('SVS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SBM')" id="SBM" x="655" y="905">{{ t('SBM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SBC')" id="SBC" x="703" y="874">{{ t('SBC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SSQ')" id="SSQ" x="1141" y="972">{{ t('SSQ') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SNB')" id="SNB" x="1917" y="243">{{ t('SNB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SEA')" id="SEA" x="363" y="919">{{ t('SEA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SHH')" id="SHH" x="375" y="507">{{ t('SHH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SKS')" id="SKS" x="1088" y="950">{{ t('SKS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SKT')" id="SKT" x="540" y="503">{{ t('SKT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SRP')" id="SRP" x="133" y="531">{{ t('SRP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SWN')" id="SWN" x="1044" y="1269">{{ t('SWN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SWF')" id="SWF" x="1917" y="213">{{ t('SWF') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SFS')" id="SFS" x="893" y="1213">{{ t('SFS') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SGT')" id="SGT" x="1209" y="132">{{ t('SGT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SWK')" id="SWK" x="1393" y="845">{{ t('SWK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SJP')" id="SJP" x="1223" y="909">{{ t('SJP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SJW')" id="SJW" x="988" y="607">{{ t('SJW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SPU')" id="SPU" x="1403" y="677">{{ t('SPU') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SFB')" id="SFB" x="538" y="993">{{ t('SFB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('STM')" id="STM" x="666" y="299">{{ t('STM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SGN')" id="SGN" x="1769" y="634">{{ t('SGN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SKW')" id="SKW" x="1299" y="1070">{{ t('SKW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SGP')" id="SGP" x="624" y="566">{{ t('SGP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('STD')" id="STD" x="1965" y="455">{{ t('STD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SUH')" id="SUH" x="375" y="567">{{ t('SUH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SUT')" id="SUT" x="375" y="627">{{ t('SUT') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('SWC')" id="SWC" x="951" y="557">{{ t('SWC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TMP')" id="TMP" x="1339" y="785">{{ t('TMP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('THB')" id="THB" x="1917" y="63">{{ t('THB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TBC')" id="TBC" x="1134" y="1200">{{ t('TBC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TBY')" id="TBY" x="1104" y="1222">{{ t('TBY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TCR')" id="TCR" x="1190" y="606">{{ t('TCR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TMH')" id="TMH" x="1533" y="266">{{ t('TMH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TAW')" id="TAW" x="897" y="156">{{ t('TAW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TWH')" id="TWH" x="1566" y="739">{{ t('TWH') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TFP')" id="TFP" x="1119" y="325">{{ t('TFP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TNG')" id="TNG" x="543" y="952">{{ t('TNG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('TPN')" id="TPN" x="1329" y="222">{{ t('TPN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('UPB')" id="UPB" x="2364" y="330">{{ t('UPB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('UPM')" id="UPM" x="2404" y="299">{{ t('UPM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('UPY')" id="UPY" x="2204" y="482">{{ t('UPY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('UPK')" id="UPK" x="2114" y="550">{{ t('UPK') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('UXB')" id="UXB" x="23" y="453">{{ t('UXB') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('VXL')" id="VXL" x="1249" y="995">{{ t('VXL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('VIC')" id="VIC" x="1191" y="930">{{ t('VIC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WWL')" id="WWL" x="1697" y="250">{{ t('WWL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WSD')" id="WSD" x="1943" y="274">{{ t('WSD') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WRR')" id="WRR" x="1151" y="541">{{ t('WRR') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WKA')" id="WKA" x="834" y="723">{{ t('WKA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WLO')" id="WLO" x="1350" y="874">{{ t('WLO') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WAF')" id="WAF" x="426" y="197">{{ t('WAF') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WYC')" id="WYC" x="598" y="546">{{ t('WYC') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WYP')" id="WYP" x="659" y="419">{{ t('WYP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WTA')" id="WTA" x="421" y="837">{{ t('WTA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WBN')" id="WBN" x="820" y="1057">{{ t('WBN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WFN')" id="WFN" x="957" y="201">{{ t('WFN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WHM')" id="WHM" x="2046" y="587">{{ t('WHM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WHP')" id="WHP" x="917" y="503">{{ t('WHP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WHW')" id="WHW" x="378" y="448">{{ t('WHW') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WKN')" id="WKN" x="783" y="1024">{{ t('WKN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WRP')" id="WRP" x="145" y="385">{{ t('WRP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WSP')" id="WSP" x="736" y="757">{{ t('WSP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WSM')" id="WSM" x="1246" y="891">{{ t('WSM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WCY')" id="WCY" x="627" y="874">{{ t('WCY') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WPL')" id="WPL" x="1719" y="673">{{ t('WPL') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WIG')" id="WIG" x="801" y="463">{{ t('WIG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WJN')" id="WJN" x="686" y="604">{{ t('WJN') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WIP')" id="WIP" x="911" y="1237">{{ t('WIP') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WIM')" id="WIM" x="930" y="1265">{{ t('WIM') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WOG')" id="WOG" x="1299" y="199">{{ t('WOG') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WLA')" id="WLA" x="651" y="881">{{ t('WLA') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WOF')" id="WOF" x="1917" y="183">{{ t('WOF') }}</text>
+    <text (mouseover)="mov($event)" (mouseout)="mout($event)" [attr.style]="textStyle('WOP')" id="WOP" x="927" y="178">{{ t('WOP') }}</text>
+    <text [attr.x]="selX" [attr.y]="selY" [attr.style]="selStyle">{{ selText }}</text>
   </g>
 </svg>
+</div>
