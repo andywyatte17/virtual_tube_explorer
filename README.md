@@ -1,3 +1,9 @@
+## Summary - 2026-06-06
+
+- Angular (v1.7.4) web app for exploring the London Underground — shows routes, timetables, station arrival predictions and a quick-route finder between stations.
+- Integrates with the TfL API to fetch live arrival data and timetable information.
+- Includes an SVG map view, passenger/naptan data handling, and a Karma/Protractor test suite.
+
 # VirtualTubeExplorer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
