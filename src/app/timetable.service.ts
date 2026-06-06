@@ -158,6 +158,7 @@ export class TimetableService {
     const tr = new FromLineToTimes(fromNaptanId, line, toNaptanId, times);
 
     let processResult = (api: TflRouteAPI) => {
+      if (!api || !api.timetable || !api.timetable.routes) return;
       api.timetable.routes.forEach((route: Route) => {
         const m = ExtractStationIntervals(fromNaptanId, toNaptanId, route, line);
 
